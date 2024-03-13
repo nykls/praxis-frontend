@@ -4,6 +4,7 @@ import { CookieIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
+import { Card } from "./ui/card";
 
 export default function CookieConsent({
   demo = false,
@@ -57,10 +58,10 @@ export default function CookieConsent({
         hide && "hidden"
       )}
     >
-      <div className="bg-secondary rounded-md m-2">
+      <Card className=" m-2">
         <div className="grid gap-2">
           <div className="border-b border-border h-14 flex items-center justify-between p-4">
-            <h1 className="text-lg font-medium">We use cookies</h1>
+            <h1 className="text-lg font-medium">Wir nutzen Cookies</h1>
             <CookieIcon className="h-[1.2rem] w-[1.2rem]" />
           </div>
           <div className="p-4">
@@ -77,14 +78,14 @@ export default function CookieConsent({
           </div>
           <div className="flex gap-2 p-4 py-5 border-t border-border bg-background/20">
             <Button onClick={accept} className="w-full">
-              Akzepzieren
+              Akzeptieren
             </Button>
             <Button onClick={decline} className="w-full" variant="secondary">
               Ablehnen
             </Button>
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }
