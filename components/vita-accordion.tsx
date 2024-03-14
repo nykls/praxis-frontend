@@ -10,7 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { AspectRatio } from "./ui/aspect-ratio";
 import { Separator } from "./ui/separator";
 import { Resume } from "@/lib/interfaces";
-import Fetches from "@/lib/api-fetch";
+import { Fetches } from "@/lib/api-fetch";
 import urlFor from "@/lib/url-for";
 import Image from "next/image";
 

@@ -70,13 +70,34 @@ async function fetchSlider() {
   }
 }
 
-export default async function Fetches(type: "posts" | "resume" | "slider") {
+export async function Fetches(type: "posts" | "resume" | "slider") {
+  // Benutze Promise.all, um alle Anfragen parallel auszuführen
+  const [posts, resumes, sliders] = await Promise.all([
+    fetchPost(),
+    fetchResume(),
+    fetchSlider(),
+  ]);
+
+  // Wähle basierend auf dem `type`-Parameter das entsprechende Ergebnis aus
   switch (type) {
     case "posts":
-      return await fetchPost();
+      return posts;
     case "resume":
-      return await fetchResume();
+      return resumes;
     case "slider":
-      return await fetchSlider();
+      return sliders;
+    default:
+      throw new Error(`Unbekannter Typ: ${type}`);
   }
 }
+
+// export default async function Fetches(type: "posts" | "resume" | "slider") {
+//   switch (type) {
+//     case "posts":
+//       return await fetchPost();
+//     case "resume":
+//       return await fetchResume();
+//     case "slider":
+//       return await fetchSlider();
+//   }
+// }

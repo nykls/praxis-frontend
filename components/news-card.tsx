@@ -1,4 +1,4 @@
-import Fetches from "@/lib/api-fetch";
+import { Fetches } from "@/lib/api-fetch";
 import { Post } from "@/lib/interfaces";
 import urlFor from "@/lib/url-for";
 import Link from "next/link";

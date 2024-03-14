@@ -8,7 +8,7 @@ import { Card } from "./ui/card";
 export const RichTextComponent = {
   types: {
     image: ({ value }: any) => (
-      <Card className="relative mx-auto w-2/3 aspect-video">
+      <Card className="relative mx-auto w-2/3 aspect-video overflow-hidden">
         <Image
           src={urlFor(value).url()}
           alt="Post"

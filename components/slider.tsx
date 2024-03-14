@@ -7,7 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Fetches from "@/lib/api-fetch";
+import { Fetches } from "@/lib/api-fetch";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import { Suspense } from "react";
@@ -16,6 +16,7 @@ import { Card, CardContent } from "./ui/card";
 
 export default async function SliderGallery() {
   const slides = await Fetches("slider");
+  console.log(slides);
   return (
     <Carousel
       plugins={[
