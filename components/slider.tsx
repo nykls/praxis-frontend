@@ -16,10 +16,10 @@ import { Card, CardContent } from "./ui/card";
 import { SliderSkeleton } from "./skeletons";
 
 export default async function SliderGallery() {
-  // const slides = await Fetches("slider");
-  const slides = await new Promise((resolve) =>
-    setTimeout(() => resolve(Fetches("slider")), 3000)
-  );
+  const slides = await Fetches("slider");
+  // const slides = await new Promise((resolve) =>
+  // //   setTimeout(() => resolve(Fetches("slider")), 3000)
+  // );
   return (
     <Carousel
       plugins={[
