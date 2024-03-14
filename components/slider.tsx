@@ -31,7 +31,7 @@ export default async function SliderGallery() {
     >
       <CarouselContent>
         <Suspense fallback={<SliderSkeleton />}>
-          {slides.map((slide: any, index: number) => (
+          {slides[0].imagesGallery.map((slide: any, index: number) => (
             <CarouselItem key={index} className="md:basis-1/2 overflow-hidden">
               <Card className="overflow-hidden">
                 <CardContent className="flex aspect-[4/3] overflow-hidden p-0 m-0 items-center justify-center">

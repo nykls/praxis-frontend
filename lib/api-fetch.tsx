@@ -64,7 +64,7 @@ async function fetchSlider() {
     }
     `;
     const gallery = await client.fetch(query);
-    return gallery[0].imagesGallery;
+    return gallery;
   } catch (err) {
     console.error(err);
   }
