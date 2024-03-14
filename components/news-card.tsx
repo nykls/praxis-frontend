@@ -3,7 +3,6 @@ import { Post } from "@/lib/interfaces";
 import urlFor from "@/lib/url-for";
 import Link from "next/link";
 import { Suspense } from "react";
-import Loading from "../app/(frontend)/blog/loading";
 import FullWidthWrapper from "./full-width-wrapper";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
@@ -15,19 +14,22 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Separator } from "./ui/separator";
+import { CardSkeleton, PostSkeleton } from "./skeletons";
 
 export default async function NewsCard() {
-  const posts: Post[] = await Fetches("posts");
+  const posts: Post[] = await new Promise((resolve) =>
+    setTimeout(() => resolve(Fetches("posts")), 3000)
+  );
   return (
     <section className="pt-20">
       <FullWidthWrapper className="py-10">
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<PostSkeleton />}>
           <div className="grid lg:grid-cols-2 gap-2">
             {posts?.length > 0 &&
               posts.map((post) => (
                 <Link href={`/blog/${post?.slug?.current}`} key={post._id}>
                   <Card
-                    className="transition relative lg:hover:shadow-lg p-4 lg:delay-150 lg:hover:scale-105 lg:duration-700"
+                    className="relative lg:hover:shadow-lg p-4 transition"
                     key={post._id}
                   >
                     <CardHeader className="space-y-3">

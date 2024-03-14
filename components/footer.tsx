@@ -4,13 +4,17 @@ import FullWidthWrapper from "./full-width-wrapper";
 import Link from "next/link";
 import Maps from "./maps";
 import Image from "next/image";
+import { Suspense } from "react";
+import { MapsSkeleton } from "./skeletons";
 
 const Footer = () => {
   return (
-    <footer className="bg-secondary mt-10 p-3">
+    <footer className="bg-secondary border-t mt-10 p-3">
       <FullWidthWrapper>
-        <div className="h-[400px] py-5">
-          <Maps />
+        <div className="pb-5">
+          <Suspense fallback={<MapsSkeleton />}>
+            <Maps />
+          </Suspense>
         </div>
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between">
           {/* Copyright Text */}

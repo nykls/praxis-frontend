@@ -11,56 +11,62 @@ import {
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader } from "./ui/card";
 import { Button } from "./ui/button";
+import { Suspense } from "react";
+import { MapsSkeleton } from "./skeletons";
 
 export default function Maps() {
   const position = { lat: 51.097900607863075, lng: 13.677138946517001 };
   const center = { lat: 51.097900607863075, lng: 13.665841482178923 };
   return (
-    <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}>
-      <div className="w-full h-full rounded-xl overflow-hidden">
-        <Map
-          zoom={14}
-          center={center}
-          disableDefaultUI={true}
-          gestureHandling="greedy"
-          mapId={process.env.NEXT_PUBLIC_MAP_ID}
-        >
-          <MapControl position={ControlPosition.TOP_LEFT}>
-            <div className="w-auto p-3 text-sm lg:text-base">
-              <Card>
-                <CardHeader>
-                  <p className="font-bold">
-                    Praxis für Osteopathie, Yoga, Qigong
-                  </p>
-                  <CardDescription>
-                    <p className="text-muted-foreground">Katrin Eulitz</p>
-                  </CardDescription>
-                  <Separator />
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="text-sm">
-                    <p>Gartenstraße 13</p>
-                    <p>01445 Radebeul</p>
-                  </div>
-                  <div>
-                    <Link
-                      href="https://maps.app.goo.gl/EAL5eWyKgyw6NwxDA"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <Button variant={"outline"} className="font-bold">
-                        Routenplaner &rarr;
-                      </Button>
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </MapControl>
-          <AdvancedMarker position={position} />
-        </Map>
-      </div>
-    </APIProvider>
+    <Suspense fallback={<MapsSkeleton />}>
+      <APIProvider
+        apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}
+      >
+        <Card className="w-full h-[400px] overflow-hidden">
+          <Map
+            zoom={14}
+            center={center}
+            disableDefaultUI={true}
+            gestureHandling="greedy"
+            mapId={process.env.NEXT_PUBLIC_MAP_ID}
+          >
+            <MapControl position={ControlPosition.TOP_LEFT}>
+              <div className="w-auto p-3 text-sm lg:text-base">
+                <Card>
+                  <CardHeader>
+                    <p className="font-bold">
+                      Praxis für Osteopathie, Yoga, Qigong
+                    </p>
+                    <CardDescription>
+                      <p className="text-muted-foreground">Katrin Eulitz</p>
+                    </CardDescription>
+                    <Separator />
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="text-sm">
+                      <p>Gartenstraße 13</p>
+                      <p>01445 Radebeul</p>
+                    </div>
+                    <div>
+                      <Link
+                        href="https://maps.app.goo.gl/EAL5eWyKgyw6NwxDA"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        <Button variant={"outline"} className="font-bold">
+                          Routenplaner &rarr;
+                        </Button>
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </MapControl>
+            <AdvancedMarker position={position} />
+          </Map>
+        </Card>
+      </APIProvider>
+    </Suspense>
   );
 }
 

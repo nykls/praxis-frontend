@@ -11,7 +11,6 @@ export default async function ResumePage() {
           <SliderGallery />
         </FullWidthWrapper>
       </section>
-
       <section className="border-t border-border bg-accent grid gap-3">
         <h1 className="text-4xl border-b pb-2 m-5 font-bold mx-auto">Vita</h1>
         <FullWidthWrapper className="pb-10">

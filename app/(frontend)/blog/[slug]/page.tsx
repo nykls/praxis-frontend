@@ -15,7 +15,7 @@ import { client } from "@/sanity/lib/client";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import { Suspense } from "react";
-import Loading from "./loading";
+import { PostSkeleton } from "@/components/skeletons";
 
 type Props = {
   params: {
@@ -64,8 +64,8 @@ export default async function BlogPage({ params: { slug } }: Props) {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-      <section className="space-y-5">
-        <Suspense fallback={<Loading />}>
+      <article className="space-y-5">
+        <Suspense fallback={<PostSkeleton />}>
           <div className="w-full text-center space-y-5">
             <div className="flex grow space-x-3">
               <Avatar>
@@ -100,7 +100,7 @@ export default async function BlogPage({ params: { slug } }: Props) {
             <PortableText value={post.body} components={RichTextComponent} />
           </div>
         </Suspense>
-      </section>
+      </article>
     </FullWidthWrapper>
   );
 }

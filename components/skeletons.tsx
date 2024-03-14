@@ -60,6 +60,13 @@ function CardSkeleton() {
     </section>
   );
 }
+function MapsSkeleton() {
+  return (
+    <Card className="w-full h-[400px]">
+      <Skeleton className="w-full h-[400px]" />
+    </Card>
+  );
+}
 
 function PostSkeleton() {
   return (
@@ -109,4 +116,16 @@ function PostSkeleton() {
   );
 }
 
-export { CardSkeleton, PostSkeleton };
+function SliderSkeleton() {
+  return (
+    <Card className="overflow-hidden">
+      <CardContent className="flex aspect-[4/3] overflow-hidden p-0 m-0 items-center justify-center">
+        <AspectRatio ratio={4 / 3}>
+          <Skeleton className="h-full w-full" />
+        </AspectRatio>
+      </CardContent>
+    </Card>
+  );
+}
+
+export { CardSkeleton, PostSkeleton, MapsSkeleton, SliderSkeleton };
