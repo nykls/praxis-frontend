@@ -1,4 +1,4 @@
-import { Fetches } from "@/lib/api-fetch";
+import Loading from "@/app/(frontend)/blog/loading";
 import { Post } from "@/lib/interfaces";
 import urlFor from "@/lib/url-for";
 import Link from "next/link";
@@ -14,16 +14,12 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Separator } from "./ui/separator";
-import { CardSkeleton, PostSkeleton } from "./skeletons";
 
-export default async function NewsCard() {
-  const posts: Post[] = await new Promise((resolve) =>
-    setTimeout(() => resolve(Fetches("posts")), 3000)
-  );
+export default function NewsCard({ posts }: { posts: Post[] }) {
   return (
     <section className="pt-20">
       <FullWidthWrapper className="py-10">
-        <Suspense fallback={<PostSkeleton />}>
+        <Suspense fallback={<Loading />}>
           <div className="grid lg:grid-cols-2 gap-2">
             {posts?.length > 0 &&
               posts.map((post) => (

@@ -21,5 +21,5 @@ export interface Resume {
 }
 
 export interface Slider {
-  imagesGallery: string;
+  imagesGallery: Array<string>;
 }

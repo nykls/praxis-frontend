@@ -14,8 +14,8 @@ import { Fetches } from "@/lib/api-fetch";
 import urlFor from "@/lib/url-for";
 import Image from "next/image";
 
-async function VitaAccordion() {
-  const vitas: Resume[] = await Fetches("resume");
+async function VitaAccordion({ vitas }: { vitas: Resume[] }) {
+  // const vitas: Resume[] = await Fetches("resume");
   return (
     <Accordion
       type="multiple"

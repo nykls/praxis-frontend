@@ -1,34 +1,28 @@
 import { client } from "@/sanity/lib/client";
 
-const options = {
-  headers: {
-    Authorization: `Bearer ${process.env.STRAPI_API_KEY}`,
-  },
-};
-
-async function fetchPost() {
-  try {
-    const query = `
-    *[_type == 'post']{
-      title,
-      slug,
-      author->{
-        name,
-        avatar,
-      },
-      body,
-      "excerpt": array::join(string::split((pt::text(body)), "")[0..255], "") + "...",
-      image,
-      publishedAt,
-      _id,
-    }
-    `;
-    const posts = await client.fetch(query);
-    return posts;
-  } catch (err) {
-    console.error(err);
-  }
-}
+// async function fetchPost() {
+//   try {
+//     const query = `
+//     *[_type == 'post']{
+//       title,
+//       slug,
+//       author->{
+//         name,
+//         avatar,
+//       },
+//       body,
+//       "excerpt": array::join(string::split((pt::text(body)), "")[0..255], "") + "...",
+//       image,
+//       publishedAt,
+//       _id,
+//     }
+//     `;
+//     const posts = await client.fetch(query);
+//     return posts;
+//   } catch (err) {
+//     console.error(err);
+//   }
+// }
 
 async function fetchResume() {
   try {
@@ -72,16 +66,10 @@ async function fetchSlider() {
 
 export async function Fetches(type: "posts" | "resume" | "slider") {
   // Benutze Promise.all, um alle Anfragen parallel auszuführen
-  const [posts, resumes, sliders] = await Promise.all([
-    fetchPost(),
-    fetchResume(),
-    fetchSlider(),
-  ]);
+  const [resumes, sliders] = await Promise.all([fetchResume(), fetchSlider()]);
 
   // Wähle basierend auf dem `type`-Parameter das entsprechende Ergebnis aus
   switch (type) {
-    case "posts":
-      return posts;
     case "resume":
       return resumes;
     case "slider":
