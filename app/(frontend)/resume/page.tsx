@@ -45,7 +45,7 @@ async function fetchSlider() {
   return fetchContent<Slider[]>(sliderQuery);
 }
 
-export async function Fetches() {
+async function Fetches() {
   const [resume, sliders] = await Promise.all([fetchResume(), fetchSlider()]);
   return { resume: resume || [], sliders: sliders || [] }; // Stellt Standardwerte bereit, falls null zurückgegeben wird
 }
