@@ -20,6 +20,17 @@ export interface Resume {
   _id: string;
 }
 
+interface SliderImageAsset {
+  _ref: string;
+  _type: "reference";
+}
+
+export interface SliderImage {
+  _type: "image";
+  _key: string;
+  asset: SliderImageAsset;
+}
+
 export interface Slider {
-  imagesGallery: Array<string>;
+  images: SliderImage[];
 }

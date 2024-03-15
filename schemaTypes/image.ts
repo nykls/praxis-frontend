@@ -1,13 +1,21 @@
 export default {
-  name: 'gallery',
-  title: 'Gallery',
-  type: 'document',
+  name: "gallery",
+  title: "Gallery",
+  type: "document",
   fields: [
     {
-      name: 'imagesGallery',
-      title: 'Images gallery',
-      type: 'array',
-      of: [{type: 'image'}],
+      name: "images",
+      title: "Images",
+      type: "array",
+      of: [
+        {
+          type: "image",
+          name: "image",
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
     },
   ],
-}
+};

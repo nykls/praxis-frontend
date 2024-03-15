@@ -2,7 +2,8 @@
 import FullWidthWrapper from "@/components/full-width-wrapper";
 import SliderGallery from "@/components/slider";
 import VitaAccordion from "@/components/vita-accordion";
-import { Resume, Slider } from "@/lib/interfaces";
+import { Resume, Slider, SliderImage } from "@/lib/interfaces";
+import urlFor from "@/lib/url-for";
 import { client } from "@/sanity/lib/client";
 
 async function fetchContent<T>(query: string): Promise<T | null> {
@@ -31,8 +32,9 @@ const resumeQuery = `
 
 const sliderQuery = `
   *[_type == 'gallery']{
-    imagesGallery[] 
-  }
+        images
+        }
+    
 `;
 
 async function fetchResume() {
@@ -51,14 +53,12 @@ export async function Fetches() {
 export default async function ResumePage() {
   const data = await Fetches();
   const resume: Resume[] = data.resume;
-  const sliders: Slider[] = data.sliders;
-  console.log(resume);
-  console.log(sliders);
+  const sliders: SliderImage[] = data.sliders[0].images;
   return (
     <div className="pt-20">
       <section>
         <FullWidthWrapper className="py-10">
-          <SliderGallery />
+          <SliderGallery slides={sliders} />
         </FullWidthWrapper>
       </section>
       <section className="border-t border-border bg-accent grid gap-3">
