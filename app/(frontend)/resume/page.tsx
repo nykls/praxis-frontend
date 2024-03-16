@@ -68,13 +68,11 @@ export default async function ResumePage() {
     <div className="pt-20">
       <section>
         <FullWidthWrapper className="py-10">
-          <Suspense fallback={<Loading />}>
-            <SliderGallery slides={sliders} />
-          </Suspense>
+          <SliderGallery slides={sliders} />
         </FullWidthWrapper>
       </section>
-      <section className="border-t border-border bg-accent grid gap-3">
-        <h1 className="text-4xl border-y pb-2 m-5 font-bold mx-auto">Vita</h1>
+      <section className="border-t bg-accent border-y grid gap-3">
+        <h1 className="text-4xl border-b pb-2 m-5 font-bold mx-auto">Vita</h1>
         <FullWidthWrapper className="pb-10">
           <VitaAccordion vitas={resume} />
         </FullWidthWrapper>{" "}
