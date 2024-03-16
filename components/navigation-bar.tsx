@@ -11,7 +11,13 @@ import {
 } from "@/components/ui/navigation-menu";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
-import { Menu, MessageCircleMore, MoonIcon, SunIcon } from "lucide-react";
+import {
+  Menu,
+  MessageCircleMore,
+  MoonIcon,
+  PhoneOutgoing,
+  SunIcon,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import ContactForm from "./contact";
@@ -84,6 +90,14 @@ function Navbar() {
                   <MessageCircleMore />{" "}
                 </NavigationMenuLink>
               </ContactForm>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                href="tel:01727979178"
+                className={navigationMenuTriggerStyle()}
+              >
+                <PhoneOutgoing />{" "}
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem className="">
               <NavigationMenuTrigger>

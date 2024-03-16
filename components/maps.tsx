@@ -38,7 +38,9 @@ export default function Maps() {
                       Praxis für Osteopathie, Yoga, Qigong
                     </p>
                     <CardDescription>
-                      <p className="text-muted-foreground">Katrin Eulitz</p>
+                      <p className="text-muted-foreground">
+                        Maitri Katrin Eulitz
+                      </p>
                     </CardDescription>
                     <Separator />
                   </CardHeader>
@@ -46,6 +48,12 @@ export default function Maps() {
                     <div className="text-sm">
                       <p>Gartenstraße 13</p>
                       <p>01445 Radebeul</p>
+                      <p>Freistaat Sachsen</p>
+                      <br />
+                      <p className="font-bold">
+                        Telefon:{" "}
+                        <Link href="tel:01727979178">0172 79 79 178</Link>
+                      </p>
                     </div>
                     <div>
                       <Link

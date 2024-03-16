@@ -16,6 +16,13 @@ import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import { Suspense } from "react";
 import { PostSkeleton } from "@/components/skeletons";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Artikel",
+  description: "Aktuelle Neuigkeiten",
+  keywords: "Aktuelles, Neuigkeiten, News",
+};
 
 type Props = {
   params: {

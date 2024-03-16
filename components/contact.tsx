@@ -2,7 +2,7 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { addEntry } from "@/actions/send-mail";
+import { addEntry } from "@/lib/send-mail";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Drawer,

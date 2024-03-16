@@ -49,6 +49,9 @@
     --ring: 346.8 77.2% 49.8%;
   }
 }
+* {
+  scroll-behavior: smooth;
+}
 
 h1 {
   @apply text-4xl font-bold;

@@ -11,11 +11,23 @@ import { motion } from "framer-motion";
 export const Hero = () => {
   return (
     <LampContainer>
-      <motion.h1
+      <motion.h3
         initial={{ opacity: 0.5, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{
           delay: 0,
+          duration: 0.5,
+          ease: "easeOut",
+        }}
+        className="tracking-tight md:text-2xl"
+      >
+        Praxis für Osteopathie, Yoga, Qigong Maitri Katrin Eulitz
+      </motion.h3>
+      <motion.h1
+        initial={{ opacity: 0.5, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.1,
           duration: 0.5,
           ease: "easeOut",
         }}
@@ -27,19 +39,22 @@ export const Hero = () => {
         initial={{ opacity: 0.5, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{
-          delay: 0,
+          delay: 0.2,
           duration: 0.5,
           ease: "easeOut",
         }}
-        className="text-foreground md:text-3xl font-bold"
+        className="text-primary-foreground md:text-xl text-center w-1/3 font-bold"
       >
-        Praxis für Osteopathie Katrin Eulitz
+        Willkommen in unserer Praxis für Osteopathie, Yoga und Qigong! Hier
+        bieten wir osteopathische Behandlungen für Babys bis Erwachsene und Yoga
+        sowie Qigong für jede Altersstufe an. Die Kosten können über Ihre
+        Krankenkassen abgerechnet werden.
       </motion.p>
       <div className="mt-20 flex flex-col mx-auto gap-4 sm:flex-row">
         <ContactForm>
           <Button>Kontakt</Button>
         </ContactForm>
-        <Link href="/" className={buttonVariants({ variant: "outline" })}>
+        <Link href="#perk" className={buttonVariants({ variant: "outline" })}>
           Mehr &rarr;
         </Link>
       </div>{" "}

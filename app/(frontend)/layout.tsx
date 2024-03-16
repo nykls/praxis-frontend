@@ -1,5 +1,3 @@
-"use client";
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -11,6 +9,17 @@ import Footer from "@/components/footer";
 import CookieConsent from "@/components/cookie-consent";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: {
+    default: "Praxis für Osteopathie, Yoga und Qigong Maitri Katrin Eulitz",
+    template:
+      "%s | Praxis für Osteopathie, Yoga und Qigong Maitri Katrin Eulitz",
+  },
+  description:
+    "Die Praxis Maitri in Radebeul bietet Osteopathie, Yoga und Qigong an. Katrin Eulitz ist Osteopathin, Yogalehrerin und Qigong-Kursleiterin.",
+  keywords: "Osteopathie, Yoga, Qigong, Radebeul, Katrin Eulitz",
+};
 
 export default function RootLayout({
   children,

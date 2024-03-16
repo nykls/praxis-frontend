@@ -1,6 +1,13 @@
 import NewsCard from "@/components/news-card";
 import { Post } from "@/lib/interfaces";
 import { client } from "@/sanity/lib/client";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Aktuelles",
+  description: "Aktuelle Neuigkeiten",
+  keywords: "Aktuelles, Neuigkeiten, News",
+};
 
 async function getPosts() {
   try {
@@ -28,6 +35,5 @@ async function getPosts() {
 
 export default async function Blog() {
   const posts: Post[] = await getPosts();
-  console.log(posts);
   return <NewsCard posts={posts} />;
 }

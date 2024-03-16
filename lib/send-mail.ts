@@ -10,7 +10,7 @@ export async function addEntry(data: contactData) {
   const result = contactSchema.safeParse(data);
   if (result.success) {
     await resend.emails.send({
-      from: "Niklas Eulitz <niklas@nykls.de>",
+      from: "Kontaktformular <niklas@nykls.de>",
       to: ["niklas.eulitz@gmail.com"],
       subject: data.subject + "-Anfrage",
       text: data.message,
