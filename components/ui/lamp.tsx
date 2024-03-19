@@ -13,7 +13,7 @@ export const LampContainer = ({
   return (
     <div
       className={cn(
-        "relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-hero dark:bg-secondary z-0",
+        "-mt-20 flex min-h-screen flex-col items-center justify-center overflow-hidden bg-hero dark:bg-secondary z-0",
         className
       )}
     >
@@ -78,7 +78,7 @@ export const LampContainer = ({
           className="absolute inset-auto z-40 h-0.5 w-1/3 -translate-y-[7rem] bg-red-200 "
         ></motion.div>
 
-        <div className="absolute inset-auto z-auto h-44 w-full -translate-y-[12.5rem] bg-hero dark:bg-secondary "></div>
+        <div className="absolute h-44 w-full -translate-y-[12.5rem] bg-hero dark:bg-secondary "></div>
       </div>
 
       <div className="relative z-50 flex -translate-y-80 flex-col items-center px-5">

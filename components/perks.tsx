@@ -30,8 +30,8 @@ const perks = [
 
 export default function Perks() {
   return (
-    <section id="perk" className="border-t">
-      <FullWidthWrapper className="py-10">
+    <section id="perk" className="border-t py-7">
+      <FullWidthWrapper>
         <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0">
           {perks.map((perk) => (
             <div

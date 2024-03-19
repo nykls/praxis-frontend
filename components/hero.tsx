@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 export const Hero = () => {
   return (
-    <div className="flex flex-col justify-around top-0 absolute">
+    <div className="flex flex-col justify-around">
       <LampContainer className="pt-11 space-y-3">
         <motion.h3
           initial={{ opacity: 0.5, y: 100 }}

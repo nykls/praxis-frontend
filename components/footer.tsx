@@ -9,7 +9,7 @@ import { MapsSkeleton } from "./skeletons";
 
 const Footer = () => {
   return (
-    <footer className="bg-secondary border-t mt-10 p-3">
+    <footer className="bg-secondary border-t py-7 mt-7 ">
       <FullWidthWrapper>
         <div className="pb-5">
           <Suspense fallback={<MapsSkeleton />}>
