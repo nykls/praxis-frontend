@@ -10,6 +10,12 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { useTheme } from "next-themes";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import {
   Menu,
@@ -21,123 +27,89 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import ContactForm from "./contact";
+import { Button } from "./ui/button";
+import { Separator } from "./ui/separator";
+import MobileNav from "./mobile-nav";
 
 function Navbar() {
   const { setTheme } = useTheme();
   return (
-    <header className="">
-      <nav className="mb-100">
-        <NavigationMenu className="transition shadow-md w-fit flex items-center justify-center backdrop-blur-xl bg-accent/40 dark:backdrop-brightness-75 backdrop-opacity-100 mx-auto top-3 inset-x-0 z-50 my-3 fixed p-3 rounded-full">
-          <NavigationMenuList className="">
-            <NavigationMenuItem className="p-0">
-              <NavigationMenuLink
-                href="/"
-                className={cn(navigationMenuTriggerStyle(), "")}
-              >
-                <div className="relative size-8">
-                  <Image
-                    fill
-                    src="/logo.svg"
-                    alt="Logo"
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem className="md:hidden">
-              <NavigationMenuTrigger>
-                <Menu />{" "}
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="w-full gap-2 p-4 mx-auto grid-cols-1 text-center">
-                  <li>
-                    <NavigationMenuLink
-                      href="/resume"
-                      className={cn(navigationMenuTriggerStyle(), "w-full")}
-                    >
-                      Über
-                    </NavigationMenuLink>
-                  </li>
-                  <li>
-                    <NavigationMenuLink
-                      href="/blog"
-                      className={cn(navigationMenuTriggerStyle(), "w-full")}
-                    >
-                      Aktuelles
-                    </NavigationMenuLink>
-                  </li>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem className="hidden md:block">
-              <Link href="/resume" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Über
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem className="hidden md:block">
-              <NavigationMenuLink
-                href="/blog"
-                className={navigationMenuTriggerStyle()}
-              >
-                Aktuelles
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <ContactForm>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <MessageCircleMore />{" "}
-                </NavigationMenuLink>
-              </ContactForm>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink
-                href="tel:01727979178"
-                className={navigationMenuTriggerStyle()}
-              >
-                <PhoneOutgoing />{" "}
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem className="">
-              <NavigationMenuTrigger>
-                <SunIcon className="dark:hidden" />
-                <MoonIcon className="hidden dark:block" />
-              </NavigationMenuTrigger>
-              <NavigationMenuContent className="">
-                <ul className="size-full gap-2 p-4 mx-auto grid-cols-1 text-center">
-                  <li>
-                    <NavigationMenuLink
-                      onClick={() => setTheme("light")}
-                      className={cn(navigationMenuTriggerStyle(), "size-full")}
-                    >
-                      Hell
-                    </NavigationMenuLink>
-                  </li>
-                  <li>
-                    <NavigationMenuLink
-                      onClick={() => setTheme("dark")}
-                      className={cn(navigationMenuTriggerStyle(), "w-full")}
-                    >
-                      Dunkel
-                    </NavigationMenuLink>
-                  </li>
-                  <li>
-                    <NavigationMenuLink
-                      onClick={() => setTheme("system")}
-                      className={cn(navigationMenuTriggerStyle(), "w-full")}
-                    >
-                      {" "}
-                      System
-                    </NavigationMenuLink>
-                  </li>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-      </nav>
-    </header>
+    <div className="fixed w-full h-12 z-50 top-0 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="flex h-full items-center justify-between lg:px-10 px-2">
+        <div className="hidden md:flex gap-11">
+          <Link href="/">
+            <div className="flex items-center gap-5">
+              <Button variant="ghost" className="relative size-10">
+                <Image
+                  src="/logo.svg"
+                  alt="Picture of the author"
+                  fill
+                  className="object-cover"
+                />
+              </Button>
+              <div className="text-xs">
+                <span className="font-bold">
+                  Praxis für Osteopathie, Yoga & Qigong
+                </span>
+                <br />
+                <span>Maitri Katrin Eulitz</span>
+              </div>
+            </div>
+          </Link>
+
+          {/* Main Navigation */}
+          <nav className="">
+            <div className="grow">
+              <ul className="flex gap-3">
+                <li>
+                  <Link href="/blog">
+                    <Button variant="ghost">Aktuelles</Button>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/resume">
+                    <Button variant="ghost">Über</Button>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+        <MobileNav />
+
+        <div className="flex gap-3">
+          <Button variant="ghost" size="icon">
+            <ContactForm>
+              <MessageCircleMore className="size-6" />
+            </ContactForm>
+          </Button>
+          <Button variant="ghost" size="icon">
+            <PhoneOutgoing className="size-6" />
+          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <SunIcon className="size-6 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <MoonIcon className="absolute size-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <span className="sr-only">Toggle theme</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => setTheme("light")}>
+                Hell
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                Dunkel
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("system")}>
+                System
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </div>
+    </div>
   );
 }
 

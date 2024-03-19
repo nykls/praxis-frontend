@@ -32,14 +32,18 @@ export default function RootLayout({
         className={cn("h-full relative font-sans antialiased", inter.className)}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          <CookieConsent />
+          <header>
+            <Navbar />
+          </header>
           <main className="relative flex flex-col min-h-screen">
-            <div className="flex-grow flex-1">{children}</div>
+            <div className="flex-grow flex-1 pt-20">{children}</div>
+            <CookieConsent />
+            <Toaster />
           </main>
-          <Footer />
+          <footer>
+            <Footer />
+          </footer>
         </ThemeProvider>
-        <Toaster />
       </body>
     </html>
   );

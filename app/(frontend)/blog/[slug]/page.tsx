@@ -49,61 +49,65 @@ export default async function BlogPage({ params: { slug } }: Props) {
     { slug }
   );
   return (
-    <FullWidthWrapper className="pt-20">
-      <div className="py-20">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href="/">Home</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href="/blog">Aktuelles</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink>{post.title}</BreadcrumbLink>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
-      <article className="space-y-5">
-        <div className="w-full text-center space-y-5">
-          <div className="flex grow space-x-3">
-            <Avatar>
-              <AvatarImage src={urlFor(post.author.avatar).width(100).url()} />
-              <AvatarFallback>
-                {" "}
-                <AvatarFallback>{post.author.name[0]}</AvatarFallback>
-              </AvatarFallback>
-            </Avatar>
-            <div className="flex space-x-3">
-              <div className="flex-col items-center text-muted-foreground space-x-4 text-sm">
-                <p>{post.author.name}</p>
-                <p>
-                  {new Date(post.publishedAt).toLocaleDateString("de-DE", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </p>
-              </div>
-              <Separator orientation="vertical" />
-              <div className="">
-                <h1 className="text-base lg:text-4xl">{post.title}</h1>
+    <FullWidthWrapper>
+      <section className="space-y-5">
+        <div>
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/">Home</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/blog">Aktuelles</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink>{post.title}</BreadcrumbLink>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+        <article className="space-y-5">
+          <div className="w-full text-center space-y-5">
+            <div className="flex grow space-x-3">
+              <Avatar>
+                <AvatarImage
+                  src={urlFor(post.author.avatar).width(100).url()}
+                />
+                <AvatarFallback>
+                  {" "}
+                  <AvatarFallback>{post.author.name[0]}</AvatarFallback>
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex space-x-3">
+                <div className="flex-col items-center text-muted-foreground space-x-4 text-sm">
+                  <p>{post.author.name}</p>
+                  <p>
+                    {new Date(post.publishedAt).toLocaleDateString("de-DE", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </p>
+                </div>
+                <Separator orientation="vertical" />
+                <div className="">
+                  <h1 className="text-base lg:text-4xl">{post.title}</h1>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <Separator className="w-full mt-3" />
-        <div className="space-y-10 lg:w-2/3 mx-auto">
-          <PortableText value={post.body} components={RichTextComponent} />
-        </div>
-      </article>
+          <Separator className="w-full mt-3" />
+          <div className="space-y-10 lg:w-2/3 mx-auto">
+            <PortableText value={post.body} components={RichTextComponent} />
+          </div>
+        </article>
+      </section>
     </FullWidthWrapper>
   );
 }

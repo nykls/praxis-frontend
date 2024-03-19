@@ -70,47 +70,49 @@ function MapsSkeleton() {
 
 function PostSkeleton() {
   return (
-    <FullWidthWrapper className="pt-20">
-      <div className="py-20">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <Skeleton className="w-12 h-4" />
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <Skeleton className="w-24 h-4" />
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <Skeleton className="w-36 h-4" />
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
+    <FullWidthWrapper>
       <section className="space-y-5">
-        <div className="flex w-full text-center space-y-5">
-          <div className="flex grow space-x-3">
-            <Skeleton className="w-10 h-10 rounded-full" /> {/* Avatar */}
-            <div className="flex space-x-3">
-              <div className="flex-col items-center text-muted-foreground space-y-2 text-sm">
-                <Skeleton className="w-20 h-4" /> {/* Author name */}
-                <Skeleton className="w-20 h-4" /> {/* Date */}
-              </div>
-              <Separator orientation="vertical" />
-              <div>
-                <Skeleton className="w-96 h-10" /> {/* Post title */}
+        <div>
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <Skeleton className="w-12 h-4" />
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <Skeleton className="w-24 h-4" />
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <Skeleton className="w-36 h-4" />
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+        <section className="space-y-5">
+          <div className="flex w-full text-center space-y-5">
+            <div className="flex grow space-x-3">
+              <Skeleton className="w-10 h-10 rounded-full" /> {/* Avatar */}
+              <div className="flex space-x-3">
+                <div className="flex-col items-center text-muted-foreground space-y-2 text-sm">
+                  <Skeleton className="w-20 h-4" /> {/* Author name */}
+                  <Skeleton className="w-20 h-4" /> {/* Date */}
+                </div>
+                <Separator orientation="vertical" />
+                <div>
+                  <Skeleton className="w-96 h-10" /> {/* Post title */}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <Separator className="w-full mt-3" />
-        <div className="space-y-10 lg:w-2/3 mx-auto">
-          <Skeleton className="w-full h-6" /> {/* Text line */}
-          <Skeleton className="w-full h-6" />
-          <Skeleton className="w-full h-6" />
-          {/* Repeat as necessary to simulate text content */}
-        </div>
+          <Separator className="w-full mt-3" />
+          <div className="space-y-10 lg:w-2/3 mx-auto">
+            <Skeleton className="w-full h-6" /> {/* Text line */}
+            <Skeleton className="w-full h-6" />
+            <Skeleton className="w-full h-6" />
+            {/* Repeat as necessary to simulate text content */}
+          </div>
+        </section>
       </section>
     </FullWidthWrapper>
   );

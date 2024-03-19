@@ -17,8 +17,8 @@ import { Separator } from "./ui/separator";
 
 export default function NewsCard({ posts }: { posts: Post[] }) {
   return (
-    <section className="pt-20">
-      <FullWidthWrapper className="py-10">
+    <FullWidthWrapper>
+      <section>
         <Suspense fallback={<Loading />}>
           <div className="grid lg:grid-cols-2 gap-2">
             {posts?.length > 0 &&
@@ -61,7 +61,7 @@ export default function NewsCard({ posts }: { posts: Post[] }) {
               ))}
           </div>
         </Suspense>
-      </FullWidthWrapper>
-    </section>
+      </section>
+    </FullWidthWrapper>
   );
 }

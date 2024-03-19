@@ -65,18 +65,18 @@ export default async function ResumePage() {
   const resume: Resume[] = data.resume;
   const sliders: SliderImage[] = data.sliders[0].images;
   return (
-    <div className="pt-20">
+    <section className="space-y-7">
       <section>
-        <FullWidthWrapper className="py-10">
+        <FullWidthWrapper>
           <SliderGallery slides={sliders} />
         </FullWidthWrapper>
       </section>
-      <section className="border-t bg-accent border-y grid gap-3">
+      <section className="grid gap-3">
         <h1 className="text-4xl border-b pb-2 m-5 font-bold mx-auto">Vita</h1>
         <FullWidthWrapper className="pb-10">
           <VitaAccordion vitas={resume} />
         </FullWidthWrapper>{" "}
       </section>
-    </div>
+    </section>
   );
 }
