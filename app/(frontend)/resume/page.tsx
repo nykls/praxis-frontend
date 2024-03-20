@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Loading from "./loading";
 import { SliderSkeleton } from "@/components/skeletons";
+import { unstable_noStore as noStore } from "next/cache";
 
 export const metadata: Metadata = {
   title: "Über",
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
 
 async function fetchContent<T>(query: string): Promise<T | null> {
   try {
+    noStore();
     const result: T = await client.fetch(query);
     return result;
   } catch (err) {

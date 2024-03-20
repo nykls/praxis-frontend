@@ -48,7 +48,9 @@ export default function NewsCard({ posts }: { posts: Post[] }) {
                       <div className="flex items-center space-x-5">
                         <Avatar>
                           <AvatarImage
-                            src={urlFor(post.author.avatar).width(100).url()}
+                            src={urlFor(post.author.avatar)
+                              .size(100, 100)
+                              .url()}
                           />
                           <AvatarFallback>{post.author.name[0]}</AvatarFallback>
                         </Avatar>

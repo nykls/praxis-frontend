@@ -48,6 +48,7 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { Textarea } from "./ui/textarea";
+import Link from "next/link";
 
 export default function ContactForm({
   children,
@@ -241,7 +242,7 @@ export default function ContactForm({
       <Drawer open={open} onOpenChange={setOpen}>
         <DrawerTrigger asChild>{children}</DrawerTrigger>
         <DrawerContent
-          className="px-2 mx-auto w-full fixed bottom-0 left-0 right-0 max-h-[96%]"
+          className="mx-auto w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-[96%]"
           onOpenAutoFocus={(event) => {
             event.preventDefault();
           }}
@@ -358,8 +359,11 @@ export default function ContactForm({
                           </FormControl>
                           <div className="space-x-2 leading-none">
                             <FormLabel>
-                              Ich habe die Datenschutzbestimmungen gelesen und
-                              bin einverstanden.
+                              Ich habe die{" "}
+                              <Link href="/privacy">
+                                Datenschutzbestimmungen
+                              </Link>{" "}
+                              gelesen und bin einverstanden.
                             </FormLabel>
                           </div>
                         </div>
@@ -369,7 +373,7 @@ export default function ContactForm({
                   />
                 </div>
                 <DrawerFooter>
-                  <div className="w-full flex justify-end gap-4">
+                  <div className="flex justify-end gap-3">
                     <DrawerClose>
                       <Button variant="outline">Abbrechen</Button>
                     </DrawerClose>

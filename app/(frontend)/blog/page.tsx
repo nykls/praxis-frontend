@@ -2,6 +2,7 @@ import NewsCard from "@/components/news-card";
 import { Post } from "@/lib/interfaces";
 import { client } from "@/sanity/lib/client";
 import { Metadata } from "next";
+import { unstable_noStore as noStore } from "next/cache";
 
 export const metadata: Metadata = {
   title: "Aktuelles",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 async function getPosts() {
+  noStore();
   try {
     const query = `
     *[_type == 'post']{

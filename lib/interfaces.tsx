@@ -9,6 +9,7 @@ export interface Post {
 }
 
 export interface Resume {
+  crop(crop: any): unknown;
   name: string;
   motto: string;
   education: {
@@ -16,7 +17,10 @@ export interface Resume {
     institution: string;
     years: { start: string; end: string };
   }[];
-  avatar: string;
+  avatar: {
+    image: string;
+    hotspot: string;
+  };
   _id: string;
 }
 
@@ -33,4 +37,5 @@ export interface SliderImage {
 
 export interface Slider {
   images: SliderImage[];
+  crop: any;
 }

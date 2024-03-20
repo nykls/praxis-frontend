@@ -29,7 +29,9 @@ async function VitaAccordion({ vitas }: { vitas: Resume[] }) {
                 <CardHeader className="pb-0">
                   <div className="flex items-center space-x-3 justify-between">
                     <Avatar>
-                      <AvatarImage src={urlFor(vita.avatar).width(100).url()} />
+                      <AvatarImage
+                        src={urlFor(vita.avatar).size(100, 100).url()}
+                      />
                       <AvatarFallback>{vita.name[0]}</AvatarFallback>
                     </Avatar>
                     <CardTitle className="">{vita.name}</CardTitle>
