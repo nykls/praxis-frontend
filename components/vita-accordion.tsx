@@ -1,19 +1,18 @@
-import React from "react";
+import { Resume } from "@/lib/interfaces";
+import urlFor from "@/lib/url-for";
+import Image from "next/image";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { AspectRatio } from "./ui/aspect-ratio";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Separator } from "./ui/separator";
-import { Resume } from "@/lib/interfaces";
-import urlFor from "@/lib/url-for";
-import Image from "next/image";
 
-async function VitaAccordion({ vitas }: { vitas: Resume[] }) {
+function VitaAccordion({ vitas }: { vitas: Resume[] }) {
   // const vitas: Resume[] = await Fetches("resume");
   return (
     <Accordion
@@ -48,7 +47,7 @@ async function VitaAccordion({ vitas }: { vitas: Resume[] }) {
                             fill
                             alt=""
                             src={urlFor(vita.avatar).url()}
-                            style={{ objectFit: "cover" }}
+                            className="object-cover"
                           />
                         </AspectRatio>
                       </Card>

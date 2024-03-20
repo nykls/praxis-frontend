@@ -6,6 +6,7 @@ import { Resume, Slider, SliderImage } from "@/lib/interfaces";
 import { client } from "@/sanity/lib/client";
 import type { Metadata } from "next";
 import { unstable_noStore as noStore } from "next/cache";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Über",
@@ -66,13 +67,17 @@ export default async function ResumePage() {
     <section className="space-y-7">
       <section>
         <FullWidthWrapper>
-          <SliderGallery slides={sliders} />
+          <Suspense fallback={<h1>Lädt</h1>}>
+            <SliderGallery slides={sliders} />
+          </Suspense>
         </FullWidthWrapper>
       </section>
       <section className="grid gap-3">
         <h1 className="text-4xl border-b pb-2 m-5 font-bold mx-auto">Vita</h1>
         <FullWidthWrapper className="pb-10">
-          <VitaAccordion vitas={resume} />
+          <Suspense fallback={<h1>Lädt</h1>}>
+            <VitaAccordion vitas={resume} />
+          </Suspense>
         </FullWidthWrapper>{" "}
       </section>
     </section>

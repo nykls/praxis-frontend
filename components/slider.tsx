@@ -11,12 +11,8 @@ import { SliderImage } from "@/lib/interfaces";
 import urlFor from "@/lib/url-for";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
-import { Suspense } from "react";
-import { SliderSkeleton } from "./skeletons";
 import { AspectRatio } from "./ui/aspect-ratio";
 import { Card, CardContent } from "./ui/card";
-import { Skeleton } from "./ui/skeleton";
-import Loading from "@/app/(frontend)/resume/loading";
 
 export default async function SliderGallery({
   slides,
@@ -42,7 +38,7 @@ export default async function SliderGallery({
                     src={urlFor(slide.asset).url()}
                     alt={`Slide ${index}`}
                     fill
-                    className="object-fit"
+                    className="object-cover"
                   />
                 </AspectRatio>
               </CardContent>
