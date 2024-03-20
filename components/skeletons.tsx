@@ -19,7 +19,7 @@ import {
 
 function LoadingCard() {
   return (
-    <Card className="transition shadow-md p-4 rounded-lg">
+    <Card className="transition shadow-md">
       <CardHeader>
         <CardTitle>
           <Skeleton className="w-full h-6 mb-2" /> {/* Simulierter Titel */}
@@ -48,8 +48,8 @@ function LoadingCard() {
 
 function CardSkeleton() {
   return (
-    <section className="pt-20">
-      <FullWidthWrapper className="py-10">
+    <section>
+      <FullWidthWrapper>
         <div className="grid lg:grid-cols-2 gap-2">
           {/* Generiere mehrere LoadingCards für den Ladezustand */}
           {[...Array(4)].map((_, index) => (

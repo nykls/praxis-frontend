@@ -13,10 +13,8 @@ import { Post } from "@/lib/interfaces";
 import urlFor from "@/lib/url-for";
 import { client } from "@/sanity/lib/client";
 import { PortableText } from "@portabletext/react";
-import Link from "next/link";
-import { Suspense } from "react";
-import { PostSkeleton } from "@/components/skeletons";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Artikel",
@@ -77,7 +75,7 @@ export default async function BlogPage({ params: { slug } }: Props) {
             <div className="flex grow space-x-3">
               <Avatar>
                 <AvatarImage
-                  src={urlFor(post.author.avatar).width(100).url()}
+                  src={urlFor(post.author.avatar).size(100, 100).url()}
                 />
                 <AvatarFallback>
                   {" "}

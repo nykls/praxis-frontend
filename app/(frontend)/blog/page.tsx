@@ -1,8 +1,10 @@
 import NewsCard from "@/components/news-card";
+import { CardSkeleton } from "@/components/skeletons";
 import { Post } from "@/lib/interfaces";
 import { client } from "@/sanity/lib/client";
 import { Metadata } from "next";
 import { unstable_noStore as noStore } from "next/cache";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Aktuelles",
@@ -35,7 +37,11 @@ async function getPosts() {
 }
 
 export default async function Blog() {
-  noStore();
   const posts: Post[] = await getPosts();
-  return <NewsCard posts={posts} />;
+  noStore();
+  return (
+    <Suspense fallback={<CardSkeleton />}>
+      <NewsCard posts={posts} />
+    </Suspense>
+  );
 }
