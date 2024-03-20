@@ -3,12 +3,8 @@ import FullWidthWrapper from "@/components/full-width-wrapper";
 import SliderGallery from "@/components/slider";
 import VitaAccordion from "@/components/vita-accordion";
 import { Resume, Slider, SliderImage } from "@/lib/interfaces";
-import urlFor from "@/lib/url-for";
 import { client } from "@/sanity/lib/client";
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import Loading from "./loading";
-import { SliderSkeleton } from "@/components/skeletons";
 import { unstable_noStore as noStore } from "next/cache";
 
 export const metadata: Metadata = {
@@ -19,7 +15,6 @@ export const metadata: Metadata = {
 
 async function fetchContent<T>(query: string): Promise<T | null> {
   try {
-    noStore();
     const result: T = await client.fetch(query);
     return result;
   } catch (err) {
@@ -66,6 +61,7 @@ export default async function ResumePage() {
   const data = await Fetches();
   const resume: Resume[] = data.resume;
   const sliders: SliderImage[] = data.sliders[0].images;
+  noStore();
   return (
     <section className="space-y-7">
       <section>

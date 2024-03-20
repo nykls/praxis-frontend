@@ -11,7 +11,6 @@ export const metadata: Metadata = {
 };
 
 async function getPosts() {
-  noStore();
   try {
     const query = `
     *[_type == 'post']{
@@ -36,6 +35,7 @@ async function getPosts() {
 }
 
 export default async function Blog() {
+  noStore();
   const posts: Post[] = await getPosts();
   return <NewsCard posts={posts} />;
 }
