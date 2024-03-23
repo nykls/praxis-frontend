@@ -1,6 +1,6 @@
 import React from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import { ScrollArea } from "./ui/scroll-area";
 import Link, { LinkProps } from "next/link";
@@ -10,11 +10,19 @@ import { Menu } from "lucide-react";
 
 function MobileNav() {
   const [open, setOpen] = React.useState(false);
+  const navLinks = [
+    { title: "Aktuelles", href: "/blog" },
+    { title: "Über", href: "/resume" },
+  ];
+  const pathname = usePathname();
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" className="size-10 px-0 text-base md:hidden">
+        <Button
+          variant="link"
+          className="size-10 px-0 text-foreground text-base md:hidden"
+        >
           <Menu className="size-6" />
           <span className="sr-only">Toggle Menu</span>
         </Button>
@@ -38,12 +46,26 @@ function MobileNav() {
         </MobileLink>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
           <div className="flex flex-col space-y-3">
-            <MobileLink href="/blog" onOpenChange={setOpen}>
+            {navLinks.map((link) => {
+              const isActive = pathname.startsWith(link.href);
+              return (
+                <MobileLink
+                  className={
+                    isActive ? "hover:text-primary text-primary" : "font-normal"
+                  }
+                  href={link.href}
+                  onOpenChange={setOpen}
+                >
+                  {link.title}
+                </MobileLink>
+              );
+            })}
+            {/* <MobileLink href="/blog" onOpenChange={setOpen}>
               Aktuelles
             </MobileLink>
             <MobileLink href="/resume" onOpenChange={setOpen}>
               Über
-            </MobileLink>
+            </MobileLink> */}
           </div>
         </ScrollArea>
       </SheetContent>

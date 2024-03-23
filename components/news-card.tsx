@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Separator } from "./ui/separator";
+import Balancer from "react-wrap-balancer";
 
 export default function NewsCard({ posts }: { posts: Post[] }) {
   return (
@@ -28,7 +29,9 @@ export default function NewsCard({ posts }: { posts: Post[] }) {
                 >
                   <CardHeader className="space-y-3">
                     <div>
-                      <CardTitle>{post.title}</CardTitle>
+                      <CardTitle>
+                        <Balancer>{post.title}</Balancer>
+                      </CardTitle>
                       <CardDescription>
                         {new Date(post.publishedAt).toLocaleDateString(
                           "de-DE",

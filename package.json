@@ -50,6 +50,7 @@
     "react-dom": "^18.2.0",
     "react-email": "^2.1.0",
     "react-hook-form": "^7.51.0",
+    "react-wrap-balancer": "^1.1.0",
     "resend": "^3.2.0",
     "sanity": "^3.32.0",
     "sanity-plugin-asset-source-unsplash": "^2.0.1",

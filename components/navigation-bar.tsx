@@ -30,9 +30,16 @@ import ContactForm from "./contact";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import MobileNav from "./mobile-nav";
+import { usePathname } from "next/navigation";
+import { start } from "repl";
 
 function Navbar() {
   const { setTheme } = useTheme();
+  const navLinks = [
+    { title: "Aktuelles", href: "/blog" },
+    { title: "Über", href: "/resume" },
+  ];
+  const pathname = usePathname();
   return (
     <div className="fixed w-full h-12 z-50 top-0 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-full items-center justify-between lg:px-10 px-2">
@@ -48,7 +55,12 @@ function Navbar() {
                 />
               </Button>
               <div className="text-xs">
-                <span className="font-bold">
+                <span
+                  className={cn(
+                    "font-bold",
+                    usePathname() === "/" ? "text-primary" : "text-foreground"
+                  )}
+                >
                   Praxis für Osteopathie, Yoga & Qigong
                 </span>
                 <br />
@@ -61,16 +73,26 @@ function Navbar() {
           <nav className="">
             <div className="grow">
               <ul className="flex gap-3">
-                <li>
-                  <Link href="/blog">
-                    <Button variant="ghost">Aktuelles</Button>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/resume">
-                    <Button variant="ghost">Über</Button>
-                  </Link>
-                </li>
+                {navLinks.map((link) => {
+                  const isActive = pathname.startsWith(link.href);
+                  return (
+                    <li key={link.href} className="w-28">
+                      <Link href={link.href}>
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            isActive
+                              ? "hover:text-primary text-primary"
+                              : "font-normal",
+                            "inline-block"
+                          )}
+                        >
+                          {link.title}
+                        </Button>
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </nav>

@@ -106,11 +106,10 @@ function PostSkeleton() {
             </div>
           </div>
           <Separator className="w-full mt-3" />
-          <div className="space-y-10 lg:w-2/3 mx-auto">
+          <div className="space-y-10 px-20 mx-auto">
             <Skeleton className="w-full h-6" /> {/* Text line */}
             <Skeleton className="w-full h-6" />
             <Skeleton className="w-full h-6" />
-            {/* Repeat as necessary to simulate text content */}
           </div>
         </section>
       </section>

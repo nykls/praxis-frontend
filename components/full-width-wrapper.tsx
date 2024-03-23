@@ -10,7 +10,10 @@ const FullWidthWrapper = ({
 }) => {
   return (
     <div
-      className={cn("container lg:container-2xl mx-auto lg:px-20", className)}
+      className={cn(
+        "md:container lg:container-2xl px-3 mx-auto lg:px-20",
+        className
+      )}
     >
       {children}
     </div>
