@@ -54,7 +54,7 @@ function Navbar() {
                   className="object-cover"
                 />
               </Button>
-              <div className="text-xs">
+              <div className="text-xs hover:text-primary">
                 <span
                   className={cn(
                     "font-bold",
@@ -106,9 +106,11 @@ function Navbar() {
               <MessageCircleMore className="size-6" />
             </ContactForm>
           </Button>
-          <Button variant="ghost" size="icon">
-            <PhoneOutgoing className="size-6" />
-          </Button>
+          <Link href="tel:+491727979178">
+            <Button variant="ghost" size="icon">
+              <PhoneOutgoing className="size-6" />
+            </Button>
+          </Link>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon">
