@@ -11,7 +11,7 @@ export async function addEntry(data: contactData) {
   if (result.success) {
     await resend.emails.send({
       from: "Kontaktformular <niklas@nykls.de>",
-      to: ["niklas.eulitz@gmail.com"],
+      to: [process.env.NEXT_MAIL as string],
       subject:
         data.subject + (data.subject !== "Terminabsage" ? "-Anfrage" : ""),
       text: data.message,
