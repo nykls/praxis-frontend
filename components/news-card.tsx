@@ -1,6 +1,5 @@
 import urlFor from "@/lib/url-for";
 import { client } from "@/sanity/lib/client";
-import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import FullWidthWrapper from "./full-width-wrapper";
@@ -33,7 +32,6 @@ export default async function NewsCard() {
     }
     `;
     const posts = await client.fetch(query, {}, { next: { revalidate: 1800 } });
-    noStore();
     return (
       <FullWidthWrapper>
         <section>
