@@ -51,14 +51,14 @@ const Footer = () => {
             <Link href="#" className="mx-2">
               <Button className="text-xs p-0" variant="link">
                 <ShieldQuestion />
-                <span className="sr-only md:block ml-2">Impressum</span>
+                <span className="hidden md:block ml-2">Impressum</span>
               </Button>
               <span className="sr-only">Impressum</span>
             </Link>
             <Link href="/privacy" className="mx-2">
               <Button className="text-xs p-0" variant="link">
                 <Cookie />
-                <span className="sr-only md:block ml-2">
+                <span className="hidden md:block ml-2">
                   Datenschutzbestimmungen
                 </span>
               </Button>
@@ -70,7 +70,7 @@ const Footer = () => {
             >
               <Button className="text-xs p-0" variant="link">
                 <Github />
-                <span className="sr-only md:block ml-2">Quellcode</span>
+                <span className="hidden md:block ml-2">Quellcode</span>
               </Button>
               <span className="sr-only">Quellcode</span>
             </Link>
