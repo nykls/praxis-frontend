@@ -11,8 +11,8 @@ import { Menu } from "lucide-react";
 function MobileNav() {
   const [open, setOpen] = React.useState(false);
   const navLinks = [
-    { title: "Aktuelles", href: "/blog" },
-    { title: "Über", href: "/resume" },
+    { title: "Aktuelles", href: "/blog", key: "news" },
+    { title: "Über", href: "/resume", key: "about" },
   ];
   const pathname = usePathname();
 
@@ -45,21 +45,27 @@ function MobileNav() {
           </div>
         </MobileLink>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
-          <div className="flex flex-col space-y-3">
-            {navLinks.map((link) => {
-              const isActive = pathname.startsWith(link.href);
-              return (
-                <MobileLink
-                  className={
-                    isActive ? "hover:text-primary text-primary" : "font-normal"
-                  }
-                  href={link.href}
-                  onOpenChange={setOpen}
-                >
-                  {link.title}
-                </MobileLink>
-              );
-            })}
+          <div className="flex flex-col ">
+            <ul className="space-y-3">
+              {navLinks.map((link) => {
+                const isActive = pathname.startsWith(link.href);
+                return (
+                  <li key={link.key}>
+                    <MobileLink
+                      className={
+                        isActive
+                          ? "hover:text-primary text-primary"
+                          : "font-normal"
+                      }
+                      href={link.href}
+                      onOpenChange={setOpen}
+                    >
+                      {link.title}
+                    </MobileLink>
+                  </li>
+                );
+              })}
+            </ul>
             {/* <MobileLink href="/blog" onOpenChange={setOpen}>
               Aktuelles
             </MobileLink>

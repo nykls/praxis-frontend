@@ -18,7 +18,7 @@ function VitaAccordion({ vitas }: { vitas: Resume[] }) {
     <Accordion
       type="multiple"
       defaultValue={[vitas[0]._id]}
-      className="grid gap-3"
+      className="grid gap-3 w-full"
     >
       {vitas?.length > 0 &&
         vitas.map((vita) => (

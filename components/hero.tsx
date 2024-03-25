@@ -76,7 +76,7 @@ export const Hero = () => {
         <div className=" pointer-events-none flex [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
         <div className="flex w-full flex-col justify-center items-center text-center space-y-28 lg:space-y-60">
           <div className="space-y-3">
-            <motion.h3
+            <motion.h1
               initial={{ opacity: 0.5, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -89,8 +89,8 @@ export const Hero = () => {
               <Balancer>
                 Praxis für Osteopathie, Yoga & Qigong Maitri Katrin Eulitz
               </Balancer>
-            </motion.h3>
-            <motion.h1
+            </motion.h1>
+            <motion.h2
               initial={{ opacity: 0.5, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -101,7 +101,7 @@ export const Hero = () => {
               className="bg-gradient-to-tr from-primary to-hero/65 bg-clip-text tracking-tight text-transparent lg:text-7xl"
             >
               <Balancer>Herzlich Willkommen!</Balancer>
-            </motion.h1>
+            </motion.h2>
             <motion.p
               initial={{ opacity: 0.5, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}

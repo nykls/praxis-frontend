@@ -36,15 +36,15 @@ import { start } from "repl";
 function Navbar() {
   const { setTheme } = useTheme();
   const navLinks = [
-    { title: "Aktuelles", href: "/blog" },
-    { title: "Über", href: "/resume" },
+    { title: "Aktuelles", href: "/blog", key: "news" },
+    { title: "Über", href: "/resume", key: "about" },
   ];
   const pathname = usePathname();
   return (
     <div className="fixed w-full h-12 z-50 top-0 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-full items-center justify-between lg:px-10 px-2">
         <div className="hidden md:flex gap-11">
-          <Link href="/">
+          <Link href="/" key="home">
             <div className="flex items-center gap-5">
               <Button variant="ghost" className="relative size-10">
                 <Image
@@ -76,7 +76,7 @@ function Navbar() {
                 {navLinks.map((link) => {
                   const isActive = pathname.startsWith(link.href);
                   return (
-                    <li key={link.href} className="w-28">
+                    <li key={link.key} className="w-28">
                       <Link href={link.href}>
                         <Button
                           variant="ghost"
@@ -105,10 +105,12 @@ function Navbar() {
             <ContactForm>
               <MessageCircleMore className="size-6" />
             </ContactForm>
+            <span className="sr-only">Kontaktformular öffnen</span>
           </Button>
           <Link href="tel:+491727979178">
             <Button variant="ghost" size="icon">
               <PhoneOutgoing className="size-6" />
+              <span className="sr-only">Anrufen</span>
             </Button>
           </Link>
           <DropdownMenu>
@@ -116,7 +118,7 @@ function Navbar() {
               <Button variant="ghost" size="icon">
                 <SunIcon className="size-6 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                 <MoonIcon className="absolute size-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Toggle theme</span>
+                <span className="sr-only">Theme ändern</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

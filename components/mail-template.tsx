@@ -11,7 +11,10 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   data,
 }) => (
   <div>
-    <Heading as="h1">{data.subject}-Anfrage erhalten.</Heading>
+    <Heading as="h1">
+      {data.subject + (data.subject !== "Terminabsage " ? "-Anfrage " : "")}
+      erhalten.
+    </Heading>
     <Hr />
     <Heading as="h2">Name</Heading>
     <Text>{data.name}</Text>
