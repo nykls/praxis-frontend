@@ -17,7 +17,7 @@ import { Separator } from "./ui/separator";
 export default async function NewsCard() {
   try {
     const query = `
-    *[_type == 'post']{
+    *[_type == 'post'] | order(publishedAt desc){
       title,
       slug,
       author->{
@@ -60,7 +60,9 @@ export default async function NewsCard() {
                         </CardDescription>
                       </div>
                     </CardHeader>
-                    <CardContent>{post.excerpt}</CardContent>
+                    <CardContent>
+                      <div className="line-clamp-3">{post.excerpt}</div>
+                    </CardContent>
                     <CardFooter>
                       <div className="flex items-center space-x-5">
                         <Avatar>
@@ -79,6 +81,11 @@ export default async function NewsCard() {
                 </Link>
               ))}
           </div>
+          {posts?.length === 0 && (
+            <div className="flex h-screen justify-center items-center">
+              <h1 className="text-lg text-center">Keine Beiträge gefunden.</h1>
+            </div>
+          )}
         </section>
       </FullWidthWrapper>
     );
