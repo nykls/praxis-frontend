@@ -16,11 +16,38 @@ import { PortableText } from "@portabletext/react";
 import { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Artikel",
-  description: "Aktuelle Neuigkeiten",
-  keywords: "Aktuelles, Neuigkeiten, News",
-};
+const query = `*[_type == "post" && slug.current == $slug][0]
+      {
+        title,
+        slug,
+        author->{
+          name,
+          avatar,
+        },
+        "excerpt": array::join(string::split((pt::text(body)), "")[0..255], "") + "...",
+        body,
+        image,
+        publishedAt,
+        _id,
+      }
+      `;
+
+export async function generateMetadata({
+  params: { slug },
+}: Props): Promise<Metadata> {
+  const res = await client.fetch(
+    query,
+    { slug },
+    { next: { revalidate: 1800 } }
+  );
+  return {
+    title: {
+      template: res.title,
+      default: res.title,
+    },
+    description: res.excerpt,
+  };
+}
 
 type Props = {
   params: {
@@ -29,23 +56,7 @@ type Props = {
 };
 
 export default async function BlogPage({ params: { slug } }: Props) {
-  const post: Post = await client.fetch(
-    `*[_type == "post" && slug.current == $slug][0]
-      {
-        title,
-        slug,
-        author->{
-          name,
-          avatar,
-        },
-        body,
-        image,
-        publishedAt,
-        _id,
-      }
-      `,
-    { slug }
-  );
+  const post: Post = await client.fetch(query, { slug });
   return (
     <FullWidthWrapper>
       <section className="space-y-5">
