@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/footer";
 import CookieConsent from "@/components/cookie-consent";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -45,6 +46,7 @@ export default function RootLayout({
             <Footer />
           </footer>
         </ThemeProvider>
+        <SpeedInsights />
         <Analytics />
       </body>
     </html>
