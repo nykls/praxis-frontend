@@ -27,7 +27,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  console.log(process.env.NEXT_URL);
   return (
     <html lang="de" suppressHydrationWarning>
       <body

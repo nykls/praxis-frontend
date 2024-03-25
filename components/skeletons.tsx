@@ -1,3 +1,4 @@
+import * as React from "react";
 import FullWidthWrapper from "@/components/full-width-wrapper";
 import {
   Card,
@@ -16,6 +17,14 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "./ui/breadcrumb";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 function LoadingCard() {
   return (
@@ -119,13 +128,23 @@ function PostSkeleton() {
 
 function SliderSkeleton() {
   return (
-    <Card className="overflow-hidden">
-      <CardContent className="flex aspect-[4/3] overflow-hidden p-0 m-0 items-center justify-center">
-        <AspectRatio ratio={4 / 3}>
-          <Skeleton className="h-full w-full" />
-        </AspectRatio>
-      </CardContent>
-    </Card>
+    <Carousel className="w-auto h-full">
+      <CarouselContent>
+        {Array.from({ length: 5 }).map((_, index) => (
+          <CarouselItem key={index} className="md:basis-1/2 overflow-hidden">
+            <Card className="overflow-hidden">
+              <CardContent className="flex aspect-[4/3] overflow-hidden p-0 m-0 items-center justify-center">
+                <AspectRatio ratio={4 / 3}>
+                  <Skeleton className="aspect-[4/3]" />
+                </AspectRatio>
+              </CardContent>
+            </Card>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious className="hidden md:inline-flex" />
+      <CarouselNext className="hidden md:inline-flex" />
+    </Carousel>
   );
 }
 
