@@ -48,16 +48,16 @@ const Footer = () => {
 
           {/* Links */}
           <div className="w-screen lg:w-auto flex justify-center lg:justify-end items-center">
-            <Link href="#" className="text-sm mx-2">
-              <Button className="" variant="link">
+            <Link href="#" className="mx-2">
+              <Button className="text-xs p-0" variant="link">
                 <ShieldQuestion />
-                <span className="hidden md:block ml-2">Impressum</span>
+                <span className="sr-only md:block ml-2">Impressum</span>
               </Button>
             </Link>
-            <Link href="/privacy" className="text-sm mx-2">
-              <Button className="" variant="link">
+            <Link href="/privacy" className="mx-2">
+              <Button className="text-xs p-0" variant="link">
                 <Cookie />
-                <span className="hidden md:block ml-2">
+                <span className="sr-only md:block ml-2">
                   Datenschutzbestimmungen
                 </span>
               </Button>
@@ -66,9 +66,9 @@ const Footer = () => {
               href="https://github.com/nykls/praxis-frontend"
               className="text-sm mx-2"
             >
-              <Button variant="link">
+              <Button className="text-xs p-0" variant="link">
                 <Github />
-                <span className="hidden md:block ml-2">Quellcode</span>
+                <span className="sr-only md:block ml-2">Quellcode</span>
               </Button>
             </Link>
           </div>
