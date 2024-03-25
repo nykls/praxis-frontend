@@ -50,7 +50,10 @@ const Footer = () => {
                 Datenschutzbestimmungen
               </Button>
             </Link>
-            <Link href="#" className="text-sm mx-2">
+            <Link
+              href="https://github.com/nykls/praxis-frontend"
+              className="text-sm mx-2"
+            >
               <Button
                 className="p-0 hover:text-primary size-10"
                 variant="ghost"
