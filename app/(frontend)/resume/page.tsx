@@ -4,10 +4,7 @@ import { SliderSkeleton } from "@/components/skeletons";
 import SliderGallery from "@/components/slider";
 import { Skeleton } from "@/components/ui/skeleton";
 import VitaAccordion from "@/components/vita-accordion";
-import { Resume, Slider, SliderImage } from "@/lib/interfaces";
-import { client } from "@/sanity/lib/client";
 import type { Metadata } from "next";
-import { unstable_noStore as noStore } from "next/cache";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {

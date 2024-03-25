@@ -1,7 +1,8 @@
-import { Post } from "@/lib/interfaces";
 import urlFor from "@/lib/url-for";
+import { client } from "@/sanity/lib/client";
+import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link";
-import { Suspense } from "react";
+import Balancer from "react-wrap-balancer";
 import FullWidthWrapper from "./full-width-wrapper";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
@@ -13,9 +14,6 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Separator } from "./ui/separator";
-import Balancer from "react-wrap-balancer";
-import { client } from "@/sanity/lib/client";
-import { unstable_noStore as noStore } from "next/cache";
 
 export default async function NewsCard() {
   try {
@@ -34,7 +32,7 @@ export default async function NewsCard() {
       _id,
     }
     `;
-    const posts = await client.fetch(query);
+    const posts = await client.fetch(query, {}, { next: { revalidate: 1800 } });
     noStore();
     return (
       <FullWidthWrapper>

@@ -53,6 +53,7 @@ const Footer = () => {
                 <ShieldQuestion />
                 <span className="sr-only md:block ml-2">Impressum</span>
               </Button>
+              <span className="sr-only">Impressum</span>
             </Link>
             <Link href="/privacy" className="mx-2">
               <Button className="text-xs p-0" variant="link">
@@ -61,6 +62,7 @@ const Footer = () => {
                   Datenschutzbestimmungen
                 </span>
               </Button>
+              <span className="sr-only">Datenschutzbestimmungen</span>
             </Link>
             <Link
               href="https://github.com/nykls/praxis-frontend"
@@ -70,6 +72,7 @@ const Footer = () => {
                 <Github />
                 <span className="sr-only md:block ml-2">Quellcode</span>
               </Button>
+              <span className="sr-only">Quellcode</span>
             </Link>
           </div>
         </div>
