@@ -12,7 +12,8 @@ export async function addEntry(data: contactData) {
     await resend.emails.send({
       from: "Kontaktformular <niklas@nykls.de>",
       to: ["niklas.eulitz@gmail.com"],
-      subject: data.subject + "-Anfrage",
+      subject:
+        data.subject + (data.subject !== "Terminabsage" ? "-Anfrage" : ""),
       text: data.message,
       reply_to: data.email,
       react: EmailTemplate({ data }),

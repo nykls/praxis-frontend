@@ -2,8 +2,7 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { addEntry } from "@/lib/send-mail";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -33,13 +32,15 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import type { contactData } from "@/lib/form-schema";
 import { contactSchema } from "@/lib/form-schema";
+import { addEntry } from "@/lib/send-mail";
 import { useMediaQuery } from "@/lib/use-media-query";
-import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader } from "lucide-react";
+import { ExternalLink, Loader } from "lucide-react";
+import Link from "next/link";
 import { Checkbox } from "./ui/checkbox";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -48,7 +49,6 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { Textarea } from "./ui/textarea";
-import Link from "next/link";
 
 export default function ContactForm({
   children,
@@ -129,10 +129,10 @@ export default function ContactForm({
                         </FormControl>
                         <SelectContent>
                           <SelectItem value="Osteopathie">
-                            Ostepathie-Anfrage{" "}
+                            Ostepathie{" "}
                           </SelectItem>
-                          <SelectItem value="Yoga">Yoga-Anfrage</SelectItem>
-                          <SelectItem value="Qigong">Qigong-Anfrage</SelectItem>
+                          <SelectItem value="Yoga">Yoga</SelectItem>
+                          <SelectItem value="Qigong">Qigong</SelectItem>
                           <SelectItem value="Terminabsage">
                             Terminabsage{" "}
                           </SelectItem>
@@ -214,8 +214,18 @@ export default function ContactForm({
                             </FormControl>
                             <div className="space-x-2 leading-none">
                               <FormLabel>
-                                Ich habe die Datenschutzbestimmungen gelesen und
-                                bin einverstanden.
+                                Ich habe die{" "}
+                                <Link href="/privacy">
+                                  <DialogClose>
+                                    <Button
+                                      variant={"link"}
+                                      className="p-0 h-auto w-auto"
+                                    >
+                                      Datenschutzbestimmungen
+                                    </Button>
+                                  </DialogClose>
+                                </Link>{" "}
+                                gelesen und bin einverstanden.
                               </FormLabel>
                             </div>
                           </div>
@@ -274,12 +284,10 @@ export default function ContactForm({
                           </FormControl>
                           <SelectContent>
                             <SelectItem value="Osteopathie">
-                              Ostepathie-Anfrage{" "}
+                              Ostepathie{" "}
                             </SelectItem>
-                            <SelectItem value="Yoga">Yoga-Anfrage</SelectItem>
-                            <SelectItem value="Qigong">
-                              Qigong-Anfrage
-                            </SelectItem>
+                            <SelectItem value="Yoga">Yoga</SelectItem>
+                            <SelectItem value="Qigong">Qigong</SelectItem>
                             <SelectItem value="Terminabsage">
                               Terminabsage{" "}
                             </SelectItem>
@@ -361,7 +369,14 @@ export default function ContactForm({
                             <FormLabel>
                               Ich habe die{" "}
                               <Link href="/privacy">
-                                Datenschutzbestimmungen
+                                <DrawerClose>
+                                  <Button
+                                    variant={"link"}
+                                    className="p-0 h-auto w-auto"
+                                  >
+                                    Datenschutzbestimmungen
+                                  </Button>
+                                </DrawerClose>
                               </Link>{" "}
                               gelesen und bin einverstanden.
                             </FormLabel>
