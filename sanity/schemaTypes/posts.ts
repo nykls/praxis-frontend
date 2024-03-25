@@ -51,4 +51,11 @@ export default {
       of: [{ type: "block" }, { type: "image" }],
     },
   ],
+  orderings: [
+    {
+      title: "Published Date",
+      name: "publishedAt",
+      by: [{ field: "publishedAt", direction: "desc" }],
+    },
+  ],
 };
