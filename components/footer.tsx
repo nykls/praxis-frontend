@@ -8,14 +8,29 @@ import { Suspense } from "react";
 import { MapsSkeleton } from "./skeletons";
 import { Github } from "lucide-react";
 import { Button } from "./ui/button";
+import dynamic from "next/dynamic";
+import React, { useState, useEffect } from "react";
+
+const PostMaps = dynamic(() => import("./maps"), {
+  ssr: false,
+  loading: () => <MapsSkeleton />,
+});
 
 const Footer = () => {
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
+
+  // useEffect, um den Ladestatus der Seite zu aktualisieren, nachdem sie geladen wurde
+  useEffect(() => {
+    // Setzt isPageLoaded auf true, nachdem die Seite geladen ist
+    setIsPageLoaded(true);
+  }, []); // Leeres Array bedeutet, dieser Effekt läuft nur einmal nach dem ersten Rendern
+
   return (
     <div className="bg-secondary border-t py-7 mt-7 ">
       <FullWidthWrapper>
         <div className="pb-5">
           <Suspense fallback={<MapsSkeleton />}>
-            <Maps />
+            {isPageLoaded ? <PostMaps /> : <MapsSkeleton />}{" "}
           </Suspense>
         </div>
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between">
