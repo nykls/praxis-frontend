@@ -12,7 +12,6 @@ import dynamic from "next/dynamic";
 import React, { useState, useEffect } from "react";
 
 const PostMaps = dynamic(() => import("./maps"), {
-  ssr: false,
   loading: () => <MapsSkeleton />,
 });
 

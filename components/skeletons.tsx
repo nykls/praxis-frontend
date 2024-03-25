@@ -52,7 +52,7 @@ function CardSkeleton() {
       <FullWidthWrapper>
         <div className="grid lg:grid-cols-2 gap-2">
           {/* Generiere mehrere LoadingCards für den Ladezustand */}
-          {[...Array(4)].map((_, index) => (
+          {[...Array(6)].map((_, index) => (
             <LoadingCard key={index} />
           ))}
         </div>

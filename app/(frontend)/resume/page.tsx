@@ -1,5 +1,6 @@
 // app/resume/page.tsx
 import FullWidthWrapper from "@/components/full-width-wrapper";
+import { SliderSkeleton } from "@/components/skeletons";
 import SliderGallery from "@/components/slider";
 import VitaAccordion from "@/components/vita-accordion";
 import { Resume, Slider, SliderImage } from "@/lib/interfaces";
@@ -67,8 +68,8 @@ export default async function ResumePage() {
     <section className="space-y-7">
       <section>
         <FullWidthWrapper>
-          <Suspense fallback={<h1>Lädt</h1>}>
-            <SliderGallery slides={sliders} />
+          <Suspense fallback={<SliderSkeleton />}>
+            <SliderGallery />
           </Suspense>
         </FullWidthWrapper>
       </section>
@@ -76,7 +77,7 @@ export default async function ResumePage() {
         <h1 className="text-4xl border-b pb-2 m-5 font-bold mx-auto">Vita</h1>
         <FullWidthWrapper className="pb-10">
           <Suspense fallback={<h1>Lädt</h1>}>
-            <VitaAccordion vitas={resume} />
+            <VitaAccordion />
           </Suspense>
         </FullWidthWrapper>{" "}
       </section>

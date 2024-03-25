@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/footer";
 import CookieConsent from "@/components/cookie-consent";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  console.log(process.env.NEXT_URL);
   return (
     <html lang="de" suppressHydrationWarning>
       <body
@@ -44,6 +46,7 @@ export default function RootLayout({
             <Footer />
           </footer>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
