@@ -35,11 +35,7 @@ const query = `*[_type == "post" && slug.current == $slug][0]
 export async function generateMetadata({
   params: { slug },
 }: Props): Promise<Metadata> {
-  const res = await client.fetch(
-    query,
-    { slug },
-    { next: { revalidate: 1800 } }
-  );
+  const res = await client.fetch(query, { slug }, { next: { revalidate: 0 } });
   return {
     title: {
       template: res.title,

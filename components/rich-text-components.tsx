@@ -20,8 +20,8 @@ export const RichTextComponent = {
     ),
   },
   list: {
-    bullet: ({ children }: any) => <ul>{children}</ul>,
-    number: ({ children }: any) => <ol>{children}</ol>,
+    bullet: ({ children }: any) => <ul className="ml-7">{children}</ul>,
+    number: ({ children }: any) => <ol className="ml-7">{children}</ol>,
   },
   listItem: {
     bullet: ({ children }: any) => <li className="list-disc">{children}</li>,
