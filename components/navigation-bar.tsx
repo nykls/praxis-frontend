@@ -101,12 +101,18 @@ function Navbar() {
         <MobileNav />
 
         <div className="flex gap-3">
-          <Button variant="ghost" size="icon">
-            <ContactForm>
+          <ContactForm>
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-haspopup="dialog"
+              aria-controls="contactFormDialog"
+            >
+              {" "}
               <MessageCircleMore className="size-6" />
-            </ContactForm>
-            <span className="sr-only">Kontaktformular öffnen</span>
-          </Button>
+              <span className="sr-only">Kontaktformular öffnen</span>
+            </Button>
+          </ContactForm>
           <Link href="tel:+491727979178">
             <Button variant="ghost" size="icon">
               <PhoneOutgoing className="size-6" />

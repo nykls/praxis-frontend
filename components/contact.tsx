@@ -102,7 +102,7 @@ export default function ContactForm({
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>{children}</DialogTrigger>
-        <DialogContent>
+        <DialogContent id="contactFormDialog">
           <DialogHeader>
             <DialogTitle>Kontaktieren Sie mich!</DialogTitle>
             <DialogDescription>

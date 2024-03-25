@@ -60,6 +60,7 @@ const Footer = () => {
               >
                 {" "}
                 <Github />
+                <span className="sr-only">Github</span>
               </Button>
             </Link>
           </div>

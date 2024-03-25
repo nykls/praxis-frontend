@@ -122,13 +122,17 @@ export const Hero = () => {
           </div>
           <div className="flex flex-col mx-auto w-60 lg:w-auto gap-4 sm:flex-row">
             <ContactForm>
-              <Button>Kontakt</Button>
+              <Button aria-haspopup="dialog" aria-controls="contactFormDialog">
+                Kontakt
+              </Button>
             </ContactForm>
+            <span className="sr-only">Mehr Informationen</span>
             <Link
               href="#perk"
               className={buttonVariants({ variant: "outline" })}
             >
               Mehr &rarr;
+              <span className="sr-only">Mehr Informationen</span>
             </Link>
           </div>
         </div>
