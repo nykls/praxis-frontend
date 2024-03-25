@@ -98,7 +98,7 @@ export const Hero = () => {
                 duration: 0.5,
                 ease: "easeOut",
               }}
-              className="bg-gradient-to-tr from-primary to-hero/65 bg-clip-text tracking-tight text-transparent lg:text-7xl"
+              className="bg-gradient-to-tr from-primary to-black/50 bg-clip-text tracking-tight text-transparent lg:text-7xl"
             >
               <Balancer>Herzlich Willkommen!</Balancer>
             </motion.h2>
