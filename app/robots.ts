@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: ["/"],
       disallow: ["/studio", "/imprint", "/privacy"],
     },
-    sitemap: process.env.NEXT_URL + "sitemap.xml",
+    sitemap: process.env.NEXT_PUBLIC_URL + "sitemap.xml",
   };
 }
