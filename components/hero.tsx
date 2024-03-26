@@ -128,7 +128,7 @@ export const Hero = () => {
             </ContactForm>
             <span className="sr-only">Mehr Informationen</span>
             <Link
-              href="#perk"
+              href="#service"
               className={buttonVariants({ variant: "outline" })}
             >
               Mehr &rarr;

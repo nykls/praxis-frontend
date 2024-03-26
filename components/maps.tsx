@@ -70,7 +70,7 @@ export default function Maps() {
                         </Button>
                       </Link>
                       <Link
-                        href={`${process.env.NEXT_PHONE}`}
+                        href={`tel:${process.env.NEXT_PHONE}` as string}
                         aria-label="Rufe an."
                         target="_blank"
                       >
@@ -125,7 +125,7 @@ export default function Maps() {
                           </Button>
                         </Link>
                         <Link
-                          href={`${process.env.NEXT_PHONE}`}
+                          href={`tel:${process.env.NEXT_PHONE}` as string}
                           aria-label="Rufe an."
                           target="_blank"
                         >

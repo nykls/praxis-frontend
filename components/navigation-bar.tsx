@@ -1,16 +1,6 @@
 "use client";
 
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { useTheme } from "next-themes";
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -18,20 +8,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import {
-  Menu,
   MessageCircleMore,
   MoonIcon,
   PhoneOutgoing,
   SunIcon,
 } from "lucide-react";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
-import ContactForm from "./contact";
-import { Button } from "./ui/button";
-import { Separator } from "./ui/separator";
-import MobileNav from "./mobile-nav";
 import { usePathname } from "next/navigation";
-import { start } from "repl";
+import ContactForm from "./contact";
+import MobileNav from "./mobile-nav";
+import { Button } from "./ui/button";
 
 function Navbar() {
   const { setTheme } = useTheme();
@@ -123,7 +111,10 @@ function Navbar() {
               <span className="sr-only">Kontaktformular öffnen</span>
             </Button>
           </ContactForm>
-          <Link href={`${process.env.NEXT_PHONE}`} aria-label="Anrufen">
+          <Link
+            href={`tel:${process.env.NEXT_PHONE}` as string}
+            aria-label="Anrufen"
+          >
             <Button variant="ghost" size="icon">
               <PhoneOutgoing className="size-6" />
               <span className="sr-only">Anrufen</span>

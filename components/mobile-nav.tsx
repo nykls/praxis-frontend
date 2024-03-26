@@ -66,12 +66,6 @@ function MobileNav() {
                 );
               })}
             </ul>
-            {/* <MobileLink href="/blog" onOpenChange={setOpen}>
-              Aktuelles
-            </MobileLink>
-            <MobileLink href="/resume" onOpenChange={setOpen}>
-              Über
-            </MobileLink> */}
           </div>
         </ScrollArea>
       </SheetContent>
