@@ -69,11 +69,7 @@ export default function Maps() {
                           <span className="ml-2">Routenplaner</span>
                         </Button>
                       </Link>
-                      <Link
-                        href={"tel:" + process.env.NEXT_PHONE}
-                        aria-label="Rufe an."
-                        target="_blank"
-                      >
+                      <Link href={"tel:00491727979178"} aria-label="Rufe an.">
                         <Button>
                           {" "}
                           <PhoneOutgoing />{" "}
@@ -124,11 +120,7 @@ export default function Maps() {
                             <span className="ml-2">Routenplaner</span>
                           </Button>
                         </Link>
-                        <Link
-                          href={"tel:" + process.env.NEXT_PHONE}
-                          aria-label="Rufe an."
-                          target="_blank"
-                        >
+                        <Link href={"tel:00491727979178"} aria-label="Rufe an.">
                           <Button>
                             {" "}
                             <PhoneOutgoing />{" "}
