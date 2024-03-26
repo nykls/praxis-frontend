@@ -111,10 +111,7 @@ function Navbar() {
               <span className="sr-only">Kontaktformular öffnen</span>
             </Button>
           </ContactForm>
-          <Link
-            href={`tel:${process.env.NEXT_PHONE}` as string}
-            aria-label="Anrufen"
-          >
+          <Link href={"tel:" + process.env.NEXT_PHONE} aria-label="Anrufen">
             <Button variant="ghost" size="icon">
               <PhoneOutgoing className="size-6" />
               <span className="sr-only">Anrufen</span>

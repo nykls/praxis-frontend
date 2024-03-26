@@ -20,7 +20,7 @@ function Page() {
       <h2 className="text-lg">Kontakt:</h2>
       <p>
         Telefon:{" "}
-        <Link href={`tel:${process.env.NEXT_PHONE}` as string}>
+        <Link href={"tel:" + process.env.NEXT_PHONE}>
           <Button variant="link" className="select-none">
             (+49)-172-79-79-178
           </Button>
