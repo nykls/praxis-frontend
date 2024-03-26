@@ -32,7 +32,7 @@ export default async function VitaAccordion() {
     _id,
   }
 `;
-    const vita = await client.fetch(query, {}, { next: { revalidate: 0 } });
+    const vita = await client.fetch(query);
     const vitas: Resume[] = vita;
     return (
       <Accordion
