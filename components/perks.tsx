@@ -10,7 +10,7 @@ const perks = [
     Icon: PersonStanding,
     color: "red",
     description:
-      "Osteopathische Behandlungstechniken spüren Spannungen, Blockaden, unregelmässige Zirkulationsflüsse, gestörte Rhythmen, nervale Engstellen, vegetative Dysbalancen auf, und führen über die gezielt eingesetzten und vielfältigen Behandlungstechniken unter Erkennung der Ursache die Selbsheilungskräfte den Körper wieder in ein harmonisches Gleichgewicht.",
+      "Osteopathische Behandlungsmethoden erkennen Spannungen, Blockaden, unregelmässige Zirkulationsflüsse, gestörte Rhythmen, nervale Engstellen, vegetative Dysbalancen. Sie nutzen vielfältige Techniken, die auf die Ursache abzielen, um die Selbstheilungskräfte zu aktivieren und den Körper wieder in ein harmonisches Gleichgewicht zu bringen.",
   },
   {
     name: "Yoga",
