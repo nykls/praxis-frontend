@@ -36,8 +36,18 @@ import { start } from "repl";
 function Navbar() {
   const { setTheme } = useTheme();
   const navLinks = [
-    { title: "Aktuelles", href: "/blog", key: "news" },
-    { title: "Über", href: "/about", key: "about" },
+    {
+      title: "Aktuelles",
+      href: "/blog",
+      key: "news",
+      aria: "Öffnet die Aktuelles Seite",
+    },
+    {
+      title: "Über",
+      href: "/about",
+      key: "about",
+      aria: "Öffnet die Über-uns-Seite",
+    },
   ];
   const pathname = usePathname();
   return (
@@ -77,7 +87,7 @@ function Navbar() {
                   const isActive = pathname.startsWith(link.href);
                   return (
                     <li key={link.key} className="w-28">
-                      <Link href={link.href}>
+                      <Link href={link.href} aria-label={link.aria}>
                         <Button
                           variant="ghost"
                           className={cn(
@@ -113,7 +123,7 @@ function Navbar() {
               <span className="sr-only">Kontaktformular öffnen</span>
             </Button>
           </ContactForm>
-          <Link href={`${process.env.NEXT_PHONE}`}>
+          <Link href={`${process.env.NEXT_PHONE}`} aria-label="Anrufen">
             <Button variant="ghost" size="icon">
               <PhoneOutgoing className="size-6" />
               <span className="sr-only">Anrufen</span>

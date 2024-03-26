@@ -48,31 +48,42 @@ const Footer = () => {
 
           {/* Links */}
           <div className="w-screen lg:w-auto flex justify-center lg:justify-end items-center">
-            <Link href="/imprint" className="mx-2">
+            <Link
+              href="/imprint"
+              className="mx-2"
+              aria-label="Öffent das Impressum"
+            >
               <Button className="text-xs p-0" variant="link">
                 <ShieldQuestion />
                 <span className="hidden md:block ml-2">Impressum</span>
+                <span className="sr-only">Impressum</span>
               </Button>
-              <span className="sr-only">Impressum</span>
             </Link>
-            <Link href="/privacy" className="mx-2">
+            <Link
+              href="/privacy"
+              className="mx-2"
+              aria-label="Öffnet die Datenschutzbestimmungen"
+            >
               <Button className="text-xs p-0" variant="link">
                 <Cookie />
                 <span className="hidden md:block ml-2">
                   Datenschutzbestimmungen
                 </span>
+                <span className="sr-only">Datenschutzbestimmungen</span>
               </Button>
-              <span className="sr-only">Datenschutzbestimmungen</span>
             </Link>
             <Link
               href="https://github.com/nykls/praxis-frontend"
               className="text-sm mx-2"
+              rel="noopener noreferrer"
+              target="_blank"
+              aria-label="Öffnet den Quellcode in einem neuen Tab"
             >
               <Button className="text-xs p-0" variant="link">
                 <Github />
                 <span className="hidden md:block ml-2">Quellcode</span>
+                <span className="sr-only">Quellcode</span>
               </Button>
-              <span className="sr-only">Quellcode</span>
             </Link>
           </div>
         </div>

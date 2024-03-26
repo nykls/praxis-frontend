@@ -62,13 +62,18 @@ export default function Maps() {
                         href="https://maps.app.goo.gl/EAL5eWyKgyw6NwxDA"
                         rel="noopener noreferrer"
                         target="_blank"
+                        aria-label="Öffnet den Routenplaner in einem neuen Tab"
                       >
                         <Button variant={"outline"} className="font-bold">
                           <Route />
                           <span className="ml-2">Routenplaner</span>
                         </Button>
                       </Link>
-                      <Link href={`${process.env.NEXT_PHONE}`}>
+                      <Link
+                        href={`${process.env.NEXT_PHONE}`}
+                        aria-label="Rufe an."
+                        target="_blank"
+                      >
                         <Button>
                           {" "}
                           <PhoneOutgoing />{" "}
@@ -107,18 +112,23 @@ export default function Maps() {
                         <p>Freistaat Sachsen</p>
                         <br />
                       </div>
-                      <div className="flex justify-between">
+                      <div className="flex gap-2 justify-start">
                         <Link
                           href="https://maps.app.goo.gl/EAL5eWyKgyw6NwxDA"
                           rel="noopener noreferrer"
                           target="_blank"
+                          aria-label="Öffnet den Routenplaner in einem neuen Tab"
                         >
                           <Button variant={"outline"} className="font-bold">
                             <Route />
                             <span className="ml-2">Routenplaner</span>
                           </Button>
                         </Link>
-                        <Link href={`${process.env.NEXT_PHONE}`}>
+                        <Link
+                          href={`${process.env.NEXT_PHONE}`}
+                          aria-label="Rufe an."
+                          target="_blank"
+                        >
                           <Button>
                             {" "}
                             <PhoneOutgoing />{" "}
