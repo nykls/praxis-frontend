@@ -68,7 +68,7 @@ export default function Maps() {
                           <span className="ml-2">Routenplaner</span>
                         </Button>
                       </Link>
-                      <Link href="tel:01727979178">
+                      <Link href={`${process.env.NEXT_PHONE}`}>
                         <Button>
                           {" "}
                           <PhoneOutgoing />{" "}
@@ -118,7 +118,7 @@ export default function Maps() {
                             <span className="ml-2">Routenplaner</span>
                           </Button>
                         </Link>
-                        <Link href="tel:01727979178">
+                        <Link href={`${process.env.NEXT_PHONE}`}>
                           <Button>
                             {" "}
                             <PhoneOutgoing />{" "}

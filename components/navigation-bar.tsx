@@ -37,7 +37,7 @@ function Navbar() {
   const { setTheme } = useTheme();
   const navLinks = [
     { title: "Aktuelles", href: "/blog", key: "news" },
-    { title: "Über", href: "/resume", key: "about" },
+    { title: "Über", href: "/about", key: "about" },
   ];
   const pathname = usePathname();
   return (
@@ -113,7 +113,7 @@ function Navbar() {
               <span className="sr-only">Kontaktformular öffnen</span>
             </Button>
           </ContactForm>
-          <Link href="tel:+491727979178">
+          <Link href={`${process.env.NEXT_PHONE}`}>
             <Button variant="ghost" size="icon">
               <PhoneOutgoing className="size-6" />
               <span className="sr-only">Anrufen</span>

@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: process.env.NEXT_URL + "resume",
+      url: process.env.NEXT_URL + "about",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,

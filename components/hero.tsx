@@ -75,13 +75,13 @@ export const Hero = () => {
         {/* Radial gradient for the container to give a faded look */}
         <div className=" pointer-events-none flex [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
         <div className="flex w-full flex-col justify-center items-center text-center space-y-28 lg:space-y-60">
-          <div className="space-y-3">
+          <div className="space-y-3 select-none">
             <motion.h1
-              initial={{ opacity: 0.5, y: 100 }}
+              initial={{ opacity: 0.5, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
                 delay: 0,
-                duration: 0.5,
+                duration: 0.1,
                 ease: "easeOut",
               }}
               className="tracking-tight text-sm lg:text-2xl"
@@ -91,11 +91,11 @@ export const Hero = () => {
               </Balancer>
             </motion.h1>
             <motion.h2
-              initial={{ opacity: 0.5, y: 100 }}
+              initial={{ opacity: 0.5, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
                 delay: 0.1,
-                duration: 0.5,
+                duration: 0.1,
                 ease: "easeOut",
               }}
               className="bg-gradient-to-tr from-primary dark:to-foreground to-foreground/75 bg-clip-text tracking-tight text-transparent lg:text-7xl"
@@ -103,11 +103,11 @@ export const Hero = () => {
               <Balancer>Herzlich Willkommen!</Balancer>
             </motion.h2>
             <motion.p
-              initial={{ opacity: 0.5, y: 100 }}
+              initial={{ opacity: 0.5, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
                 delay: 0.2,
-                duration: 0.5,
+                duration: 0.1,
                 ease: "easeOut",
               }}
               className="text-center text-sm lg:text-xl tracking-tight font-bold px-5"

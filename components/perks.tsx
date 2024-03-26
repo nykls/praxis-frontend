@@ -10,7 +10,7 @@ const perks = [
     Icon: PersonStanding,
     color: "red",
     description:
-      "Eine ganzheitliche Therapieform, die darauf abzielt, die Gesundheit durch die Behandlung des Muskel-Skelett-Systems zu verbessern. Osteopathie kann helfen, Schmerzen zu lindern, die Beweglichkeit zu verbessern und das allgemeine Wohlbefinden zu fördern.",
+      "Osteopathische Behandlungstechniken spüren Spannungen, Blockaden, unregelmässige Zirkulationsflüsse, gestörte Rhythmen, nervale Engstellen, vegetative Dysbalancen auf, und führen über die gezielt eingesetzten und vielfältigen Behandlungstechniken unter Erkennung der Ursache die Selbsheilungskräfte den Körper wieder in ein harmonisches Gleichgewicht.",
   },
   {
     name: "Yoga",

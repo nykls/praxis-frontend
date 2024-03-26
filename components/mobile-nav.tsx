@@ -12,7 +12,7 @@ function MobileNav() {
   const [open, setOpen] = React.useState(false);
   const navLinks = [
     { title: "Aktuelles", href: "/blog", key: "news" },
-    { title: "Über", href: "/resume", key: "about" },
+    { title: "Über", href: "/about", key: "about" },
   ];
   const pathname = usePathname();
 

@@ -4,7 +4,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       allow: ["/"],
-      disallow: ["/studio", "/impressum", "/privacy"],
+      disallow: ["/studio", "/imprint", "/privacy"],
     },
     sitemap: process.env.NEXT_URL + "/sitemap.xml",
   };

@@ -48,7 +48,7 @@ const Footer = () => {
 
           {/* Links */}
           <div className="w-screen lg:w-auto flex justify-center lg:justify-end items-center">
-            <Link href="#" className="mx-2">
+            <Link href="/imprint" className="mx-2">
               <Button className="text-xs p-0" variant="link">
                 <ShieldQuestion />
                 <span className="hidden md:block ml-2">Impressum</span>
