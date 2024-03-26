@@ -41,20 +41,33 @@ export default {
             },
             {
               name: "years",
-              type: "object",
-              title: "Jahre",
-              fields: [
-                {
-                  name: "start",
-                  type: "datetime",
-                  title: "Startjahr",
-                },
-                {
-                  name: "end",
-                  type: "datetime",
-                  title: "Endjahr",
-                },
-              ],
+              type: "date",
+              title: "Abschlussjahr",
+              options: {
+                dateFormat: "YYYY",
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "training",
+      type: "array",
+      title: "Fortbildungen",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "title",
+              type: "string",
+              title: "Titel",
+            },
+            {
+              name: "institution",
+              type: "string",
+              title: "Institution",
             },
           ],
         },

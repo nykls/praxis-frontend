@@ -15,7 +15,11 @@ export interface Resume {
   education: {
     title: string;
     institution: string;
-    years: { start: string; end: string };
+    years: string;
+  }[];
+  training: {
+    title: string;
+    institution: string;
   }[];
   avatar: {
     image: string;

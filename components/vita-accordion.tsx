@@ -25,10 +25,14 @@ export default async function VitaAccordion() {
       institution,
       years,
     },
+    "training": training[]{
+      title,
+      institution,
+    },
     _id,
   }
 `;
-    const vita = await client.fetch(query);
+    const vita = await client.fetch(query, {}, { next: { revalidate: 0 } });
     const vitas: Resume[] = vita;
     return (
       <Accordion
@@ -68,35 +72,32 @@ export default async function VitaAccordion() {
                           </AspectRatio>
                         </Card>
                       </div>
-                      <div className="basis-1/2 p-3">
+                      <div className="basis-1/2 p-3 space-y-12">
                         <div className="text-center p-5 text-xl">
                           <p className="font-serif italic">{vita.motto}</p>
                         </div>
-                        <div className="py-3">
-                          <h3>Ausbildung</h3>
-                        </div>
-                        <div>
+                        <div className="space-y-3">
+                          <h3 className="text-center">Ausbildung</h3>
                           {vita.education.map((eduEntry, index) => (
-                            <div className="space-y-7" key={index}>
-                              <div className="flex space-x-5 text-md">
-                                <div>
-                                  <p className="italic font-bold">
-                                    {new Date(
-                                      eduEntry.years.start
-                                    ).getFullYear()}{" "}
-                                    -{" "}
-                                    {new Date(eduEntry.years.end).getFullYear()}
-                                  </p>
-                                </div>
-                                <div className="grow">
-                                  <p>{eduEntry.title}</p>
-                                </div>
-                                <div className="">
-                                  <p>{eduEntry.institution}</p>
-                                </div>
-                              </div>
-                              <Separator className="mx-auto w-2/3" />
-                            </div>
+                            <ul className="flex gap-7" key={index}>
+                              <li className="italic font-bold">
+                                {new Date(eduEntry.years).getFullYear()}{" "}
+                              </li>
+                              <li className="grow">{eduEntry.title}</li>
+                              <li>{eduEntry.institution}</li>
+                            </ul>
+                          ))}
+                        </div>
+                        <div className="space-y-3">
+                          <h3 className="text-center">Fortbildungen</h3>
+                          {vita.training.map((eduEntry, index) => (
+                            <ul
+                              className="w-full flex justify-between"
+                              key={index}
+                            >
+                              <li>{eduEntry.title}</li>
+                              <li>{eduEntry.institution}</li>
+                            </ul>
                           ))}
                         </div>
                       </div>
