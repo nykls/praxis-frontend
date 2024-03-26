@@ -1,4 +1,4 @@
-// app/about/page.tsx
+// app/resume/page.tsx
 import FullWidthWrapper from "@/components/full-width-wrapper";
 import { SliderSkeleton } from "@/components/skeletons";
 import SliderGallery from "@/components/slider";
