@@ -1,5 +1,4 @@
-import { init } from "next/dist/compiled/webpack/webpack";
-import { off } from "process";
+import { validation } from "sanity";
 
 export default {
   name: "post",
@@ -16,6 +15,7 @@ export default {
       type: "reference",
       title: "Author",
       to: [{ type: "resume" }],
+      validation: (Rule: { required: () => any }) => Rule.required(),
     },
     {
       name: "slug",
@@ -31,18 +31,17 @@ export default {
             .replace(/[^\w\-]+/g, "") // Entfernt nicht-alphanumerische Zeichen
             .slice(0, 200),
       },
+      validation: (Rule: { required: () => any }) => Rule.required(),
     },
     {
       name: "publishedAt",
-      type: "datetime",
+      type: "date",
       title: "Published at",
       initialValue: () => new Date().toISOString(),
       options: {
         dateFormat: "DD-MM-YYYY",
-        timeFormat: "HH:mm",
-        timeStep: 15,
-        calendarTodayLabel: "Heute",
       },
+      hidden: true,
     },
     {
       name: "body",

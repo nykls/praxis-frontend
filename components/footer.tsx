@@ -10,21 +10,18 @@ import { Cookie, Github, ShieldQuestion } from "lucide-react";
 import { Button } from "./ui/button";
 import dynamic from "next/dynamic";
 import React, { useState, useEffect } from "react";
+import { GoogleMapsEmbed } from "@next/third-parties/google";
 
 const PostMaps = dynamic(() => import("./maps"), {
   loading: () => <MapsSkeleton />,
 });
 
 const Footer = () => {
-  const [isPageLoaded, setIsPageLoaded] = useState(false);
-  useEffect(() => {
-    setIsPageLoaded(true);
-  }, []);
   return (
     <div className="bg-secondary border-t py-7 mt-7 ">
       <FullWidthWrapper>
         <div className="pb-5">
-          {isPageLoaded ? <PostMaps /> : <MapsSkeleton />}
+          <Maps />
         </div>
         <div className=" mx-auto flex flex-wrap items-center justify-between">
           {/* Copyright Text */}

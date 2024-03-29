@@ -1,3 +1,5 @@
+import { validation } from "sanity";
+
 export default {
   name: "resume",
   type: "document",
@@ -7,6 +9,7 @@ export default {
       name: "name",
       type: "string",
       title: "Name",
+      validation: (Rule: { required: () => any }) => Rule.required(),
     },
     {
       name: "avatar",
@@ -15,6 +18,7 @@ export default {
       options: {
         hotspot: true,
       },
+      validation: (Rule: { required: () => any }) => Rule.required(),
     },
     {
       name: "motto",

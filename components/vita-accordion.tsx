@@ -1,5 +1,5 @@
 import { Resume } from "@/lib/interfaces";
-import urlFor from "@/lib/url-for";
+import { urlFor } from "@/lib/utils";
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import {
@@ -11,7 +11,6 @@ import {
 import { AspectRatio } from "./ui/aspect-ratio";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Separator } from "./ui/separator";
 
 export default async function VitaAccordion() {
   try {

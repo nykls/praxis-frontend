@@ -1,4 +1,4 @@
-import urlFor from "@/lib/url-for";
+import { urlFor } from "@/lib/utils";
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";

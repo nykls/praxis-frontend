@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { Post } from "@/lib/interfaces";
-import urlFor from "@/lib/url-for";
+import { urlFor } from "@/lib/utils";
 import { client } from "@/sanity/lib/client";
 import { PortableText } from "@portabletext/react";
 import { Metadata } from "next";

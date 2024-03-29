@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Slider } from "@/lib/interfaces";
-import urlFor from "@/lib/url-for";
+import { urlFor } from "@/lib/utils";
 import { client } from "@/sanity/lib/client";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";

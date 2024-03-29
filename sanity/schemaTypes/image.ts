@@ -13,6 +13,13 @@ export default {
           name: "image",
           options: {
             hotspot: true,
+            metadata: [
+              "blurhash", // Default: included
+              "lqip", // Default: included
+              "palette", // Default: included
+              "exif", // Default: not included
+              "location", // Default: not included
+            ],
           },
         },
       ],

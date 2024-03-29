@@ -9,6 +9,7 @@ import Footer from "@/components/footer";
 import CookieConsent from "@/components/cookie-consent";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import dynamic from "next/dynamic";
 
 const inter = Inter({ subsets: ["latin"] });
 

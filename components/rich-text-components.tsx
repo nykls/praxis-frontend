@@ -1,8 +1,6 @@
-import urlFor from "@/lib/url-for";
-import { slugify } from "@/lib/utils";
+import { urlFor } from "@/lib/utils";
 import Image from "next/image";
 import { Card } from "./ui/card";
-import { text } from "stream/consumers";
 
 export const RichTextComponent = {
   types: {
@@ -14,6 +12,9 @@ export const RichTextComponent = {
             alt="Post"
             fill
             className="object-cover"
+            placeholder="blur"
+            blurDataURL={urlFor(value).size(10, 10).url()}
+            sizes="100vw"
           />
         </Card>
       </div>
@@ -29,44 +30,19 @@ export const RichTextComponent = {
   },
   block: {
     h2: ({ value }: any) => (
-      <h2
-        id={slugify(value.children[0].text)}
-        className="text-3xl font-bold mb-3"
-      >
-        {value.children[0].text}
-      </h2>
+      <h2 className="text-3xl font-bold mb-3">{value.children[0].text}</h2>
     ),
     h3: ({ value }: any) => (
-      <h3
-        id={slugify(value.children[0].text)}
-        className="text-2xl font-bold mb-3"
-      >
-        {value.children[0].text}
-      </h3>
+      <h3 className="text-2xl font-bold mb-3">{value.children[0].text}</h3>
     ),
     h4: ({ value }: any) => (
-      <h4
-        id={slugify(value.children[0].text)}
-        className="text-2xl font-bold mb-3"
-      >
-        {value.children[0].text}
-      </h4>
+      <h4 className="text-2xl font-bold mb-3">{value.children[0].text}</h4>
     ),
     h5: ({ value }: any) => (
-      <h5
-        id={slugify(value.children[0].text)}
-        className="text-2xl font-bold mb-3"
-      >
-        {value.children[0].text}
-      </h5>
+      <h5 className="text-2xl font-bold mb-3">{value.children[0].text}</h5>
     ),
     h6: ({ value }: any) => (
-      <h6
-        id={slugify(value.children[0].text)}
-        className="text-xl font-bold mb-3"
-      >
-        {value.children[0].text}
-      </h6>
+      <h6 className="text-xl font-bold mb-3">{value.children[0].text}</h6>
     ),
     normal: ({ children }: any) => <p className="">{children}</p>,
   },

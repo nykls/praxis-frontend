@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
@@ -33,7 +32,7 @@ import { useToast } from "@/components/ui/use-toast";
 import type { contactData } from "@/lib/form-schema";
 import { contactSchema } from "@/lib/form-schema";
 import { addEntry } from "@/lib/send-mail";
-import { useMediaQuery } from "@/lib/use-media-query";
+import { useMediaQuery } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ExternalLink, Loader } from "lucide-react";
 import Link from "next/link";
