@@ -38,7 +38,7 @@ function MobileNav() {
           </div>
           <div className="flex-col">
             <span className="font-bold text-xs">
-              Osteopathie, Yoga und Qigong
+              Osteopathie, Yoga & Qigong
             </span>
             <br />
             <span className="text-xs">Maitri Katrin Eulitz</span>
