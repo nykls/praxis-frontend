@@ -11,6 +11,8 @@ import {
 import { AspectRatio } from "./ui/aspect-ratio";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { PortableText } from "@portabletext/react";
+import { RichTextComponent } from "./rich-text-components";
 
 export default async function VitaAccordion() {
   try {
@@ -19,16 +21,9 @@ export default async function VitaAccordion() {
     name,
     motto,
     avatar,
-    "education": education[]{
-      title,
-      institution,
-      years,
-    },
-    "training": training[]{
-      title,
-      institution,
-    },
-    _id,
+    education,
+    training,
+    _id
   }
 `;
     const vita = await client.fetch(query);
@@ -77,27 +72,17 @@ export default async function VitaAccordion() {
                         </div>
                         <div className="space-y-3">
                           <h3 className="text-center">Ausbildung</h3>
-                          {vita.education.map((eduEntry, index) => (
-                            <ul className="flex gap-7" key={index}>
-                              <li className="italic font-bold">
-                                {new Date(eduEntry.years).getFullYear()}{" "}
-                              </li>
-                              <li className="grow">{eduEntry.title}</li>
-                              <li>{eduEntry.institution}</li>
-                            </ul>
-                          ))}
+                          <PortableText
+                            value={vita.education}
+                            components={RichTextComponent}
+                          />
                         </div>
                         <div className="space-y-3">
                           <h3 className="text-center">Fortbildungen</h3>
-                          {vita.training.map((eduEntry, index) => (
-                            <ul
-                              className="w-full flex justify-between"
-                              key={index}
-                            >
-                              <li>{eduEntry.title}</li>
-                              <li>{eduEntry.institution}</li>
-                            </ul>
-                          ))}
+                          <PortableText
+                            value={vita.training}
+                            components={RichTextComponent}
+                          />
                         </div>
                       </div>
                     </div>

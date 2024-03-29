@@ -12,15 +12,8 @@ export interface Resume {
   crop(crop: any): unknown;
   name: string;
   motto: string;
-  education: {
-    title: string;
-    institution: string;
-    years: string;
-  }[];
-  training: {
-    title: string;
-    institution: string;
-  }[];
+  education: Array<any>;
+  training: Array<any>;
   avatar: {
     image: string;
     hotspot: string;

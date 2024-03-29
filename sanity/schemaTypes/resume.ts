@@ -27,55 +27,15 @@ export default {
     },
     {
       name: "education",
-      type: "array",
       title: "Education",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "title",
-              type: "string",
-              title: "Titel",
-            },
-            {
-              name: "institution",
-              type: "string",
-              title: "Institution",
-            },
-            {
-              name: "years",
-              type: "date",
-              title: "Abschlussjahr",
-              options: {
-                dateFormat: "YYYY",
-              },
-            },
-          ],
-        },
-      ],
+      type: "array",
+      of: [{ type: "block" }],
     },
     {
       name: "training",
-      type: "array",
       title: "Fortbildungen",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "title",
-              type: "string",
-              title: "Titel",
-            },
-            {
-              name: "institution",
-              type: "string",
-              title: "Institution",
-            },
-          ],
-        },
-      ],
+      type: "array",
+      of: [{ type: "block" }],
     },
   ],
 };
