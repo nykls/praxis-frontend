@@ -17,7 +17,7 @@ export default function Maps() {
         q="Praxis für Osteopathie, Yoga, Qigong Maitri Katrin Eulitz"
         allowfullscreen={false}
         style="border-radius: 0.5rem"
-        name="Praxis für Osteopathie, Yoga, Qigong Maitri Katrin Eulitz"
+        title="Praxis für Osteopathie, Yoga, Qigong Maitri Katrin Eulitz"
       />
     </Card>
   );
