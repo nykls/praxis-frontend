@@ -18,21 +18,15 @@ export interface Resume {
     image: string;
     hotspot: string;
   };
+  lqip: string;
   _id: string;
 }
 
-interface SliderImageAsset {
-  _ref: string;
-  _type: "reference";
-}
-
 export interface SliderImage {
-  _type: "image";
-  _key: string;
-  asset: SliderImageAsset;
+  _id: string;
+  placeholder: string;
 }
 
 export interface Slider {
   images: SliderImage[];
-  crop: any;
 }

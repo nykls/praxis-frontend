@@ -18,10 +18,14 @@ import { Card, CardContent } from "./ui/card";
 export default async function SliderGallery() {
   try {
     const query = `
-  *[_type == 'gallery']{
-        images
-        }
-    
+*[_type == "gallery"]{
+  "images": images[].asset->{
+    _id,
+    "placeholder": metadata.lqip
+  }
+}
+
+
     `;
     const slides = await client.fetch(
       query,
@@ -45,12 +49,12 @@ export default async function SliderGallery() {
                 <CardContent className="flex aspect-[4/3] overflow-hidden p-0 m-0 items-center justify-center">
                   <AspectRatio ratio={4 / 3}>
                     <Image
-                      src={urlFor(slide.asset).url()}
+                      src={urlFor(slide).url()}
                       alt={`Slide ${index}`}
                       fill
                       className="object-cover"
                       placeholder="blur"
-                      blurDataURL={urlFor(slide.asset).size(10, 10).url()}
+                      blurDataURL={slide.placeholder}
                     />
                   </AspectRatio>
                 </CardContent>

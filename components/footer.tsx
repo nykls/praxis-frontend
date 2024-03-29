@@ -32,10 +32,17 @@ const Footer = () => {
           <div className="w-full justify-center lg:w-auto mb-4 lg:mb-0 flex">
             <div className="flex justify-center items-center space-x-4">
               <div className="relative h-20 w-20">
-                <Image src="/bvo_kinderosteopathie.png" alt="Logo" fill />
+                <Image
+                  src="/bvo_kinderosteopathie.png"
+                  alt="Logo"
+                  fill
+                  sizes="100%"
+                  placeholder="blur"
+                  blurDataURL="/bvo_kinderosteopathie.png"
+                />
               </div>
               <div className="relative bg-white rounded-full h-20 w-20">
-                <Image src="/logo.svg" alt="Logo" fill />
+                <Image src="/logo.svg" alt="Logo" fill sizes="100%" />
               </div>
             </div>
           </div>

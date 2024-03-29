@@ -68,11 +68,11 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
   },
-  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "description": "Website der Praxis für Osteopathie, Yoga & Qigong Maitri Katrin Eulitz in Radebeul.",
   "main": "next.config.js",
   "directories": {
     "lib": "lib"
   },
-  "author": "",
+  "author": "Niklas Eulitz",
   "license": "ISC"
 }

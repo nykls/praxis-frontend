@@ -16,9 +16,6 @@ export default {
             metadata: [
               "blurhash", // Default: included
               "lqip", // Default: included
-              "palette", // Default: included
-              "exif", // Default: not included
-              "location", // Default: not included
             ],
           },
         },

@@ -14,7 +14,7 @@ export const RichTextComponent = {
             className="object-cover"
             placeholder="blur"
             blurDataURL={urlFor(value).size(10, 10).url()}
-            sizes="100vw"
+            sizes="100%"
           />
         </Card>
       </div>

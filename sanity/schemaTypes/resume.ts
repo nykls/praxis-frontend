@@ -1,5 +1,3 @@
-import { validation } from "sanity";
-
 export default {
   name: "resume",
   type: "document",
@@ -17,6 +15,10 @@ export default {
       title: "Bild",
       options: {
         hotspot: true,
+        metadata: [
+          "blurhash", // Default: included
+          "lqip", // Default: included
+        ],
       },
       validation: (Rule: { required: () => any }) => Rule.required(),
     },

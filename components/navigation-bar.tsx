@@ -50,6 +50,7 @@ function Navbar() {
                   alt="Picture of the author"
                   fill
                   className="object-cover"
+                  sizes="100%"
                 />
               </Button>
               <div className="text-xs hover:text-primary">

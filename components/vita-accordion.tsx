@@ -18,13 +18,15 @@ export default async function VitaAccordion() {
   try {
     const query = `
   *[_type == 'resume']{
-    name,
-    motto,
-    avatar,
-    education,
-    training,
-    _id
-  }
+  name,
+  motto,
+  avatar,
+  "lqip": avatar.asset->metadata.lqip,
+  education,
+  training,
+  _id
+}
+
 `;
     const vita = await client.fetch(query);
     const vitas: Resume[] = vita;
@@ -62,6 +64,8 @@ export default async function VitaAccordion() {
                               alt=""
                               src={urlFor(vita.avatar).url()}
                               className="object-cover"
+                              placeholder="blur"
+                              blurDataURL={vita.lqip}
                             />
                           </AspectRatio>
                         </Card>
