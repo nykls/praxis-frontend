@@ -4,7 +4,7 @@ import React from "react";
 
 function Page() {
   return (
-    <FullWidthWrapper className="space-y-3">
+    <FullWidthWrapper className="space-y-3 flex-col">
       <h1>Datenschutzerklärung</h1>
       <h2 className="text-lg">Allgemeiner Hinweis und Pflichtinformationen</h2>
       <h3 className="text-lg">Benennung der verantwortlichen Stelle</h3>
@@ -48,15 +48,16 @@ function Page() {
         Verstoßes ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
         Zuständige Aufsichtsbehörde bezüglich datenschutzrechtlicher Fragen ist
         der Landesdatenschutzbeauftragte des Bundeslandes, in dem sich der Sitz
-        unseres Unternehmens befindet. Der folgende Link stellt eine Liste der
-        Datenschutzbeauftragten sowie deren Kontaktdaten bereit:{" "}
+        unseres Unternehmens befindet. Der{" "}
         <Link
           href="https://www.bfdi.bund.de/DE/Infothek/Anschriften_Links/anschriften_links-node.html"
           target="_blank"
+          className="text-primary underline"
         >
-          https://www.bfdi.bund.de/DE/Infothek/Anschriften_Links/anschriften_links-node.html
-        </Link>
-        .
+          folgende Link stellt eine Liste der Datenschutzbeauftragten sowie
+          deren Kontaktdaten
+        </Link>{" "}
+        bereit.
       </p>
       <h3 className="text-lg">Recht auf Datenübertragbarkeit</h3>
       <p>
@@ -213,9 +214,12 @@ function Page() {
         vereinbart. Dies sind – sofern nicht anders angegeben –
         Standardvertragsklauseln der EU-Kommission gemäß Durchführungsbeschluss
         (EU) 2021/914 vom 4. Juni 2021. Eine Kopie dieser
-        Standardvertragsklauseln können Sie unter{" "}
-        <Link href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32021D0914&from=DE">
-          https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32021D0914&from=DE
+        Standardvertragsklauseln können Sie{" "}
+        <Link
+          href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32021D0914&from=DE"
+          className="text-primary underline"
+        >
+          hier
         </Link>{" "}
         einsehen.
       </p>
@@ -223,9 +227,12 @@ function Page() {
       <p>
         Die konkrete Speicherdauer der verarbeiteten Daten ist nicht durch uns
         beeinflussbar, sondern wird von Cloudflare, Inc. bestimmt. Weitere
-        Hinweise finden Sie in der Datenschutzerklärung für Cloudflare CDN:{" "}
-        <Link href="https://www.cloudflare.com/privacypolicy/">
-          https://www.cloudflare.com/privacypolicy/
+        Hinweise finden Sie in der{" "}
+        <Link
+          href="https://www.cloudflare.com/privacypolicy/"
+          className="text-primary underline"
+        >
+          Datenschutzerklärung für Cloudflare CDN
         </Link>
         .
       </p>
@@ -265,9 +272,12 @@ function Page() {
         vereinbart. Dies sind – sofern nicht anders angegeben –
         Standardvertragsklauseln der EU-Kommission gemäß Durchführungsbeschluss
         (EU) 2021/914 vom 4. Juni 2021. Eine Kopie dieser
-        Standardvertragsklauseln können Sie unter{" "}
-        <Link href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32021D0914&from=DE">
-          https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32021D0914&from=DE
+        Standardvertragsklauseln können Sie{" "}
+        <Link
+          href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32021D0914&from=DE"
+          className="text-primary underline"
+        >
+          hier{" "}
         </Link>{" "}
         einsehen.
       </p>
@@ -275,9 +285,12 @@ function Page() {
       <p>
         Die konkrete Speicherdauer der verarbeiteten Daten ist nicht durch uns
         beeinflussbar, sondern wird von Google Ireland Limited bestimmt. Weitere
-        Hinweise finden Sie in der Datenschutzerklärung für Google CDN:{" "}
-        <Link href="https://policies.google.com/privacy">
-          https://policies.google.com/privacy
+        Hinweise finden Sie in der{" "}
+        <Link
+          href="https://policies.google.com/privacy"
+          className="text-primary underline"
+        >
+          Datenschutzerklärung für Google CDN
         </Link>
         .
       </p>
@@ -311,9 +324,12 @@ function Page() {
       <p>
         Die konkrete Speicherdauer der verarbeiteten Daten ist nicht durch uns
         beeinflussbar, sondern wird von Prospect One bestimmt. Weitere Hinweise
-        finden Sie in der Datenschutzerklärung für JSDelivr CDN:{" "}
-        <Link href="https://www.jsdelivr.com/privacy-policy-jsdelivr-net">
-          https://www.jsdelivr.com/privacy-policy-jsdelivr-net
+        finden Sie in der{" "}
+        <Link
+          href="https://www.jsdelivr.com/privacy-policy-jsdelivr-net"
+          className="text-primary underline"
+        >
+          Datenschutzerklärung für JSDelivr CDN{" "}
         </Link>
         .
       </p>
@@ -345,9 +361,12 @@ function Page() {
         vereinbart. Dies sind – sofern nicht anders angegeben –
         Standardvertragsklauseln der EU-Kommission gemäß Durchführungsbeschluss
         (EU) 2021/914 vom 4. Juni 2021. Eine Kopie dieser
-        Standardvertragsklauseln können Sie unter{" "}
-        <Link href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32021D0914&from=DE">
-          https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32021D0914&from=DE
+        Standardvertragsklauseln können Sie{" "}
+        <Link
+          href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32021D0914&from=DE"
+          className="text-primary underline"
+        >
+          hier
         </Link>{" "}
         einsehen.
       </p>
@@ -366,9 +385,12 @@ function Page() {
       <p>
         Die konkrete Speicherdauer der verarbeiteten Daten ist nicht durch uns
         beeinflussbar, sondern wird von Google Ireland Limited bestimmt. Weitere
-        Hinweise finden Sie in der Datenschutzerklärung für Google Maps:{" "}
-        <Link href="https://policies.google.com/privacy">
-          https://policies.google.com/privacy
+        Hinweise finden Sie in der{" "}
+        <Link
+          href="https://policies.google.com/privacy"
+          className="text-primary underline"
+        >
+          Datenschutzerklärung für Google Maps:
         </Link>
         .
       </p>
@@ -396,9 +418,12 @@ function Page() {
         vereinbart. Dies sind – sofern nicht anders angegeben –
         Standardvertragsklauseln der EU-Kommission gemäß Durchführungsbeschluss
         (EU) 2021/914 vom 4. Juni 2021. Eine Kopie dieser
-        Standardvertragsklauseln können Sie unter{" "}
-        <Link href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32021D0914&from=DE">
-          https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32021D0914&from=DE
+        Standardvertragsklauseln können Sie{" "}
+        <Link
+          href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32021D0914&from=DE"
+          className="text-primary underline"
+        >
+          hier{" "}
         </Link>{" "}
         einsehen.
       </p>
@@ -417,9 +442,12 @@ function Page() {
       <p>
         Die konkrete Speicherdauer der verarbeiteten Daten ist nicht durch uns
         beeinflussbar, sondern wird von Google Ireland Limited bestimmt. Weitere
-        Hinweise finden Sie in der Datenschutzerklärung für Google Fonts:{" "}
-        <Link href="https://policies.google.com/privacy">
-          https://policies.google.com/privacy
+        Hinweise finden Sie in der{" "}
+        <Link
+          href="https://policies.google.com/privacy"
+          className="text-primary underline"
+        >
+          Datenschutzerklärung für Google Fonts{" "}
         </Link>
         .
       </p>
