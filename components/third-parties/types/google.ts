@@ -5,6 +5,19 @@ declare global {
   }
 }
 
+export type GTMParams = {
+  gtmId: string;
+  dataLayer?: string[];
+  dataLayerName?: string;
+  auth?: string;
+  preview?: string;
+};
+
+export type GAParams = {
+  gaId: string;
+  dataLayerName?: string;
+};
+
 export type GoogleMapsEmbed = {
   height?: number | string;
   width?: number | string;
