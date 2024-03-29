@@ -1,6 +1,6 @@
 "use client";
 
-import { GoogleMapsEmbed } from "@next/third-parties/google";
+import { GoogleMapsEmbed } from "./third-parties/google";
 import { Card } from "./ui/card";
 
 export default function Maps() {
@@ -16,7 +16,8 @@ export default function Maps() {
         mode="place"
         q="Praxis für Osteopathie, Yoga, Qigong Maitri Katrin Eulitz"
         allowfullscreen={false}
-        style="rounded-lg"
+        style="border-radius: 0.5rem"
+        name="Praxis für Osteopathie, Yoga, Qigong Maitri Katrin Eulitz"
       />
     </Card>
   );
