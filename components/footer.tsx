@@ -1,16 +1,13 @@
 "use client";
 
-import FullWidthWrapper from "./full-width-wrapper";
-import Link from "next/link";
-import Maps from "./maps";
-import Image from "next/image";
-import { Suspense } from "react";
-import { MapsSkeleton } from "./skeletons";
 import { Cookie, Github, ShieldQuestion } from "lucide-react";
-import { Button } from "./ui/button";
 import dynamic from "next/dynamic";
-import React, { useState, useEffect } from "react";
-import { GoogleMapsEmbed } from "@next/third-parties/google";
+import Image from "next/image";
+import Link from "next/link";
+import FullWidthWrapper from "./full-width-wrapper";
+import Maps from "./maps";
+import { MapsSkeleton } from "./skeletons";
+import { Button } from "./ui/button";
 
 const PostMaps = dynamic(() => import("./maps"), {
   loading: () => <MapsSkeleton />,
