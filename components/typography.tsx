@@ -33,8 +33,8 @@ const Typography: React.FC<TypographyProps> = ({
     small: "text-sm font-medium leading-none",
     ul: "list-disc pl-5 my-4",
     ol: "list-decimal pl-5 my-4",
-    h1: "scroll-m-20 text-xl lg:text-4xl font-extrabold tracking-tight lg:text-5xl",
-    h2: "scroll-m-20 text-lg border-b pb-2 lg:text-3xl font-semibold tracking-tight first:mt-0",
+    h1: "scroll-m-20 text-2xl lg:text-4xl font-extrabold tracking-tight lg:text-5xl",
+    h2: "scroll-m-20 text-xl border-b pb-2 lg:text-3xl font-semibold tracking-tight first:mt-0",
     h3: "scroll-m-20 lg:text-2xl text-lg font-semibold tracking-tight",
     h4: "scroll-m-20 lg:text-xl text-md font-semibold tracking-tight",
   };
