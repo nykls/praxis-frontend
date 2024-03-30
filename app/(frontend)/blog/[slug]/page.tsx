@@ -1,8 +1,5 @@
 import FullWidthWrapper from "@/components/full-width-wrapper";
 import NewsContent from "@/components/news";
-import { RichTextComponent } from "@/components/rich-text-components";
-import Typography from "@/components/typography";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,11 +7,8 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
 import { Post } from "@/lib/interfaces";
-import { urlFor } from "@/lib/utils";
 import { client } from "@/sanity/lib/client";
-import { PortableText } from "@portabletext/react";
 import { Metadata } from "next";
 import Link from "next/link";
 
