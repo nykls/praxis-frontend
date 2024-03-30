@@ -75,7 +75,9 @@ export default async function NewsCard() {
                           <AvatarFallback>{post.author.name[0]}</AvatarFallback>
                         </Avatar>
                         <Separator className="h-8" orientation="vertical" />
-                        <Typography variant="p">{post.author.name}</Typography>
+                        <Typography variant="p" className="m-0">
+                          {post.author.name}
+                        </Typography>
                       </div>
                     </CardFooter>
                   </Card>

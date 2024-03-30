@@ -22,7 +22,7 @@ function NewsContent(_post: Post) {
   return (
     <article className="space-y-5">
       <div className="w-full space-y-5">
-        <div className="flex grow space-x-3">
+        <div className="flex grow space-x-3 items-center h-auto">
           <div>
             <Avatar>
               <AvatarImage
@@ -34,11 +34,12 @@ function NewsContent(_post: Post) {
               </AvatarFallback>
             </Avatar>
           </div>
-
-          <div className="flex text-center space-x-3">
-            <div className="flex-col text-nowrap text-muted-foreground space-x-3 text-sm">
-              <Typography variant="p">{_post.author.name}</Typography>
-              <Typography variant="p">
+          <div className="flex-col text-muted-foreground text-xs">
+            <div>
+              <Typography variant="small">{_post.author.name}</Typography>
+            </div>
+            <div>
+              <Typography variant="small">
                 {new Date(_post.publishedAt).toLocaleDateString("de-DE", {
                   year: "numeric",
                   month: "long",
@@ -47,7 +48,7 @@ function NewsContent(_post: Post) {
               </Typography>
             </div>
           </div>
-          <Separator orientation="vertical" className="h-auto" />
+          <Separator orientation="vertical" className="h-12" />
           <div className="">
             <div className="">
               <Typography variant="h1" className="">
