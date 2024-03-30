@@ -1,5 +1,7 @@
 import FullWidthWrapper from "@/components/full-width-wrapper";
+import NewsContent from "@/components/news";
 import { RichTextComponent } from "@/components/rich-text-components";
+import Typography from "@/components/typography";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Breadcrumb,
@@ -81,46 +83,7 @@ export default async function BlogPage({ params: { slug } }: Props) {
             </BreadcrumbList>
           </Breadcrumb>
         </div>
-        <article className="space-y-5">
-          <div className="w-full space-y-5">
-            <div className="flex grow space-x-3">
-              <div>
-                <Avatar>
-                  <AvatarImage
-                    src={urlFor(post.author.avatar).size(100, 100).url()}
-                  />
-                  <AvatarFallback>
-                    {" "}
-                    <AvatarFallback>{post.author.name[0]}</AvatarFallback>
-                  </AvatarFallback>
-                </Avatar>
-              </div>
-
-              <div className="flex text-center space-x-3">
-                <div className="flex-col text-nowrap text-muted-foreground space-x-3 text-sm">
-                  <p>{post.author.name}</p>
-                  <p>
-                    {new Date(post.publishedAt).toLocaleDateString("de-DE", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </p>
-                </div>
-              </div>
-              <Separator orientation="vertical" className="h-auto" />
-              <div className="">
-                <div className="">
-                  <h1 className="text-base lg:text-4xl">{post.title}</h1>
-                </div>
-              </div>
-            </div>
-          </div>
-          <Separator className="w-full mt-3" />
-          <div className="space-y-10 mx-auto md:px-20">
-            <PortableText value={post.body} components={RichTextComponent} />
-          </div>
-        </article>
+        <NewsContent {...post} />
       </section>
     </FullWidthWrapper>
   );

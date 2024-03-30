@@ -92,7 +92,7 @@ export default function ContactForm({
     toast({
       title: "Ihre Nachricht wurde erfolgreich versendet.",
       description:
-        "Vielen Dank für Ihre Nachricht. Ich melde mich so schnell wie möglich bei Ihnen.",
+        "Vielen Dank für Ihre Nachricht. Wir melden uns so schnell wie möglich bei Ihnen.",
     });
     setOpen(false);
   };
@@ -103,9 +103,9 @@ export default function ContactForm({
         <DialogTrigger asChild>{children}</DialogTrigger>
         <DialogContent id="contactFormDialog">
           <DialogHeader>
-            <DialogTitle>Kontaktieren Sie mich!</DialogTitle>
+            <DialogTitle>Kontaktieren Sie uns!</DialogTitle>
             <DialogDescription>
-              Gern stehe ich Ihnen für Fragen zur Verfügung.
+              Gern stehen wir Ihnen für Fragen zur Verfügung.
             </DialogDescription>
           </DialogHeader>
           <Form {...form}>

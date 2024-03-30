@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Separator } from "./ui/separator";
+import Typography from "./typography";
 
 export default async function NewsCard() {
   try {
@@ -74,7 +75,7 @@ export default async function NewsCard() {
                           <AvatarFallback>{post.author.name[0]}</AvatarFallback>
                         </Avatar>
                         <Separator className="h-8" orientation="vertical" />
-                        <p>{post.author.name}</p>
+                        <Typography variant="p">{post.author.name}</Typography>
                       </div>
                     </CardFooter>
                   </Card>
@@ -83,7 +84,9 @@ export default async function NewsCard() {
           </div>
           {posts?.length === 0 && (
             <div className="flex h-screen justify-center items-center">
-              <h1 className="text-lg text-center">Keine Beiträge gefunden.</h1>
+              <Typography variant="h1" className="text-lg text-center">
+                Keine Beiträge gefunden.
+              </Typography>
             </div>
           )}
         </section>

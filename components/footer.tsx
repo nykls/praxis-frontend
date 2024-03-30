@@ -8,6 +8,7 @@ import FullWidthWrapper from "./full-width-wrapper";
 import Maps from "./maps";
 import { MapsSkeleton } from "./skeletons";
 import { Button } from "./ui/button";
+import Typography from "./typography";
 
 const PostMaps = dynamic(() => import("./maps"), {
   loading: () => <MapsSkeleton />,
@@ -23,9 +24,9 @@ const Footer = () => {
         <div className=" mx-auto flex flex-wrap items-center justify-between">
           {/* Copyright Text */}
           <div className="w-full lg:w-auto mb-4 lg:mb-0 flex justify-center lg:justify-start">
-            <p className="text-sm">
+            <Typography variant="p" className="text-sm">
               &copy; {new Date().getFullYear()} All Rights Reserved
-            </p>
+            </Typography>
           </div>
 
           {/* Image */}

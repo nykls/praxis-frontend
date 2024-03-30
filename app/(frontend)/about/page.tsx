@@ -2,6 +2,7 @@
 import FullWidthWrapper from "@/components/full-width-wrapper";
 import { SliderSkeleton } from "@/components/skeletons";
 import SliderGallery from "@/components/slider";
+import Typography from "@/components/typography";
 import { Skeleton } from "@/components/ui/skeleton";
 import VitaAccordion from "@/components/vita-accordion";
 import type { Metadata } from "next";
@@ -24,7 +25,9 @@ export default function ResumePage() {
         </FullWidthWrapper>
       </section>
       <section className="grid gap-3">
-        <h1 className="text-4xl border-b pb-2 m-5 font-bold mx-auto">Vita</h1>
+        <Typography variant="h1" className=" border-b pb-2 m-5 mx-auto">
+          Vita
+        </Typography>
         <FullWidthWrapper className="pb-10">
           <Suspense fallback={<Skeleton className="w-full h-20" />}>
             <VitaAccordion />

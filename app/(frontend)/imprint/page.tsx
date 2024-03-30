@@ -1,5 +1,6 @@
 import ContactForm from "@/components/contact";
 import FullWidthWrapper from "@/components/full-width-wrapper";
+import Typography from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
@@ -7,18 +8,18 @@ import React from "react";
 function Page() {
   return (
     <FullWidthWrapper className="space-y-3">
-      <h1>Impressum</h1>
+      <Typography variant="h1">Impressum</Typography>
 
-      <h2 className="text-lg">Angaben gemäß § 5 TMG:</h2>
+      <Typography variant="h2">Angaben gemäß § 5 TMG:</Typography>
 
-      <p>
+      <Typography variant="p">
         Praxis für Osteopathie, Yoga & Qigong <br />
         Maitri Katrin Eulitz <br /> Gartenstraße 13 <br /> 01445 Radebeul <br />
         Deutschland
-      </p>
+      </Typography>
 
-      <h2 className="text-lg">Kontakt:</h2>
-      <p>
+      <Typography variant="h2">Kontakt:</Typography>
+      <Typography variant="p">
         Telefon:{" "}
         <Link href={"tel:" + process.env.NEXT_PUBLIC_PHONE}>
           <Button variant="link" className="select-none">
@@ -37,22 +38,22 @@ function Page() {
             info(at)osteopathie-radebeul.de
           </Button>
         </ContactForm>
-      </p>
-      <h2 className="text-lg">
+      </Typography>
+      <Typography variant="h2">
         Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:{" "}
-      </h2>
-      <p>
+      </Typography>
+      <Typography variant="p">
         Maitri Katrin Eulitz <br /> Gartenstraße 13 <br />
         01445 Radebeul
-      </p>
-      <h2 className="text-lg">Streitschlichtung</h2>
-      <p>
+      </Typography>
+      <Typography variant="h2">Streitschlichtung</Typography>
+      <Typography variant="p">
         Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren
         vor einer Verbraucherschlichtungsstelle teilzunehmen.
-      </p>
+      </Typography>
 
-      <h2 className="text-lg">Haftung für Inhalte </h2>
-      <p>
+      <Typography variant="h2">Haftung für Inhalte </Typography>
+      <Typography variant="p">
         Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf
         diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8
         bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet,
@@ -66,9 +67,9 @@ function Page() {
         Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von
         entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend
         entfernen.
-      </p>
-      <h2 className="text-lg">Haftung für Links</h2>
-      <p>
+      </Typography>
+      <Typography variant="h2">Haftung für Links</Typography>
+      <Typography variant="p">
         Unser Angebot enthält Links zu externen Websites Dritter, auf deren
         Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden
         Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten
@@ -81,10 +82,10 @@ function Page() {
         ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei
         Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend
         entfernen.
-      </p>
+      </Typography>
 
-      <h2 className="text-lg">Urheberrecht</h2>
-      <p>
+      <Typography variant="h2">Urheberrecht</Typography>
+      <Typography variant="p">
         Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
         Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung,
         Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der
@@ -97,9 +98,9 @@ function Page() {
         Urheberrechtsverletzung aufmerksam werden, bitten wir um einen
         entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden
         wir derartige Inhalte umgehend entfernen.
-      </p>
-      <h2 className="text-lg">Datenschutz</h2>
-      <p>
+      </Typography>
+      <Typography variant="h2">Datenschutz</Typography>
+      <Typography variant="p">
         Die Nutzung unserer Webseite ist in der Regel ohne Angabe
         personenbezogener Daten möglich. Soweit auf unseren Seiten
         personenbezogene Daten (beispielsweise Name, Anschrift oder
@@ -118,7 +119,7 @@ function Page() {
         ausdrücklich widersprochen. Die Betreiber der Seiten behalten sich
         ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von
         Werbeinformationen, etwa durch Spam-Mails, vor.
-      </p>
+      </Typography>
     </FullWidthWrapper>
   );
 }

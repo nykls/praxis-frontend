@@ -3,6 +3,7 @@
 import FullWidthWrapper from "@/components/full-width-wrapper";
 import { cn } from "@/lib/utils";
 import { BrainCog, PersonStanding, Zap } from "lucide-react";
+import Typography from "./typography";
 
 const perks = [
   {
@@ -54,10 +55,15 @@ export default function Perks() {
               </div>
 
               <div className="mt-6 md:ml-4 md:mt-0 lg:ml-0 lg:mt-6">
-                <h3 className="text-base font-medium primary">{perk.name}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">
+                <Typography variant="h3" className="primary">
+                  {perk.name}
+                </Typography>
+                <Typography
+                  variant="p"
+                  className="mt-3 text-sm text-muted-foreground"
+                >
                   {perk.description}
-                </p>
+                </Typography>
               </div>
             </div>
           ))}

@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { Card } from "./ui/card";
+import Typography from "./typography";
 
 export default function CookieConsent({
   demo = false,
@@ -65,16 +66,17 @@ export default function CookieConsent({
             <CookieIcon className="h-[1.2rem] w-[1.2rem]" />
           </div>
           <div className="p-4">
-            <p className="text-sm font-normal">
+            <Typography variant="small">
               Diese Website verwendet Cookies, um sicherzustellen, dass Sie die
               bestmögliche Erfahrung auf unserer Website machen.
               <br />
-              <span className="text-xs">
+              <Typography variant="small" className="text-xs">
+                {" "}
                 Durch das Klicken auf "
                 <span className="font-medium opacity-80">Akzeptieren</span>",
                 stimmen Sie der Verwendung von Cookies zu.
-              </span>
-            </p>
+              </Typography>
+            </Typography>
           </div>
           <div className="flex gap-2 p-4 py-5 border-t border-border bg-background/20">
             <Button onClick={accept} className="w-full">

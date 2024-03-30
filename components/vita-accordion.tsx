@@ -13,6 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { PortableText } from "@portabletext/react";
 import { RichTextComponent } from "./rich-text-components";
+import Typography from "./typography";
 
 export default async function VitaAccordion() {
   try {
@@ -71,18 +72,24 @@ export default async function VitaAccordion() {
                         </Card>
                       </div>
                       <div className="basis-1/2 p-3 space-y-12">
-                        <div className="text-center p-5 text-xl">
-                          <p className="font-serif italic">{vita.motto}</p>
+                        <div className="p-5">
+                          <Typography variant="blockquote">
+                            {vita.motto}
+                          </Typography>
                         </div>
                         <div className="space-y-3">
-                          <h3 className="text-center">Ausbildung</h3>
+                          <Typography variant="h2" className="text-center">
+                            Ausbildung
+                          </Typography>
                           <PortableText
                             value={vita.education}
                             components={RichTextComponent}
                           />
                         </div>
                         <div className="space-y-3">
-                          <h3 className="text-center">Fortbildungen</h3>
+                          <Typography variant="h2" className="text-center">
+                            Fortbildungen
+                          </Typography>
                           <PortableText
                             value={vita.training}
                             components={RichTextComponent}
