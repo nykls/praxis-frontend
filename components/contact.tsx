@@ -251,7 +251,7 @@ export default function ContactForm({
       <Drawer open={open} onOpenChange={setOpen}>
         <DrawerTrigger asChild>{children}</DrawerTrigger>
         <DrawerContent
-          className="mx-auto w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-[96%]"
+          className="mx-auto w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-[96%] max-w-full"
           onOpenAutoFocus={(event) => {
             event.preventDefault();
           }}
