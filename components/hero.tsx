@@ -55,10 +55,10 @@ export const Hero = () => {
               className="text-center text-sm lg:text-xl tracking-tight font-bold px-5"
             >
               <Balancer>
-                Willkommen in unserer Praxis für Osteopathie, Yoga und Qigong!
-                Hier bieten wir osteopathische Behandlungen für Babys bis
-                Erwachsene und Yoga sowie Qigong für jede Altersstufe an. Die
-                Kosten können über Ihre Krankenkassen abgerechnet werden.
+                Willkommen in unserer Praxis für Osteopathie, Yoga und Qigong.
+                Wir bieten osteopathische Behandlungen für alle Altersgruppen,
+                von Babys bis Erwachsene, sowie Yoga und Qigong Kurse an. Die
+                Kostenübernahme durch Krankenkassen ist möglich.
               </Balancer>
             </motion.p>
           </div>

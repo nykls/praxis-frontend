@@ -15,11 +15,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Praxis für Osteopathie, Yoga & Qigong Maitri Katrin Eulitz",
-    template: "%s | Praxis für Osteopathie, Yoga & Qigong Maitri Katrin Eulitz",
+    default: "Osteopathie, Yoga & Qigong Maitri Katrin Eulitz",
+    template: "%s | Osteopathie, Yoga & Qigong Maitri Katrin Eulitz",
   },
   description:
-    "Die Praxis Maitri in Radebeul bietet Osteopathie, Yoga & Qigong an. Katrin Eulitz ist Osteopathin, Yogalehrerin und Qigong-Kursleiterin.",
+    "Fördern Sie Ihr Wohlbefinden bei Maitri Katrin Eulitz: Osteopathie, Yoga & Qigong zur Aktivierung der Selbstheilungskräfte. Zentral gelegen.",
   keywords: "Osteopathie, Yoga, Qigong, Radebeul, Katrin Eulitz",
 };
 
