@@ -37,7 +37,7 @@ export default function RootLayout({
           <header>
             <Navbar />
           </header>
-          <main className="relative flex flex-col min-h-screen">
+          <main className="relative flex flex-col min-h-screen max-w-full">
             <div className="flex-grow flex-1 pt-20">{children}</div>
             <CookieConsent />
             <Toaster />
