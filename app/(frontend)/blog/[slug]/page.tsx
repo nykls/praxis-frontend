@@ -48,7 +48,7 @@ const getPost = unstable_cache(async function BlogPage({
   return post;
 });
 
-export async function generateMetadata({ params: { slug } }: Metadata & Props) {
+export async function generateMetadata({ params: { slug } }: Props) {
   const res: Post = await getPost({ params: { slug } });
   return {
     title: {
