@@ -29,7 +29,8 @@
     ".next/types/**/*.ts",
     "actions/send-mail.js",
     "actions/slug-on-save.js",
-    "lib/url-for.js"
+    "lib/url-for.js",
+    "app/sitemap.tsx"
   ],
   "exclude": ["node_modules"]
 }
