@@ -115,7 +115,7 @@ function PostSkeleton() {
             </div>
           </div>
           <Separator className="w-full mt-3" />
-          <div className="space-y-10 mx-auto">
+          <div className="space-y-10 mx-auto md:px-20">
             <Skeleton className="w-full h-6" /> {/* Text line */}
             <Skeleton className="w-full h-6" />
             <Skeleton className="w-full h-6" />
