@@ -17,7 +17,7 @@ export default async function sitemap() {
       }) => ({
         url: `${process.env.NEXT_PUBLIC_URL}blog/${post.slug.current}`,
         lastModified: new Date(post.publishedAt),
-        changeFrequency: "always",
+        changeFrequency: "monthly",
       })
     ),
     {
