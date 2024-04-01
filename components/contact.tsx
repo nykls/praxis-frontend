@@ -248,15 +248,15 @@ export default function ContactForm({
     );
   } else {
     return (
-      <Drawer open={open} onOpenChange={setOpen}>
+      <Drawer open={open} onOpenChange={setOpen} activeSnapPoint={1}>
         <DrawerTrigger asChild>{children}</DrawerTrigger>
         <DrawerContent
-          className="mx-auto w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-[96%] max-w-full"
+          className="mx-auto w-full space-y-3 touch-none"
           onOpenAutoFocus={(event) => {
             event.preventDefault();
           }}
         >
-          <div className="w-full mx-auto flex flex-col overflow-auto px-3">
+          <div className="w-full mx-auto flex flex-col overflow-auto touch-pan-y snap-y p-4">
             <DrawerHeader>
               <DrawerTitle>Kontaktieren Sie mich!</DrawerTitle>
               <DrawerDescription>
@@ -264,132 +264,132 @@ export default function ContactForm({
               </DrawerDescription>
             </DrawerHeader>
             <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(processForm)}
-                className="space-y-3"
-              >
-                <FormField
-                  control={form.control}
-                  name="subject"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="sr-only">Betreff</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
+              <form onSubmit={form.handleSubmit(processForm)}>
+                <div className="space-y-5">
+                  <FormField
+                    control={form.control}
+                    name="subject"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="sr-only" />
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Bitte wählen Sie einen Betreff aus" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="Osteopathie">
+                              Ostepathie{" "}
+                            </SelectItem>
+                            <SelectItem value="Yoga">Yoga</SelectItem>
+                            <SelectItem value="Qigong">Qigong</SelectItem>
+                            <SelectItem value="Terminabsage">
+                              Terminabsage{" "}
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="sr-only" />
                         <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Bitte wählen Sie einen Betreff aus" />
-                          </SelectTrigger>
+                          <Input placeholder="Name" {...field} />
                         </FormControl>
-                        <SelectContent>
-                          <SelectItem value="Osteopathie">
-                            Ostepathie{" "}
-                          </SelectItem>
-                          <SelectItem value="Yoga">Yoga</SelectItem>
-                          <SelectItem value="Qigong">Qigong</SelectItem>
-                          <SelectItem value="Terminabsage">
-                            Terminabsage{" "}
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="sr-only">Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Name" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="sr-only">E-Mail</FormLabel>
-                      <FormControl>
-                        <Input placeholder="E-Mail" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="sr-only">Telefonnummer</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Telefonnummer" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="sr-only">Nachricht</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="Ihre Nachricht an uns..."
-                          className="resize-none"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="agb"
-                  render={({ field }) => (
-                    <FormItem>
-                      <div className="flex space-x-2 items-center">
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="sr-only" />
                         <FormControl>
-                          <Checkbox
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
+                          <Input placeholder="E-Mail" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="sr-only" />
+                        <FormControl>
+                          <Input placeholder="Telefonnummer" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="sr-only" />
+                        <FormControl>
+                          <Textarea
+                            placeholder="Ihre Nachricht an uns..."
+                            className="resize-none"
+                            {...field}
                           />
                         </FormControl>
-                        <div className="space-x-2 leading-none">
-                          <FormLabel>
-                            Ich habe die{" "}
-                            <Link href="/privacy">
-                              <DrawerClose>
-                                <Button
-                                  variant={"link"}
-                                  className="p-0 h-auto w-auto"
-                                >
-                                  Datenschutzbestimmungen
-                                </Button>
-                              </DrawerClose>
-                            </Link>{" "}
-                            gelesen und bin einverstanden.
-                          </FormLabel>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="agb"
+                    render={({ field }) => (
+                      <FormItem>
+                        <div className="flex space-x-2 items-center">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
+                          <div className="space-x-2 leading-none">
+                            <FormLabel>
+                              Ich habe die{" "}
+                              <Link href="/privacy">
+                                <DrawerClose>
+                                  <Button
+                                    variant={"link"}
+                                    className="p-0 h-auto w-auto"
+                                  >
+                                    Datenschutzbestimmungen
+                                  </Button>
+                                </DrawerClose>
+                              </Link>{" "}
+                              gelesen und bin einverstanden.
+                            </FormLabel>
+                          </div>
                         </div>
-                      </div>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <DrawerFooter className="px-0">
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <DrawerFooter className="px-0 touch-none">
                   <div className="flex gap-3">
                     <Button variant="outline" className="grow-0">
+                      {" "}
                       <DrawerClose>Abbrechen </DrawerClose>
                     </Button>
                     <Button disabled={isSubmitting} className="grow">
