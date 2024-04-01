@@ -251,12 +251,12 @@ export default function ContactForm({
       <Drawer open={open} onOpenChange={setOpen}>
         <DrawerTrigger asChild>{children}</DrawerTrigger>
         <DrawerContent
-          className="mx-auto w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-[96%] max-w-full"
+          className="mx-auto w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-svh max-w-full"
           onOpenAutoFocus={(event) => {
             event.preventDefault();
           }}
         >
-          <div className="w-full mx-auto flex flex-col overflow-auto p-4">
+          <div className="w-full mx-auto flex flex-col overflow-auto px-3">
             <DrawerHeader>
               <DrawerTitle>Kontaktieren Sie mich!</DrawerTitle>
               <DrawerDescription>
@@ -264,134 +264,135 @@ export default function ContactForm({
               </DrawerDescription>
             </DrawerHeader>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(processForm)}>
-                <div className="space-y-3	">
-                  <FormField
-                    control={form.control}
-                    name="subject"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Betreff</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Bitte wählen Sie einen Betreff aus" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="Osteopathie">
-                              Ostepathie{" "}
-                            </SelectItem>
-                            <SelectItem value="Yoga">Yoga</SelectItem>
-                            <SelectItem value="Qigong">Qigong</SelectItem>
-                            <SelectItem value="Terminabsage">
-                              Terminabsage{" "}
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Name</FormLabel>
+              <form
+                onSubmit={form.handleSubmit(processForm)}
+                className="space-y-3"
+              >
+                <FormField
+                  control={form.control}
+                  name="subject"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="sr-only">Betreff</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
                         <FormControl>
-                          <Input placeholder="Name" {...field} />
+                          <SelectTrigger>
+                            <SelectValue placeholder="Bitte wählen Sie einen Betreff aus" />
+                          </SelectTrigger>
                         </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>E-Mail</FormLabel>
+                        <SelectContent>
+                          <SelectItem value="Osteopathie">
+                            Ostepathie{" "}
+                          </SelectItem>
+                          <SelectItem value="Yoga">Yoga</SelectItem>
+                          <SelectItem value="Qigong">Qigong</SelectItem>
+                          <SelectItem value="Terminabsage">
+                            Terminabsage{" "}
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="sr-only">Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Name" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="sr-only">E-Mail</FormLabel>
+                      <FormControl>
+                        <Input placeholder="E-Mail" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="sr-only">Telefonnummer</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Telefonnummer" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="sr-only">Nachricht</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Ihre Nachricht an uns..."
+                          className="resize-none"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="agb"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="flex space-x-2 items-center">
                         <FormControl>
-                          <Input placeholder="E-Mail" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Telefonnummer</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Telefonnummer" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Nachricht</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Ihre Nachricht an uns..."
-                            className="resize-none"
-                            {...field}
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
                           />
                         </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="agb"
-                    render={({ field }) => (
-                      <FormItem>
-                        <div className="flex space-x-2 items-center">
-                          <FormControl>
-                            <Checkbox
-                              checked={field.value}
-                              onCheckedChange={field.onChange}
-                            />
-                          </FormControl>
-                          <div className="space-x-2 leading-none">
-                            <FormLabel>
-                              Ich habe die{" "}
-                              <Link href="/privacy">
-                                <DrawerClose>
-                                  <Button
-                                    variant={"link"}
-                                    className="p-0 h-auto w-auto"
-                                  >
-                                    Datenschutzbestimmungen
-                                  </Button>
-                                </DrawerClose>
-                              </Link>{" "}
-                              gelesen und bin einverstanden.
-                            </FormLabel>
-                          </div>
+                        <div className="space-x-2 leading-none">
+                          <FormLabel>
+                            Ich habe die{" "}
+                            <Link href="/privacy">
+                              <DrawerClose>
+                                <Button
+                                  variant={"link"}
+                                  className="p-0 h-auto w-auto"
+                                >
+                                  Datenschutzbestimmungen
+                                </Button>
+                              </DrawerClose>
+                            </Link>{" "}
+                            gelesen und bin einverstanden.
+                          </FormLabel>
                         </div>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <DrawerFooter>
-                  <div className="flex justify-end gap-3">
-                    <DrawerClose>
-                      <Button variant="outline">Abbrechen</Button>
-                    </DrawerClose>
-                    <Button disabled={isSubmitting}>
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <DrawerFooter className="px-0">
+                  <div className="flex gap-3">
+                    <Button variant="outline" className="grow-0">
+                      <DrawerClose>Abbrechen </DrawerClose>
+                    </Button>
+                    <Button disabled={isSubmitting} className="grow">
                       {isSubmitting && (
                         <Loader className="mr-2 h-4 w-4 animate-spin" />
                       )}
