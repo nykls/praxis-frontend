@@ -248,15 +248,15 @@ export default function ContactForm({
     );
   } else {
     return (
-      <Drawer open={open} onOpenChange={setOpen} activeSnapPoint={1}>
+      <Drawer open={open} onOpenChange={setOpen}>
         <DrawerTrigger asChild>{children}</DrawerTrigger>
         <DrawerContent
-          className="mx-auto w-full space-y-3 touch-none max-h-svh"
+          className="mx-auto w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-[96%] max-w-full"
           onOpenAutoFocus={(event) => {
             event.preventDefault();
           }}
         >
-          <div className="w-full mx-auto flex flex-col overflow-auto touch-pan-y snap-y p-4">
+          <div className="w-full mx-auto flex flex-col overflow-auto px-3">
             <DrawerHeader>
               <DrawerTitle>Kontaktieren Sie mich!</DrawerTitle>
               <DrawerDescription>
@@ -265,13 +265,13 @@ export default function ContactForm({
             </DrawerHeader>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(processForm)}>
-                <div className="space-y-5">
+                <div className="space-y-3	">
                   <FormField
                     control={form.control}
                     name="subject"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="sr-only" />
+                        <FormLabel>Betreff</FormLabel>
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value}
@@ -301,7 +301,7 @@ export default function ContactForm({
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="sr-only" />
+                        <FormLabel>Name</FormLabel>
                         <FormControl>
                           <Input placeholder="Name" {...field} />
                         </FormControl>
@@ -314,7 +314,7 @@ export default function ContactForm({
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="sr-only" />
+                        <FormLabel>E-Mail</FormLabel>
                         <FormControl>
                           <Input placeholder="E-Mail" {...field} />
                         </FormControl>
@@ -327,7 +327,7 @@ export default function ContactForm({
                     name="phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="sr-only" />
+                        <FormLabel>Telefonnummer</FormLabel>
                         <FormControl>
                           <Input placeholder="Telefonnummer" {...field} />
                         </FormControl>
@@ -340,7 +340,7 @@ export default function ContactForm({
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="sr-only" />
+                        <FormLabel>Nachricht</FormLabel>
                         <FormControl>
                           <Textarea
                             placeholder="Ihre Nachricht an uns..."
@@ -386,7 +386,7 @@ export default function ContactForm({
                     )}
                   />
                 </div>
-                <DrawerFooter className="px-0 touch-none">
+                <DrawerFooter>
                   <div className="flex gap-3">
                     <Button variant="outline" className="grow-0">
                       {" "}

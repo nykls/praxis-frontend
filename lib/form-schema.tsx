@@ -1,9 +1,11 @@
 import * as z from "zod";
 
 export const contactSchema = z.object({
-  name: z.string().regex(new RegExp(/^[a-zA-ZäöüÄÖÜß]+ [a-zA-ZäöüÄÖÜß]+$/), {
-    message: "Bitte Vor- und Nachnamen angeben.",
-  }),
+  name: z
+    .string()
+    .regex(new RegExp(/^[a-zA-ZäöüÄÖÜß]+([-|\s][a-zA-ZäöüÄÖÜß]+)*\s*$/), {
+      message: "Bitte Vor- und Nachnamen angeben.",
+    }),
   subject: z.string().min(1, {
     message: "Bitte wählen Sie einen Betreff aus.",
   }),
