@@ -9,7 +9,9 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Post } from "@/lib/interfaces";
 import { client } from "@/sanity/lib/client";
+import { get } from "http";
 import { Metadata } from "next";
+import { unstable_cache } from "next/cache";
 import Link from "next/link";
 
 const query = `*[_type == "post" && slug.current == $slug][0]
@@ -28,14 +30,26 @@ const query = `*[_type == "post" && slug.current == $slug][0]
       }
       `;
 
-export async function generateMetadata({
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+const getPost = unstable_cache(async function BlogPage({
   params: { slug },
-}: Props): Promise<Metadata> {
-  const res = await client.fetch(
+}: Props) {
+  const post: Post = await client.fetch(
     query,
     { slug },
     { next: { revalidate: 1800 } }
   );
+  console.log("Fetching post...");
+  return post;
+});
+
+export async function generateMetadata({ params: { slug } }: Metadata & Props) {
+  const res: Post = await getPost({ params: { slug } });
   return {
     title: {
       template: res.title,
@@ -45,14 +59,8 @@ export async function generateMetadata({
   };
 }
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
-
 export default async function BlogPage({ params: { slug } }: Props) {
-  const post: Post = await client.fetch(query, { slug });
+  const post: Post = await getPost({ params: { slug } });
   return (
     <FullWidthWrapper>
       <section className="space-y-5">
