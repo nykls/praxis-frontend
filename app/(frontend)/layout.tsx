@@ -6,11 +6,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata } from "next";
+import { Inter, Noto_Sans, Noto_Sans_Display } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const noto = Noto_Sans_Display({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   title: {
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="de" suppressHydrationWarning>
       <body
-        className={cn("h-full relative font-sans antialiased", inter.className)}
+        className={cn("h-full relative font-sans antialiased", noto.className)}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <header>
