@@ -14,8 +14,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Osteopathie, Yoga & Qigong Maitri Katrin Eulitz",
-    template: "%s | Osteopathie, Yoga & Qigong Maitri Katrin Eulitz",
+    default: "Praxis für Osteopathie, Yoga & Qigong Maitri Katrin Eulitz",
+    template: "%s | Praxis für Osteopathie, Yoga & Qigong Maitri Katrin Eulitz",
   },
   description:
     "Fördern Sie Ihr Wohlbefinden bei Maitri Katrin Eulitz: Osteopathie, Yoga & Qigong zur Aktivierung der Selbstheilungskräfte. Zentral gelegen.",
