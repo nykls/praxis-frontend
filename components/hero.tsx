@@ -1,14 +1,10 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Link from "next/link";
+import Balancer from "react-wrap-balancer";
 import ContactForm from "./contact";
 import { Button, buttonVariants } from "./ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Separator } from "./ui/separator";
-import { LampContainer } from "./ui/lamp";
-import { motion } from "framer-motion";
-import Balancer from "react-wrap-balancer";
-import Typography from "./typography";
 
 export const Hero = () => {
   return (
