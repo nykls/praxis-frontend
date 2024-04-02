@@ -44,7 +44,6 @@ const getPost = unstable_cache(async function BlogPage({
     { slug },
     { next: { revalidate: 1800 } }
   );
-  console.log("Fetching post...");
   return post;
 });
 
