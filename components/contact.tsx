@@ -123,7 +123,7 @@ export default function ContactForm({
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Bitte wählen Sie einen Betreff aus" />
+                            <SelectValue placeholder="Betreff auswählen" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -258,9 +258,9 @@ export default function ContactForm({
         >
           <div className="w-full mx-auto flex flex-col overflow-auto px-3">
             <DrawerHeader>
-              <DrawerTitle>Kontaktieren Sie mich!</DrawerTitle>
+              <DrawerTitle>Kontaktieren Sie uns!</DrawerTitle>
               <DrawerDescription>
-                Gern stehe ich Ihnen für Fragen zur Verfügung.
+                Gern stehen wir Ihnen für Fragen zur Verfügung.
               </DrawerDescription>
             </DrawerHeader>
             <Form {...form}>
@@ -278,17 +278,20 @@ export default function ContactForm({
                         >
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="Bitte wählen Sie einen Betreff aus" />
+                              <SelectValue
+                                className="text-base"
+                                placeholder="Betreff auswählen"
+                              />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
                             <SelectItem value="Osteopathie">
-                              Ostepathie{" "}
+                              Ostepathie
                             </SelectItem>
                             <SelectItem value="Yoga">Yoga</SelectItem>
                             <SelectItem value="Qigong">Qigong</SelectItem>
                             <SelectItem value="Terminabsage">
-                              Terminabsage{" "}
+                              Terminabsage
                             </SelectItem>
                           </SelectContent>
                         </Select>
