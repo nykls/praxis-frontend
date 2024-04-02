@@ -44,9 +44,9 @@ export default function RootLayout({
           <footer>
             <Footer />
           </footer>
+          <SpeedInsights />
+          <Analytics />
         </ThemeProvider>
-        <SpeedInsights />
-        <Analytics />
       </body>
     </html>
   );
