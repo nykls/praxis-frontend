@@ -38,7 +38,7 @@ function MobileNav() {
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <div className="w-full">
+        <div className="mx-auto w-full max-w-lg">
           <DrawerHeader className="">
             <DrawerTitle>
               <MobileLink
@@ -63,32 +63,30 @@ function MobileNav() {
             <DrawerDescription></DrawerDescription>
           </DrawerHeader>
           <DrawerFooter>
-            <div className="mx-auto w-full">
-              <ul className="space-y-5">
-                {navLinks.map((link) => {
-                  const isActive =
-                    link.href === "/"
-                      ? pathname === link.href
-                      : pathname.startsWith(link.href);
-                  return (
-                    <li key={link.key}>
-                      <MobileLink
-                        className={cn(
-                          isActive
-                            ? buttonVariants({ variant: "secondary" })
-                            : buttonVariants({ variant: "outline" })
-                        )}
-                        href={link.href}
-                        onOpenChange={setOpen}
-                      >
-                        <link.icon className="size-6 mr-2" />
-                        {link.title}
-                      </MobileLink>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+            <ul className="space-y-5">
+              {navLinks.map((link) => {
+                const isActive =
+                  link.href === "/"
+                    ? pathname === link.href
+                    : pathname.startsWith(link.href);
+                return (
+                  <li key={link.key}>
+                    <MobileLink
+                      className={cn(
+                        isActive
+                          ? buttonVariants({ variant: "secondary" })
+                          : buttonVariants({ variant: "outline" })
+                      )}
+                      href={link.href}
+                      onOpenChange={setOpen}
+                    >
+                      <link.icon className="size-6 mr-2" />
+                      {link.title}
+                    </MobileLink>
+                  </li>
+                );
+              })}
+            </ul>
           </DrawerFooter>
         </div>
       </DrawerContent>
