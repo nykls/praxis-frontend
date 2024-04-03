@@ -6,7 +6,7 @@ import Typography from "./typography";
 export const RichTextComponent = {
   types: {
     image: ({ value }: any) => (
-      <div className="md:-mx-20">
+      <div className="md:-px-20 lg:-px-36">
         <Card className="relative mx-auto aspect-video overflow-hidden">
           <Image
             src={urlFor(value).url()}
@@ -47,7 +47,9 @@ export const RichTextComponent = {
       <Typography variant="h4">{value.children[0].text}</Typography>
     ),
     normal: ({ children }: any) => (
-      <Typography variant="p">{children}</Typography>
+      <Typography variant="p" className="text-justify">
+        {children}
+      </Typography>
     ),
   },
 };
