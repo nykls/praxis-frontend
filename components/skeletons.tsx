@@ -45,8 +45,8 @@ function LoadingCard() {
         <Skeleton className="w-full h-4" /> {/* Simulierter Exzerpt Zeile 3 */}
       </CardContent>
       <CardFooter>
-        <div className="flex items-center space-x-5">
-          <Skeleton className="w-10 h-10 rounded-full" />{" "}
+        <div className="flex items-center space-x-3">
+          <Skeleton className="size-10 rounded-full" />{" "}
           {/* Simulierter Avatar */}
           <Skeleton className="w-24 h-4" /> {/* Simulierter Autorenname */}
         </div>
@@ -59,7 +59,7 @@ function CardSkeleton() {
   return (
     <section>
       <FullWidthWrapper>
-        <div className="grid lg:grid-cols-2 gap-2">
+        <div className="grid lg:grid-cols-2 gap-3">
           {/* Generiere mehrere LoadingCards für den Ladezustand */}
           {[...Array(6)].map((_, index) => (
             <LoadingCard key={index} />
