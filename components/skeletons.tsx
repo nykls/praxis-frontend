@@ -98,29 +98,35 @@ function PostSkeleton() {
             </BreadcrumbList>
           </Breadcrumb>
         </div>
-        <section className="space-y-5">
-          <div className="flex w-full text-center space-y-5">
-            <div className="flex grow space-x-3">
-              <Skeleton className="w-10 h-10 rounded-full" /> {/* Avatar */}
-              <div className="flex space-x-3">
-                <div className="flex-col items-center text-muted-foreground space-y-2 text-sm">
-                  <Skeleton className="w-20 h-4" /> {/* Author name */}
-                  <Skeleton className="w-20 h-4" /> {/* Date */}
+        <article className="space-y-5">
+          <div className="grid mx-auto">
+            <div className="flex flex-col space-y-5 md:px-20 lg:px-36">
+              {/* Skeleton für den Titel */}
+              <Skeleton className="h-12 w-3/4" />
+
+              <div className="flex items-center gap-3">
+                {/* Skeleton für das Avatar-Bild */}
+                <Skeleton className="w-10 h-10 rounded-full" />
+
+                {/* Skeletons für den Namen und das Veröffentlichungsdatum */}
+                <div className="flex gap-1 flex-col">
+                  <Skeleton className="h-4 w-48" />
+                  <Skeleton className="h-4 w-32" />
                 </div>
-                <Separator orientation="vertical" />
-                <div>
-                  <Skeleton className="w-96 h-10" /> {/* Post title */}
-                </div>
+              </div>
+
+              {/* Skeleton für den Separator */}
+              <Separator className="w-full mt-3" />
+
+              {/* Skeletons für den Artikeltext */}
+              <div className="space-y-5">
+                <Skeleton className="h-6 w-full" />
+                <Skeleton className="h-6 w-full" />
+                <Skeleton className="h-6 w-5/6" />
               </div>
             </div>
           </div>
-          <Separator className="w-full mt-3" />
-          <div className="space-y-10 mx-auto md:px-20">
-            <Skeleton className="w-full h-6" /> {/* Text line */}
-            <Skeleton className="w-full h-6" />
-            <Skeleton className="w-full h-6" />
-          </div>
-        </section>
+        </article>
       </section>
     </FullWidthWrapper>
   );
