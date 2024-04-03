@@ -9,8 +9,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Post } from "@/lib/interfaces";
 import { client } from "@/sanity/lib/client";
-import { get } from "http";
-import { Metadata } from "next";
 import { unstable_cache } from "next/cache";
 import Link from "next/link";
 
@@ -63,27 +61,27 @@ export default async function BlogPage({ params: { slug } }: Props) {
   return (
     <FullWidthWrapper>
       <section className="space-y-5">
-        <div>
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="/">Home</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="/blog">Aktuelles</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink>{post.title}</BreadcrumbLink>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">Home</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/blog">Aktuelles</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem className="">
+              <BreadcrumbLink className="max-w-20 truncate md:max-w-none">
+                {post.title}
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
         <NewsContent {...post} />
       </section>
     </FullWidthWrapper>
