@@ -65,7 +65,7 @@ export default function ContactForm({
   const form = useForm<contactData>({
     resolver: zodResolver(contactSchema),
     defaultValues,
-    mode: "onBlur",
+    mode: "all",
   });
   const {
     reset,
@@ -390,18 +390,15 @@ export default function ContactForm({
                   />
                 </div>
                 <DrawerFooter className="px-0">
-                  <div className="flex gap-3">
-                    <Button variant="outline" className="grow-0">
-                      {" "}
-                      <DrawerClose>Abbrechen </DrawerClose>
-                    </Button>
-                    <Button disabled={isSubmitting} className="grow">
-                      {isSubmitting && (
-                        <Loader className="mr-2 h-4 w-4 animate-spin" />
-                      )}
-                      Senden
-                    </Button>
-                  </div>
+                  <Button disabled={isSubmitting} variant="outline">
+                    {isSubmitting && (
+                      <Loader className="mr-2 h-4 w-4 animate-spin" />
+                    )}
+                    Senden
+                  </Button>
+                  <DrawerClose asChild>
+                    <Button variant="destructive">Abbrechen</Button>
+                  </DrawerClose>
                 </DrawerFooter>
               </form>
             </Form>

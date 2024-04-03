@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Drawer,
   DrawerClose,
@@ -9,20 +8,23 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { usePathname, useRouter } from "next/navigation";
-import { Button, buttonVariants } from "./ui/button";
-import { ScrollArea } from "./ui/scroll-area";
-import Link, { LinkProps } from "next/link";
 import { cn } from "@/lib/utils";
+import { Home, Menu, MessageCircleMore, Rss, Store } from "lucide-react";
 import Image from "next/image";
-import { Menu, Home, Newspaper, Building2 } from "lucide-react";
+import Link, { LinkProps } from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import React from "react";
+import ContactForm from "./contact";
+import { Button, buttonVariants } from "./ui/button";
+import { GoogleMapsEmbed } from "./third-parties/google";
+import { Card } from "./ui/card";
 
 function MobileNav() {
   const [open, setOpen] = React.useState(false);
   const navLinks = [
     { title: "Startseite", href: "/", key: "home", icon: Home },
-    { title: "Aktuelles", href: "/blog", key: "news", icon: Newspaper },
-    { title: "Über", href: "/about", key: "about", icon: Building2 },
+    { title: "Aktuelles", href: "/blog", key: "news", icon: Rss },
+    { title: "Über", href: "/about", key: "about", icon: Store },
   ];
   const pathname = usePathname();
 
@@ -43,14 +45,16 @@ function MobileNav() {
             <DrawerTitle>
               <MobileLink
                 href="/"
-                className="flex items-center"
+                className="flex items-center gap-3"
                 onOpenChange={setOpen}
               >
                 <div className="relative size-12">
                   <Image src="/logo.svg" alt="Logo" fill />
                 </div>
                 <div className="flex-col text-left">
-                  <span className="font-bold">Osteopathie, Yoga & Qigong</span>
+                  <span className="font-bold">
+                    Praxis für Osteopathie, Yoga & Qigong
+                  </span>
                   <br />
                   <DrawerDescription>
                     <span className="text-sm font-normal">
@@ -63,30 +67,38 @@ function MobileNav() {
             <DrawerDescription></DrawerDescription>
           </DrawerHeader>
           <DrawerFooter>
-            <ul className="space-y-5">
-              {navLinks.map((link) => {
-                const isActive =
-                  link.href === "/"
-                    ? pathname === link.href
-                    : pathname.startsWith(link.href);
-                return (
-                  <li key={link.key}>
-                    <MobileLink
-                      className={cn(
-                        isActive
-                          ? buttonVariants({ variant: "secondary" })
-                          : buttonVariants({ variant: "outline" })
-                      )}
-                      href={link.href}
-                      onOpenChange={setOpen}
-                    >
-                      <link.icon className="size-6 mr-2" />
-                      {link.title}
-                    </MobileLink>
-                  </li>
-                );
-              })}
-            </ul>
+            {navLinks.map((link) => {
+              const isActive =
+                link.href === "/"
+                  ? pathname === link.href
+                  : pathname.startsWith(link.href);
+              return (
+                <MobileLink
+                  className={cn(
+                    isActive
+                      ? buttonVariants({ variant: "secondary" })
+                      : buttonVariants({ variant: "outline" })
+                  )}
+                  href={link.href}
+                  onOpenChange={setOpen}
+                >
+                  <link.icon className="size-6 mr-3" />
+                  <span className="sr-only">{link.title}</span>
+                  {link.title}
+                </MobileLink>
+              );
+            })}
+            <ContactForm>
+              <Button variant="outline">
+                <MessageCircleMore className="size-6 mr-3" />
+                <span className="sr-only">Kontaktformular öffnen</span> Kontakt
+              </Button>
+            </ContactForm>
+            <DrawerClose asChild>
+              <Button variant="destructive" className="w-full">
+                Abbrechen
+              </Button>
+            </DrawerClose>
           </DrawerFooter>
         </div>
       </DrawerContent>

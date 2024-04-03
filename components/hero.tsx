@@ -22,7 +22,7 @@ export const Hero = () => {
                 duration: 0.1,
                 ease: "easeOut",
               }}
-              className="tracking-tight scroll-m-20 font-semibold text-xl lg:text-3xl"
+              className="scroll-m-20 font-semibold text-xl lg:text-3xl"
             >
               <Balancer>
                 Praxis für Osteopathie, Yoga & Qigong Maitri Katrin Eulitz
