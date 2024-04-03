@@ -12,7 +12,7 @@ export const Hero = () => {
       <div className="h-screen w-full -mt-20 flex dark:bg-dot-white/[0.2] bg-dot-black/[0.2] items-center justify-center">
         {/* Radial gradient for the container to give a faded look */}
         <div className=" pointer-events-none flex [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-        <div className="flex w-full flex-col justify-center items-center text-center space-y-28 lg:space-y-60">
+        <div className="flex w-full flex-col justify-center items-center text-center space-y-24 lg:space-y-60">
           <div className="space-y-3 select-none">
             <motion.h1
               initial={{ opacity: 0.5, y: 50 }}
