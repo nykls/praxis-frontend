@@ -9,7 +9,7 @@ import { Button, buttonVariants } from "./ui/button";
 export const Hero = () => {
   return (
     <>
-      <div className="h-screen w-full -mt-20 flex dark:bg-dot-white/[0.2] bg-dot-black/[0.2] items-center justify-center">
+      <div className="h-screen -mt-16 w-full flex dark:bg-dot-white/[0.2] bg-dot-black/[0.2] items-center justify-center">
         {/* Radial gradient for the container to give a faded look */}
         <div className=" pointer-events-none flex [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
         <div className="flex w-full flex-col justify-center items-center text-center space-y-24 lg:space-y-60">
