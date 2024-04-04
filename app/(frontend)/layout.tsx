@@ -18,7 +18,8 @@ export const metadata: Metadata = {
   },
   description:
     "Fördern Sie Ihr Wohlbefinden bei Maitri Katrin Eulitz: Osteopathie, Yoga & Qigong zur Aktivierung der Selbstheilungskräfte. Zentral gelegen.",
-  keywords: "Osteopathie, Yoga, Qigong, Radebeul, Katrin Eulitz",
+  keywords:
+    "Osteopathie, Yoga, Qigong, Radebeul, Maitri Katrin Eulitz, Osteopathie Praxis, Yoga Kurse, Qigong Unterricht, Osteopathische Behandlung für Babys, Osteopathie für Erwachsene, Krankenkassen Kostenübernahme Osteopathie, Gesundheitsfördernde Yoga-Praxis, Qigong für Anfänger und Fortgeschrittene, Ganzheitliche Osteopathie, Präventive Gesundheitspflege Osteopathie, Heilende Qigong-Praktiken, Yoga zur Stressreduktion, Individuelle Osteopathie-Sitzungen, Yoga- und Qigong-Workshops, Osteopathie für alle Altersgruppen.",
 };
 
 export default function RootLayout({
