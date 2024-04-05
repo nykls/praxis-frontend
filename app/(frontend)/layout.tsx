@@ -33,13 +33,13 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable}`}
       suppressHydrationWarning
     >
-      <body className={cn("h-full relative font-sans antialiased")}>
+      <body className="h-full relative flex flex-col min-h-screen font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <header>
+          <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <Navbar />
           </header>
-          <main className="relative flex flex-col min-h-screen max-w-full">
-            <div className="flex-grow flex-1 pt-16">{children}</div>
+          <main className="relative flex flex-col">
+            <div className="flex-grow flex-1">{children}</div>
             <CookieConsent />
             <Toaster />
           </main>
