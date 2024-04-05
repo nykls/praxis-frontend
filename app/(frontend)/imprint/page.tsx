@@ -1,7 +1,7 @@
 import ContactForm from "@/components/contact";
 import FullWidthWrapper from "@/components/full-width-wrapper";
 import Typography from "@/components/typography";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
 
@@ -21,10 +21,11 @@ function Page() {
       <Typography variant="h2">Kontakt:</Typography>
       <Typography variant="p">
         Telefon:{" "}
-        <Link href={"tel:" + process.env.NEXT_PUBLIC_PHONE}>
-          <Button variant="link" className="select-none">
-            (+49)-172-79-79-178
-          </Button>
+        <Link
+          className={buttonVariants({ variant: "link" })}
+          href={"tel:" + process.env.NEXT_PUBLIC_PHONE}
+        >
+          (+49)-172-79-79-178
         </Link>
         <br />
         E-Mail:{" "}
