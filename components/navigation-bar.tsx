@@ -19,7 +19,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ContactForm from "./contact";
 import MobileNav from "./mobile-nav";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 
 function Navbar() {
   const { setTheme } = useTheme();
@@ -39,20 +39,31 @@ function Navbar() {
   ];
   const pathname = usePathname();
   return (
-    <div className="fixed w-full h-12 z-50 top-0 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex h-full items-center justify-between lg:px-10 px-2">
+    <div className="container h-14 max-w-screen-2xl items-center px-2">
+      <div className="flex h-full items-center justify-between lg:px-10">
         <div className="hidden md:flex gap-11">
-          <Link href="/" key="home">
-            <div className="flex items-center gap-5">
-              <Button variant="ghost" className="relative size-10">
-                <Image
-                  src="/logo.svg"
-                  alt="Picture of the author"
-                  fill
-                  className="object-cover"
-                  sizes="100%"
-                />
-              </Button>
+          <div className="flex items-center gap-5">
+            <Link
+              href="/"
+              key="home"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "relative"
+              )}
+            >
+              <Image
+                src="/logo.svg"
+                alt="Picture of the author"
+                fill
+                className="object-cover"
+                sizes="100%"
+              />
+            </Link>
+            <Link
+              href="/"
+              key="home"
+              className={buttonVariants({ variant: "ghost" })}
+            >
               <div className="text-xs hover:text-primary">
                 <span
                   className={cn(
@@ -65,8 +76,8 @@ function Navbar() {
                 <br />
                 <span>Maitri Katrin Eulitz</span>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </div>
 
           {/* Main Navigation */}
           <nav className="">
@@ -107,7 +118,6 @@ function Navbar() {
               aria-haspopup="dialog"
               aria-controls="contactFormDialog"
             >
-              {" "}
               <MessageCircleMore className="size-6" />
               <span className="sr-only">Kontaktformular öffnen</span>
             </Button>
@@ -115,11 +125,10 @@ function Navbar() {
           <Link
             href={"tel:" + process.env.NEXT_PUBLIC_PHONE}
             aria-label="Anrufen"
+            className={buttonVariants({ variant: "ghost", size: "icon" })}
           >
-            <Button variant="ghost" size="icon">
-              <PhoneOutgoing className="size-6" />
-              <span className="sr-only">Anrufen</span>
-            </Button>
+            <PhoneOutgoing className="size-6" />
+            <span className="sr-only">Anrufen</span>
           </Link>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
