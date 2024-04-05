@@ -40,31 +40,28 @@ function MobileNav() {
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <div className="mx-auto w-full max-w-lg">
+        <div className="max-w-lg w-full mx-auto">
           <DrawerHeader className="">
             <DrawerTitle>
               <MobileLink
                 href="/"
-                className="flex items-center gap-3"
+                className="flex items-center justify-center gap-2 text-left"
                 onOpenChange={setOpen}
               >
                 <div className="relative size-12">
                   <Image src="/logo.svg" alt="Logo" fill />
                 </div>
-                <div className="flex-col text-left">
-                  <span className="font-bold">
+                <div className="flex-col">
+                  <span className="font-bold text-sm">
                     Praxis für Osteopathie, Yoga & Qigong
                   </span>
                   <br />
-                  <DrawerDescription>
-                    <span className="text-sm font-normal">
-                      Maitri Katrin Eulitz
-                    </span>
-                  </DrawerDescription>
+                  <span className="text-xs font-normal">
+                    Maitri Katrin Eulitz
+                  </span>
                 </div>
               </MobileLink>
             </DrawerTitle>
-            <DrawerDescription></DrawerDescription>
           </DrawerHeader>
           <DrawerFooter>
             {navLinks.map((link) => {
@@ -81,17 +78,31 @@ function MobileNav() {
                   )}
                   href={link.href}
                   onOpenChange={setOpen}
+                  key={link.key}
                 >
-                  <link.icon className="size-6 mr-3" />
-                  <span className="sr-only">{link.title}</span>
-                  {link.title}
+                  <div className="w-1/3 flex gap-3 justify-stretch items-center">
+                    <div>
+                      <link.icon className="size-auto" />
+                    </div>
+                    <div className="mx-auto">
+                      <span className="sr-only">{link.title}</span>
+                      {link.title}
+                    </div>
+                  </div>
                 </MobileLink>
               );
             })}
             <ContactForm>
               <Button variant="outline">
-                <MessageCircleMore className="size-6 mr-3" />
-                <span className="sr-only">Kontaktformular öffnen</span> Kontakt
+                <div className="w-1/3 flex gap-3 justify-stretch items-center">
+                  <div>
+                    <MessageCircleMore className="size-auto" />
+                  </div>
+                  <div className="mx-auto">
+                    <span className="sr-only">Kontaktformular öffnen</span>{" "}
+                    Kontakt
+                  </div>
+                </div>
               </Button>
             </ContactForm>
             <DrawerClose asChild>
