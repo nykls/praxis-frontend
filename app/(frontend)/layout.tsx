@@ -39,7 +39,7 @@ export default function RootLayout({
             <Navbar />
           </header>
           <main className="relative flex flex-col">
-            <div className="flex-grow flex-1">{children}</div>
+            <div className="flex-grow flex-1 mt-20">{children}</div>
             <CookieConsent />
             <Toaster />
           </main>
