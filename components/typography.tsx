@@ -24,7 +24,7 @@ const Typography: React.FC<TypographyProps> = ({
   children,
   className,
 }) => {
-  const baseStyle = "leading-7"; // Basis-Stil
+  const baseStyle = "leading-7 text-base"; // Basis-Stil
 
   // Definiert Styles für jede Variante
   const variantStyles = {

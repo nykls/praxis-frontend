@@ -35,13 +35,13 @@ export default async function VitaAccordion() {
       <Accordion
         type="multiple"
         defaultValue={[vitas[0]._id]}
-        className="grid gap-3 w-full"
+        className="grid gap-3 w-full items-center"
       >
         {vitas?.length > 0 &&
           vitas.map((vita) => (
-            <Card key={vita._id} className="lg:p-3">
-              <AccordionItem value={vita._id} className="">
-                <AccordionTrigger className="my-auto">
+            <Card key={vita._id} className="items-center">
+              <AccordionItem value={vita._id} className="border-none">
+                <AccordionTrigger className="pe-6">
                   <CardHeader className="pb-0">
                     <div className="flex items-center space-x-3 justify-between">
                       <Avatar>
@@ -54,9 +54,9 @@ export default async function VitaAccordion() {
                     </div>
                   </CardHeader>
                 </AccordionTrigger>
-                <CardContent>
+                <CardContent className="">
                   <AccordionContent>
-                    <div className="lg:flex flex-row gap-3">
+                    <div className="lg:flex flex-row gap-3 text-base">
                       <div className="basis-1/2">
                         <Card className="overflow-hidden">
                           <AspectRatio ratio={2 / 3}>
@@ -72,29 +72,35 @@ export default async function VitaAccordion() {
                         </Card>
                       </div>
                       <div className="basis-1/2 p-3 space-y-12">
-                        <div className="p-5">
-                          <Typography variant="blockquote">
-                            {vita.motto}
-                          </Typography>
-                        </div>
-                        <div className="space-y-3">
-                          <Typography variant="h2" className="text-center">
-                            Ausbildung
-                          </Typography>
-                          <PortableText
-                            value={vita.education}
-                            components={RichTextComponent}
-                          />
-                        </div>
-                        <div className="space-y-3">
-                          <Typography variant="h2" className="text-center">
-                            Fortbildungen
-                          </Typography>
-                          <PortableText
-                            value={vita.training}
-                            components={RichTextComponent}
-                          />
-                        </div>
+                        {vita.motto && (
+                          <div className="p-5">
+                            <Typography variant="blockquote">
+                              {vita.motto}
+                            </Typography>
+                          </div>
+                        )}
+                        {vita.education && (
+                          <div className="space-y-3">
+                            <Typography variant="h2" className="text-center">
+                              Ausbildung
+                            </Typography>
+                            <PortableText
+                              value={vita.education}
+                              components={RichTextComponent}
+                            />
+                          </div>
+                        )}
+                        {vita.training && (
+                          <div className="space-y-3">
+                            <Typography variant="h2" className="text-center">
+                              Fortbildungen
+                            </Typography>
+                            <PortableText
+                              value={vita.training}
+                              components={RichTextComponent}
+                            />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </AccordionContent>
