@@ -42,7 +42,7 @@ const Footer = () => {
                   blurDataURL="/bvo_kinderosteopathie.png"
                 />
               </div>
-              <div className="relative bg-white rounded-full h-20 w-20">
+              <div className="relative bg-background rounded-full h-20 w-20">
                 <Image src="/logo.svg" alt="Logo" fill sizes="100%" />
               </div>
             </div>
@@ -68,10 +68,8 @@ const Footer = () => {
             >
               <Button className="text-xs p-0" variant="link">
                 <Cookie />
-                <span className="hidden md:block ml-2">
-                  Datenschutzbestimmungen
-                </span>
-                <span className="sr-only">Datenschutzbestimmungen</span>
+                <span className="hidden md:block ml-2">Datenschutz</span>
+                <span className="sr-only">Datenschutz</span>
               </Button>
             </Link>
             <Link
