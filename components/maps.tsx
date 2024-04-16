@@ -14,7 +14,7 @@ export default function Maps() {
         height="400"
         width="100%"
         mode="place"
-        q="Praxis für Osteopathie, Yoga, Qigong Maitri Katrin Eulitz"
+        q="Praxis+für+Osteopathie;+Yoga;+Qi+Gong+Maitri+Katrin+Eulitz+(D.O.)"
         allowfullscreen={false}
         style="border-radius: 0.5rem"
         title="Praxis für Osteopathie, Yoga, Qigong Maitri Katrin Eulitz"

@@ -24,6 +24,7 @@ export default async function sitemap() {
       url: process.env.NEXT_PUBLIC_URL,
       lastModified: new Date(),
       changeFrequency: "always",
+      priority: 1,
     },
     {
       url: process.env.NEXT_PUBLIC_URL + "blog",

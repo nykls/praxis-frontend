@@ -9,11 +9,5 @@ export default function Home() {
       <Hero />
       <Perks />
     </>
-
-    // <section className="">
-    //   <FullWidthWrapper className="py-10">
-    //     <div>{/* <Slider /> */}</div>
-    //   </FullWidthWrapper>
-    // </section>
   );
 }
