@@ -14,6 +14,7 @@ export const Hero = () => {
         <div className=" pointer-events-none flex [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
         <div className="flex w-full flex-col justify-center items-center text-center space-y-24 lg:space-y-60">
           <div className="space-y-3 select-none">
+            <h1 className="sr-only">Praxis für Osteopathie, Yoga & Qigong Maitri Katrin Eulitz</h1>
             <motion.h1
               initial={{ opacity: 0.5, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
