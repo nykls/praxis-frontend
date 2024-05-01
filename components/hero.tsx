@@ -8,7 +8,6 @@ import { Button, buttonVariants } from "./ui/button";
 
 export const Hero = () => {
   return (
-    <>
       <div className="h-screen -mt-20 w-full flex dark:bg-dot-white/[0.2] bg-dot-black/[0.2] items-center justify-center">
         {/* Radial gradient for the container to give a faded look */}
         <div className=" pointer-events-none flex [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
@@ -49,10 +48,10 @@ export const Hero = () => {
                 duration: 0.1,
                 ease: "easeOut",
               }}
-              className="text-center text-sm lg:text-xl tracking-tight font-bold px-5"
+              className="text-center text-sm lg:text-xl tracking-tight font-bold md:px-5 px-1"
             >
               <Balancer>
-                Willkommen in unserer Praxis für Osteopathie, Yoga und Qigong.
+                Willkommen in der Praxis für Osteopathie, Yoga & Qigong Maitri Katrin Eulitz.
                 Wir bieten osteopathische Behandlungen für alle Altersgruppen,
                 von Babys bis Erwachsene, sowie Yoga- und Qigong-Kurse an. Die
                 Kostenübernahme durch Krankenkassen ist möglich.
@@ -76,6 +75,5 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
