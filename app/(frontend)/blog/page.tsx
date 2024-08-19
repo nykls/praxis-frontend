@@ -9,10 +9,15 @@ export const metadata: Metadata = {
   keywords: "Aktuelles, Neuigkeiten, News",
 };
 
-export default function Blog() {
+export default function BlogPage({
+  searchParams,
+}: {
+  searchParams: { page?: string };
+}) {
+  const currentPage = Number(searchParams.page) || 1;
   return (
     <Suspense fallback={<CardSkeleton />}>
-      <NewsCard />
+      <NewsCard page={currentPage} />
     </Suspense>
   );
 }

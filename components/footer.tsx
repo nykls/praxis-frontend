@@ -16,7 +16,7 @@ const PostMaps = dynamic(() => import("./maps"), {
 
 const Footer = () => {
   return (
-    <div className="bg-secondary border-t py-7 mt-7 ">
+    <footer className="bg-accent py-7 z-40">
       <FullWidthWrapper>
         <div className="pb-5">
           <Maps />
@@ -88,7 +88,7 @@ const Footer = () => {
           </div>
         </div>
       </FullWidthWrapper>
-    </div>
+    </footer>
   );
 };
 
