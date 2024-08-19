@@ -1,158 +1,194 @@
 "use client";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useTheme } from "next-themes";
+import { usePathname } from "next/navigation";
 import {
   MessageCircleMore,
   MoonIcon,
   PhoneOutgoing,
   SunIcon,
+  SunMoon,
 } from "lucide-react";
-import { useTheme } from "next-themes";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import AnimatedBackground from "@/components/ui/animated-background";
 import ContactForm from "./contact";
 import MobileNav from "./mobile-nav";
 import { Button, buttonVariants } from "./ui/button";
 
+const navItems = [
+  { title: "Home", href: "/", key: "home" },
+  { title: "Aktuelles", href: "/blog", key: "news" },
+  { title: "Über", href: "/about", key: "about" },
+];
+
+type ActionItem = {
+  key: string;
+  component: React.ReactNode;
+  ariaLabel: string;
+};
+
 function Navbar() {
-  const { setTheme } = useTheme();
-  const navLinks = [
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme, systemTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  function cycleTheme() {
+    if (theme === "system") {
+      setTheme(systemTheme === "dark" ? "light" : "dark");
+    } else {
+      setTheme("system");
+    }
+  }
+
+  const currentTheme = theme === "system" ? systemTheme : theme;
+
+  const pathname = usePathname();
+
+  const actionItems = [
     {
-      title: "Aktuelles",
-      href: "/blog",
-      key: "news",
-      aria: "Öffnet die Aktuelles Seite",
+      key: "contact",
+      component: <ContactForm />,
+      ariaLabel: "Kontaktformular öffnen",
     },
     {
-      title: "Über",
-      href: "/about",
-      key: "about",
-      aria: "Öffnet die Über-uns-Seite",
+      key: "call",
+      component: (
+        <Button
+          size="icon"
+          variant="ghost"
+          className="hover:text-primary transition-colors duration-300"
+          asChild
+        >
+          <Link href={`tel:${process.env.NEXT_PUBLIC_PHONE}`}>
+            <PhoneOutgoing className="size-5" />
+          </Link>
+        </Button>
+      ),
+      ariaLabel: "Anrufen",
+    },
+    {
+      key: "theme",
+      component: (
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={cycleTheme}
+          aria-label="Toggle theme"
+          className="hover:text-primary transition-colors duration-300"
+        >
+          {theme === "system" ? (
+            <SunMoon className="w-5 h-5" />
+          ) : currentTheme === "dark" ? (
+            <MoonIcon className="w-5 h-5" />
+          ) : (
+            <SunIcon className="w-5 h-5" />
+          )}
+        </Button>
+      ),
+      ariaLabel: "Theme ändern",
     },
   ];
-  const pathname = usePathname();
+
   return (
-    <div className="container h-14 max-w-screen-2xl items-center px-2">
-      <div className="flex h-full items-center justify-between lg:px-10">
-        <div className="hidden md:flex gap-11">
-          <div className="flex items-center gap-5">
-            <Link
-              href="/"
-              key="home"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "relative"
-              )}
-            >
-              <Image
-                src="/logo.svg"
-                alt="Picture of the author"
-                fill
-                className="object-cover"
-                sizes="100%"
-              />
-            </Link>
-            <Link
-              href="/"
-              key="home"
-              className={buttonVariants({ variant: "ghost" })}
-            >
-              <div className="text-xs hover:text-primary">
-                <span
-                  className={cn(
-                    "font-bold",
-                    usePathname() === "/" ? "text-primary" : "text-foreground"
-                  )}
-                >
-                  Praxis für Osteopathie, Yoga & Qigong
-                </span>
-                <br />
-                <span>Maitri Katrin Eulitz</span>
-              </div>
-            </Link>
-          </div>
-
-          {/* Main Navigation */}
-          <nav className="">
-            <div className="grow">
-              <ul className="flex gap-3">
-                {navLinks.map((link) => {
-                  const isActive = pathname.startsWith(link.href);
-                  return (
-                    <li key={link.key} className="w-28">
-                      <Link href={link.href} aria-label={link.aria}>
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            isActive
-                              ? "hover:text-primary text-primary"
-                              : "font-normal",
-                            "inline-block"
-                          )}
-                        >
-                          {link.title}
-                        </Button>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </nav>
-        </div>
-
-        <MobileNav />
-
-        <div className="flex gap-3">
-          <ContactForm>
-            <Button
-              variant="ghost"
-              size="icon"
-              aria-haspopup="dialog"
-              aria-controls="contactFormDialog"
-            >
-              <MessageCircleMore className="size-6" />
-              <span className="sr-only">Kontaktformular öffnen</span>
-            </Button>
-          </ContactForm>
-          <Link
-            href={"tel:" + process.env.NEXT_PUBLIC_PHONE}
-            aria-label="Anrufen"
-            className={buttonVariants({ variant: "ghost", size: "icon" })}
-          >
-            <PhoneOutgoing className="size-6" />
-            <span className="sr-only">Anrufen</span>
-          </Link>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <SunIcon className="size-6 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <MoonIcon className="absolute size-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Theme ändern</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTheme("light")}>
-                Hell
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("dark")}>
-                Dunkel
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("system")}>
-                System
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+    <header className="fixed top-0 p-2 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="flex items-center justify-between">
+        <NavbarBrand />
+        <div className="flex items-center space-x-2">
+          <DesktopNav pathname={pathname} />
+          <ActionItems items={actionItems} />
+          <MobileNav />
         </div>
       </div>
-    </div>
+    </header>
+  );
+}
+
+function NavbarBrand() {
+  return (
+    <Link href="/" className="flex items-center space-x-3">
+      <Image
+        src="/logo.svg"
+        alt="Praxis Logo"
+        width={40}
+        height={40}
+        className="object-contain"
+      />
+      <div className="hidden md:block text-sm">
+        <p className="font-semibold text-primary">
+          Praxis für Osteopathie, Yoga & Qigong
+        </p>
+        <p className="text-muted-foreground">Maitri Katrin Eulitz</p>
+      </div>
+    </Link>
+  );
+}
+
+function DesktopNav({ pathname }: { pathname: string }) {
+  return (
+    <nav className="hidden md:block">
+      <AnimatedBackground
+        defaultValue={navItems[0].title}
+        className="rounded-lg bg-accent"
+        transition={{
+          type: "spring",
+          bounce: 0.2,
+          duration: 0.3,
+        }}
+        enableHover
+      >
+        {navItems.map((item) => (
+          <Link
+            key={item.key}
+            href={item.href}
+            data-id={item.title}
+            className={cn(
+              "px-3 py-2 text-sm font-medium transition-colors duration-300",
+              pathname === item.href
+                ? "text-primary"
+                : "text-foreground hover:text-primary"
+            )}
+          >
+            {item.title}
+          </Link>
+        ))}
+      </AnimatedBackground>
+    </nav>
+  );
+}
+
+function ActionItems({ items }: { items: ActionItem[] }) {
+  return (
+    <AnimatedBackground
+      className="rounded-lg bg-accent"
+      transition={{
+        type: "spring",
+        bounce: 0.2,
+        duration: 0.3,
+      }}
+      enableHover
+    >
+      {items.map((item) => (
+        <div
+          key={item.key}
+          data-id={item.key}
+          className="rounded-full text-foreground hover:text-primary transition-colors duration-300"
+        >
+          {React.cloneElement(item.component as React.ReactElement, {
+            "aria-label": item.ariaLabel,
+          })}
+        </div>
+      ))}
+    </AnimatedBackground>
   );
 }
 

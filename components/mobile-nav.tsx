@@ -29,17 +29,53 @@ function MobileNav() {
   const pathname = usePathname();
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Drawer open={open} onOpenChange={setOpen} shouldScaleBackground={true}>
       <DrawerTrigger asChild>
         <Button
           variant="ghost"
-          className="size-10 px-0 text-foreground text-base md:hidden"
+          size="icon"
+          className="size 9 md:hidden hover:text-primary transition-colors duration-300"
         >
-          <Menu className="size-6" />
+          <svg
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="size-5"
+          >
+            <g transform="scale(-1, 1) translate(-24, 0)">
+              <path
+                d="M3 5H11"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+              <path
+                d="M3 12H16"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+              <path
+                d="M3 19H21"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+            </g>
+          </svg>
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent
+        className="mx-auto w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-[96%] max-w-full"
+        onOpenAutoFocus={(event) => {
+          event.preventDefault();
+        }}
+      >
         <div className="max-w-lg w-full mx-auto">
           <DrawerHeader className="">
             <DrawerTitle>
