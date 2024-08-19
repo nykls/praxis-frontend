@@ -59,31 +59,33 @@ export async function generateMetadata({ params: { slug } }: Props) {
 export default async function BlogPage({ params: { slug } }: Props) {
   const post: Post = await getPost({ params: { slug } });
   return (
-    <FullWidthWrapper>
-      <section className="space-y-5">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href="/">Home</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href="/blog">Aktuelles</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem className="">
-              <BreadcrumbLink className="max-w-20 truncate md:max-w-none">
-                {post.title}
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-        <NewsContent {...post} />
-      </section>
-    </FullWidthWrapper>
+    <section className="">
+      <Breadcrumb className="px-3">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href="/">Home</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href="/blog">Aktuelles</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem className="">
+            <BreadcrumbLink className="max-w-20 truncate md:max-w-none">
+              {post.title}
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+      <FullWidthWrapper>
+        <div className="space-y-5">
+          <NewsContent {...post} />
+        </div>
+      </FullWidthWrapper>
+    </section>
   );
 }
