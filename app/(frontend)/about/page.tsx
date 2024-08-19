@@ -28,7 +28,7 @@ export default function ResumePage() {
         <Typography variant="h1" className=" border-b pb-2 m-5 mx-auto">
           Vita
         </Typography>
-        <FullWidthWrapper className="pb-10">
+        <FullWidthWrapper>
           <Suspense fallback={<Skeleton className="w-full h-20" />}>
             <VitaAccordion />
           </Suspense>
