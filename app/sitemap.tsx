@@ -23,18 +23,17 @@ export default async function sitemap() {
     {
       url: process.env.NEXT_PUBLIC_URL,
       lastModified: new Date(),
-      changeFrequency: "always",
-      priority: 1,
+      changeFrequency: "always"
     },
     {
       url: process.env.NEXT_PUBLIC_URL + "blog",
       lastModified: new Date(),
-      changeFrequency: "always",
+      changeFrequency: "always"
     },
     {
       url: process.env.NEXT_PUBLIC_URL + "about",
       lastModified: new Date(),
-      changeFrequency: "always",
+      changeFrequency: "always"
     },
   ];
 }
