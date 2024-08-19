@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import {
@@ -48,12 +49,15 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { Textarea } from "./ui/textarea";
+import { MessageCircleMore } from "lucide-react";
 
-export default function ContactForm({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+interface ContactFormProps {
+  children?: React.ReactNode;
+}
+
+export default function ContactForm({ children }: ContactFormProps) {
+  const [open, setOpen] = useState(false);
+
   const defaultValues: Partial<contactData> = {
     subject: "",
     name: "",
@@ -72,7 +76,6 @@ export default function ContactForm({
     formState: { isSubmitting },
   } = form;
   const { toast } = useToast();
-  const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const processForm: SubmitHandler<contactData> = async (data) => {
@@ -97,10 +100,30 @@ export default function ContactForm({
     setOpen(false);
   };
 
+  const defaultTrigger = (
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={() => setOpen(true)}
+      className="hover:text-primary transition-colors duration-300"
+    >
+      <MessageCircleMore className="size-5" />
+    </Button>
+  );
+
+  const trigger = children
+    ? React.cloneElement(children as React.ReactElement, {
+        onClick: () => setOpen(true),
+      })
+    : React.cloneElement(defaultTrigger, {
+        onClick: () => setOpen(true),
+      });
+
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>{children}</DialogTrigger>
+        {trigger}
+
         <DialogContent id="contactFormDialog">
           <DialogHeader>
             <DialogTitle>Kontaktieren Sie uns!</DialogTitle>
@@ -248,8 +271,12 @@ export default function ContactForm({
     );
   } else {
     return (
-      <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerTrigger asChild>{children}</DrawerTrigger>
+      <Drawer
+        open={open}
+        onOpenChange={setOpen}
+        setBackgroundColorOnScale={false}
+      >
+        {trigger}
         <DrawerContent
           className="mx-auto w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-[96%] max-w-full"
           onOpenAutoFocus={(event) => {
