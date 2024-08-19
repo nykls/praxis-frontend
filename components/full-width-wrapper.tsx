@@ -1,20 +1,11 @@
 import { cn } from "@/lib/utils";
 import React, { ReactNode } from "react";
 
-const FullWidthWrapper = ({
-  className,
+const FullWidthWrapper: React.FC<{ children: React.ReactNode }> = ({
   children,
-}: {
-  className?: string;
-  children: ReactNode;
 }) => {
   return (
-    <div
-      className={cn(
-        "container md:container lg:container-2xl px-3 mx-auto lg:px-20",
-        className
-      )}
-    >
+    <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-20 py-3">
       {children}
     </div>
   );
