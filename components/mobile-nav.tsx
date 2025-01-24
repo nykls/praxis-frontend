@@ -29,7 +29,7 @@ function MobileNav() {
   const pathname = usePathname();
 
   return (
-    <Drawer open={open} onOpenChange={setOpen} shouldScaleBackground={true}>
+    <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         <Button
           variant="ghost"
@@ -71,7 +71,7 @@ function MobileNav() {
         </Button>
       </DrawerTrigger>
       <DrawerContent
-        className="mx-auto w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-[96%] max-w-full"
+        className="mx-auto rounded-xl w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-[96%] max-w-full"
         onOpenAutoFocus={(event) => {
           event.preventDefault();
         }}
@@ -89,7 +89,7 @@ function MobileNav() {
                 </div>
                 <div className="flex-col">
                   <span className="font-bold text-sm">
-                    Praxis für Osteopathie, Yoga & Qigong
+                    Praxis für Osteopathie, Dentosophie, Yoga & Qigong
                   </span>
                   <br />
                   <span className="text-xs font-normal">
