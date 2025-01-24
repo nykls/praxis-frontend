@@ -1,55 +1,59 @@
 "use client";
-import React from "react";
-import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
+
+import React, { useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { contactData, contactSchema } from "@/lib/form-schema";
+import { addEntry } from "@/lib/send-mail";
+import { useToast } from "@/components/ui/use-toast";
+import { useMediaQuery } from "@/lib/utils";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
+
 import {
   Drawer,
+  DrawerPortal,
+  DrawerOverlay,
+  DrawerTrigger,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
+  DrawerFooter,
   DrawerTitle,
-  DrawerTrigger,
+  DrawerDescription,
 } from "@/components/ui/drawer";
+
 import {
   Form,
-  FormControl,
   FormField,
   FormItem,
+  FormControl,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
 import {
   Select,
-  SelectContent,
-  SelectItem,
   SelectTrigger,
+  SelectItem,
+  SelectContent,
   SelectValue,
 } from "@/components/ui/select";
-import { useToast } from "@/components/ui/use-toast";
-import type { contactData } from "@/lib/form-schema";
-import { contactSchema } from "@/lib/form-schema";
-import { addEntry } from "@/lib/send-mail";
-import { useMediaQuery } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ExternalLink, Loader } from "lucide-react";
-import Link from "next/link";
-import { Checkbox } from "./ui/checkbox";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "./ui/dialog";
-import { Textarea } from "./ui/textarea";
-import { MessageCircleMore } from "lucide-react";
+
+import { Loader, MessageCircleMore, Edit3 } from "lucide-react";
 
 interface ContactFormProps {
   children?: React.ReactNode;
@@ -57,381 +61,472 @@ interface ContactFormProps {
 
 export default function ContactForm({ children }: ContactFormProps) {
   const [open, setOpen] = useState(false);
+  const [step, setStep] = useState(1);
 
-  const defaultValues: Partial<contactData> = {
-    subject: "",
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-    agb: false,
-  };
-  const form = useForm<contactData>({
-    resolver: zodResolver(contactSchema),
-    defaultValues,
-    mode: "all",
-  });
-  const {
-    reset,
-    formState: { isSubmitting },
-  } = form;
   const { toast } = useToast();
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
-  const processForm: SubmitHandler<contactData> = async (data) => {
-    const result = await addEntry(data);
+  const form = useForm<contactData>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      subject: "",
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+      agb: false,
+    },
+    mode: "onBlur",
+  });
 
-    if (!result) {
-      console.log("Something went wrong");
-      return;
-    }
+  const {
+    handleSubmit,
+    trigger,
+    formState: { isSubmitting },
+    control,
+    reset,
+    getValues,
+  } = form;
 
-    if (result.error) {
-      // set local error state
-      console.log(result.error);
-      return;
+  // -----------------------------------------
+  // Absenden
+  // -----------------------------------------
+  const onSubmit: SubmitHandler<contactData> = async (data) => {
+    try {
+      const result = await addEntry(data);
+      if (!result || result.error) {
+        console.error("Fehler beim Absenden:", result?.error);
+        return;
+      }
+
+      reset();
+      setOpen(false);
+      setStep(1);
+
+      toast({
+        title: "Ihre Nachricht wurde erfolgreich versendet.",
+        description:
+          "Vielen Dank für Ihre Nachricht. Wir melden uns so schnell wie möglich bei Ihnen.",
+      });
+    } catch (error) {
+      console.error("Etwas ist schiefgelaufen:", error);
     }
-    reset();
-    toast({
-      title: "Ihre Nachricht wurde erfolgreich versendet.",
-      description:
-        "Vielen Dank für Ihre Nachricht. Wir melden uns so schnell wie möglich bei Ihnen.",
-    });
-    setOpen(false);
   };
 
+  // -----------------------------------------
+  // Mobile Steps
+  // -----------------------------------------
+  const nextStep = async () => {
+    let fieldsToValidate: (keyof contactData)[] = [];
+    if (step === 1) fieldsToValidate = ["name", "email", "phone"];
+    if (step === 2) fieldsToValidate = ["subject", "message"];
+
+    const isValid = await trigger(fieldsToValidate);
+    if (isValid) setStep((s) => s + 1);
+  };
+
+  const prevStep = () => {
+    if (step > 1) setStep((s) => s - 1);
+  };
+
+  // -----------------------------------------
+  // Trigger-Element
+  // -----------------------------------------
   const defaultTrigger = (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={() => setOpen(true)}
-      className="hover:text-primary transition-colors duration-300"
-    >
+    <Button variant="ghost" size="icon" onClick={() => setOpen(true)}>
       <MessageCircleMore className="size-5" />
     </Button>
   );
 
-  const trigger = children
-    ? React.cloneElement(children as React.ReactElement, {
-        onClick: () => setOpen(true),
-      })
-    : React.cloneElement(defaultTrigger, {
-        onClick: () => setOpen(true),
-      });
+  const triggerElement = children || defaultTrigger;
 
+  // -----------------------------------------
+  // Desktop (alles in einem Schritt)
+  // -----------------------------------------
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        {trigger}
-
-        <DialogContent id="contactFormDialog">
+        <DialogTrigger asChild>{triggerElement}</DialogTrigger>
+        <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Kontaktieren Sie uns!</DialogTitle>
             <DialogDescription>
               Gern stehen wir Ihnen für Fragen zur Verfügung.
             </DialogDescription>
           </DialogHeader>
+
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(processForm)}>
-              <div className="space-y-6 pt-6">
-                <FormField
-                  control={form.control}
-                  name="subject"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Betreff</FormLabel>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 py-2">
+              {/* Betreff */}
+              <FormField
+                control={control}
+                name="subject"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Betreff</FormLabel>
+                    <FormControl>
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
+                        value={field.value}
                       >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Betreff auswählen" />
-                          </SelectTrigger>
-                        </FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Betreff auswählen" />
+                        </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="Osteopathie">
-                            Ostepathie{" "}
+                            Osteopathie
+                          </SelectItem>
+                          <SelectItem value="Dentosophie">
+                            Dentosophie
                           </SelectItem>
                           <SelectItem value="Yoga">Yoga</SelectItem>
                           <SelectItem value="Qigong">Qigong</SelectItem>
                           <SelectItem value="Terminabsage">
-                            Terminabsage{" "}
+                            Terminabsage
                           </SelectItem>
                         </SelectContent>
                       </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Name</FormLabel>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Name */}
+              <FormField
+                control={control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* E-Mail */}
+              <FormField
+                control={control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>E-Mail</FormLabel>
+                    <FormControl>
+                      <Input placeholder="E-Mail" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Telefon */}
+              <FormField
+                control={control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Telefonnummer</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Telefon" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Nachricht */}
+              <FormField
+                control={control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Nachricht</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Ihre Nachricht an uns..."
+                        className="resize-none min-h-[120px]"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* AGB / Datenschutz */}
+              <FormField
+                control={control}
+                name="agb"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex items-center space-x-2">
                       <FormControl>
-                        <Input placeholder="Name" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>E-Mail</FormLabel>
-                      <FormControl>
-                        <Input placeholder="E-Mail" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Telefonnummer</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Telefonnummer" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Nachricht</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="Ihre Nachricht an uns..."
-                          className="resize-none"
-                          {...field}
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
                         />
                       </FormControl>
-                      <FormMessage />
-                    </FormItem>
+                      <FormLabel className="!mb-0">
+                        Ich habe die{" "}
+                        <a
+                          href="/privacy"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="underline"
+                        >
+                          Datenschutzbestimmungen
+                        </a>{" "}
+                        gelesen und bin einverstanden.
+                      </FormLabel>
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Footer: Buttons ohne Linie, nebeneinander */}
+              <DialogFooter className="flex items-center justify-end gap-2 mt-4 pt-2">
+                <DialogClose asChild>
+                  <Button variant="destructive" type="button">
+                    Abbrechen
+                  </Button>
+                </DialogClose>
+                <Button type="submit" disabled={isSubmitting}>
+                  {isSubmitting && (
+                    <Loader className="mr-2 h-4 w-4 animate-spin" />
                   )}
-                />
-                <DialogFooter>
-                  <div className="flex justify-end">
-                    <FormField
-                      control={form.control}
-                      name="agb"
-                      render={({ field }) => (
-                        <FormItem>
-                          <div className="flex space-x-2 items-center">
-                            <FormControl>
-                              <Checkbox
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                              />
-                            </FormControl>
-                            <div className="space-x-2 leading-none">
-                              <FormLabel>
-                                Ich habe die{" "}
-                                <Link href="/privacy">
-                                  <DialogClose>
-                                    <Button
-                                      variant={"link"}
-                                      className="p-0 h-auto w-auto"
-                                    >
-                                      Datenschutzbestimmungen
-                                    </Button>
-                                  </DialogClose>
-                                </Link>{" "}
-                                gelesen und bin einverstanden.
-                              </FormLabel>
-                            </div>
-                          </div>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <Button disabled={isSubmitting}>
-                      {isSubmitting && (
-                        <Loader className="mr-2 h-4 w-4 animate-spin" />
-                      )}
-                      Senden
-                    </Button>
-                  </div>
-                </DialogFooter>
-              </div>
+                  Senden
+                </Button>
+              </DialogFooter>
             </form>
           </Form>
         </DialogContent>
       </Dialog>
     );
-  } else {
-    return (
-      <Drawer
-        open={open}
-        onOpenChange={setOpen}
-        setBackgroundColorOnScale={false}
-      >
-        {trigger}
-        <DrawerContent
-          className="mx-auto w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-[96%] max-w-full"
-          onOpenAutoFocus={(event) => {
-            event.preventDefault();
-          }}
-        >
-          <div className="w-full mx-auto flex flex-col overflow-auto px-3">
-            <DrawerHeader>
-              <DrawerTitle>Kontaktieren Sie uns!</DrawerTitle>
-              <DrawerDescription>
-                Gern stehen wir Ihnen für Fragen zur Verfügung.
-              </DrawerDescription>
-            </DrawerHeader>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(processForm)}>
-                <div className="space-y-3	">
-                  <FormField
-                    control={form.control}
-                    name="subject"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Betreff</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue
-                                className="text-base"
-                                placeholder="Betreff auswählen"
-                              />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="Osteopathie">
-                              Ostepathie
-                            </SelectItem>
-                            <SelectItem value="Yoga">Yoga</SelectItem>
-                            <SelectItem value="Qigong">Qigong</SelectItem>
-                            <SelectItem value="Terminabsage">
-                              Terminabsage
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Name" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>E-Mail</FormLabel>
-                        <FormControl>
-                          <Input placeholder="E-Mail" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Telefonnummer</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Telefonnummer" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Nachricht</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Ihre Nachricht an uns..."
-                            className="resize-none"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="agb"
-                    render={({ field }) => (
-                      <FormItem>
-                        <div className="flex space-x-2 items-center">
-                          <FormControl>
-                            <Checkbox
-                              checked={field.value}
-                              onCheckedChange={field.onChange}
-                            />
-                          </FormControl>
-                          <div className="space-x-2 leading-none">
-                            <FormLabel>
-                              Ich habe die{" "}
-                              <Link href="/privacy">
-                                <DrawerClose>
-                                  <Button
-                                    variant={"link"}
-                                    className="p-0 h-auto w-auto"
-                                  >
-                                    Datenschutzbestimmungen
-                                  </Button>
-                                </DrawerClose>
-                              </Link>{" "}
-                              gelesen und bin einverstanden.
-                            </FormLabel>
-                          </div>
-                        </div>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <DrawerFooter className="px-0">
-                  <Button disabled={isSubmitting} variant="outline">
-                    {isSubmitting && (
-                      <Loader className="mr-2 h-4 w-4 animate-spin" />
-                    )}
-                    Senden
-                  </Button>
-                  <DrawerClose asChild>
-                    <Button variant="destructive">Abbrechen</Button>
-                  </DrawerClose>
-                </DrawerFooter>
-              </form>
-            </Form>
-          </div>
-        </DrawerContent>
-      </Drawer>
-    );
   }
+
+  // -----------------------------------------
+  // Mobile: 3-Schritt-Formular
+  // -----------------------------------------
+  const StepOne = (
+    <div className="flex flex-col space-y-5">
+      <FormField
+        control={control}
+        name="name"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Name</FormLabel>
+            <FormControl>
+              <Input placeholder="Name" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={control}
+        name="email"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>E-Mail</FormLabel>
+            <FormControl>
+              <Input placeholder="E-Mail" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={control}
+        name="phone"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Telefonnummer</FormLabel>
+            <FormControl>
+              <Input placeholder="Telefon" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+    </div>
+  );
+
+  const StepTwo = (
+    <div className="flex flex-col space-y-5">
+      <FormField
+        control={control}
+        name="subject"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Betreff</FormLabel>
+            <FormControl>
+              <Select onValueChange={field.onChange} value={field.value}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Betreff auswählen" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Osteopathie">Osteopathie</SelectItem>
+                  <SelectItem value="Dentosophie">Dentosophie</SelectItem>
+                  <SelectItem value="Yoga">Yoga</SelectItem>
+                  <SelectItem value="Qigong">Qigong</SelectItem>
+                  <SelectItem value="Terminabsage">Terminabsage</SelectItem>
+                </SelectContent>
+              </Select>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={control}
+        name="message"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Nachricht</FormLabel>
+            <FormControl>
+              <Textarea
+                placeholder="Ihre Nachricht an uns..."
+                className="resize-none min-h-[220px]"
+                {...field}
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+    </div>
+  );
+
+  const StepThree = (
+    <div className="space-y-2 relative">
+      {/* Eingaben ändern */}
+      <button
+        type="button"
+        onClick={() => setStep(1)}
+        className="absolute top-0 right-0 text-sm text-primary flex items-center gap-1 mt-1 mr-1"
+      >
+        <Edit3 className="h-4 w-4" />
+        <span>Eingaben ändern</span>
+      </button>
+
+      <div className="border rounded-md p-4 space-y-2 text-sm">
+        <h3 className="font-semibold mb-2 text-base">Zusammenfassung</h3>
+        <div>
+          <strong>Name:</strong> {getValues("name")}
+        </div>
+        <div>
+          <strong>E-Mail:</strong> {getValues("email")}
+        </div>
+        <div>
+          <strong>Telefon:</strong> {getValues("phone")}
+        </div>
+        <div>
+          <strong>Betreff:</strong> {getValues("subject")}
+        </div>
+
+        {/* Einfacher Scroll-Container */}
+        <div>
+          <strong>Nachricht:</strong>
+          <div className="mt-1 p-2 border rounded-md h-32 overflow-y-auto">
+            <p className="whitespace-pre-wrap break-words">
+              {getValues("message")}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* AGB / Datenschutz */}
+      <FormField
+        control={control}
+        name="agb"
+        render={({ field }) => (
+          <FormItem>
+            <div className="flex items-center space-x-2">
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <FormLabel className="!mb-0">
+                Ich habe die{" "}
+                <a
+                  href="/privacy"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline"
+                >
+                  Datenschutzbestimmungen
+                </a>{" "}
+                gelesen und bin einverstanden.
+              </FormLabel>
+            </div>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+    </div>
+  );
+
+  return (
+    <Drawer open={open} onOpenChange={setOpen}>
+      <DrawerTrigger asChild>{triggerElement}</DrawerTrigger>
+      <DrawerOverlay />
+      <DrawerContent className="flex min-h-[80vh] flex-col">
+        <DrawerHeader className="max-w-md w-full mx-auto px-4 pt-4">
+          <DrawerTitle>Kontaktieren Sie uns!</DrawerTitle>
+          <DrawerDescription>
+            Gern stehen wir Ihnen für Fragen zur Verfügung.
+          </DrawerDescription>
+        </DrawerHeader>
+
+        <Form {...form}>
+          {/* Keine automatische onSubmit */}
+          <form className="flex flex-col flex-1 py-2">
+            <div className="flex-1 overflow-auto py-2 px-3">
+              {step === 1 && StepOne}
+              {step === 2 && StepTwo}
+              {step === 3 && StepThree}
+            </div>
+
+            {/* Footer ohne Linie, Buttons nebeneinander */}
+            <DrawerFooter className="flex flex-row items-center justify-end gap-2">
+              <DrawerClose asChild>
+                <Button variant="destructive" type="button">
+                  Abbrechen
+                </Button>
+              </DrawerClose>
+
+              {step > 1 && (
+                <Button variant="outline" type="button" onClick={prevStep}>
+                  Zurück
+                </Button>
+              )}
+
+              {step < 3 ? (
+                <Button type="button" onClick={nextStep}>
+                  Weiter
+                </Button>
+              ) : (
+                <Button
+                  type="button"
+                  disabled={isSubmitting}
+                  onClick={() => handleSubmit(onSubmit)()}
+                >
+                  {isSubmitting && (
+                    <Loader className="mr-2 h-4 w-4 animate-spin" />
+                  )}
+                  Senden
+                </Button>
+              )}
+            </DrawerFooter>
+          </form>
+        </Form>
+      </DrawerContent>
+    </Drawer>
+  );
 }
