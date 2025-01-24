@@ -71,7 +71,7 @@ function MobileNav() {
         </Button>
       </DrawerTrigger>
       <DrawerContent
-        className="mx-auto rounded-xl w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-[96%] max-w-full"
+        className="mx-auto w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-[96%] max-w-full"
         onOpenAutoFocus={(event) => {
           event.preventDefault();
         }}
