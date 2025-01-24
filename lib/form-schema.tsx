@@ -22,7 +22,7 @@ export const contactSchema = z.object({
     .regex(
       new RegExp(/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/),
       {
-        message: "Bitte gültige Telefonnummer eingeben angeben.",
+        message: "Bitte gültige Telefonnummer angeben.",
       }
     ),
   message: z.string().min(10, {

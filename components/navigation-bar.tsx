@@ -5,13 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
-import {
-  MessageCircleMore,
-  MoonIcon,
-  PhoneOutgoing,
-  SunIcon,
-  SunMoon,
-} from "lucide-react";
+import { MoonIcon, PhoneOutgoing, SunIcon, SunMoon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import AnimatedBackground from "@/components/ui/animated-background";
 import ContactForm from "./contact";
@@ -100,7 +94,7 @@ function Navbar() {
   ];
 
   return (
-    <header className="fixed top-0 p-2 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="fixed top-0 p-2 z-40 w-full border-b border-border/50 bg-background/60 backdrop-blur supports-[backdrop-filter]:bg-background/40">
       <div className="flex items-center justify-between">
         <NavbarBrand />
         <div className="flex items-center space-x-2">
@@ -125,7 +119,7 @@ function NavbarBrand() {
       />
       <div className="hidden md:block text-sm">
         <p className="font-semibold text-primary">
-          Praxis für Osteopathie, Yoga & Qigong
+          Praxis für Osteopathie, Dentosophie, Yoga & Qigong
         </p>
         <p className="text-muted-foreground">Maitri Katrin Eulitz</p>
       </div>

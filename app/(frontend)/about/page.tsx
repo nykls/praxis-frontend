@@ -25,7 +25,7 @@ export default function ResumePage() {
         </FullWidthWrapper>
       </section>
       <section className="grid gap-3">
-        <Typography variant="h1" className=" border-b pb-2 m-5 mx-auto">
+        <Typography variant="h1" className="border-b pb-2 m-5 mx-auto">
           Vita
         </Typography>
         <FullWidthWrapper>

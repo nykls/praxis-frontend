@@ -3,13 +3,26 @@
 import { Hero } from "@/components/hero";
 import Perks from "@/components/perks";
 
+import {
+  MorphingDialog,
+  MorphingDialogTrigger,
+  MorphingDialogContent,
+  MorphingDialogTitle,
+  MorphingDialogImage,
+  MorphingDialogSubtitle,
+  MorphingDialogClose,
+  MorphingDialogDescription,
+  MorphingDialogContainer,
+} from "@/components/animate/morphing-dialog";
+import { PlusIcon } from "lucide-react";
+
 export default function Home() {
   return (
     <div className="">
-      <div className="overflow-hidden">
+      <div className="">
         <Hero />
       </div>
-      <div className="relative z-20">
+      <div className="relative">
         <Perks />
       </div>
     </div>
