@@ -7,19 +7,71 @@ import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import "./globals.css";
+import "@/app/globals.css";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 
 export const metadata: Metadata = {
   title: {
-    default: "Praxis für Osteopathie, Yoga & Qigong Maitri Katrin Eulitz",
-    template: "%s | Praxis für Osteopathie, Yoga & Qigong Maitri Katrin Eulitz",
+    default:
+      "Praxis für Osteopathie, Dentosophie, Yoga & Qigong – Maitri Katrin Eulitz",
+    template: "%s | Praxis für Osteopathie, Dentosophie, Yoga & Qigong",
   },
   description:
-    "Fördern Sie Ihr Wohlbefinden bei Maitri Katrin Eulitz: Osteopathie, Yoga & Qigong zur Aktivierung der Selbstheilungskräfte. Zentral gelegen.",
-  keywords:
-    "Osteopathie, Yoga, Qigong, Radebeul, Maitri Katrin Eulitz, Osteopathie Praxis, Yoga Kurse, Qigong Unterricht, Osteopathische Behandlung für Babys, Osteopathie für Erwachsene, Krankenkassen Kostenübernahme Osteopathie, Gesundheitsfördernde Yoga-Praxis, Qigong für Anfänger und Fortgeschrittene, Ganzheitliche Osteopathie, Präventive Gesundheitspflege Osteopathie, Heilende Qigong-Praktiken, Yoga zur Stressreduktion, Individuelle Osteopathie-Sitzungen, Yoga- und Qigong-Workshops, Osteopathie für alle Altersgruppen.",
+    "Ganzheitliche Gesundheitsförderung in Radebeul: Osteopathie, Dentosophie, Yoga & Qigong bei Maitri Katrin Eulitz. Aktivieren Sie Ihre Selbstheilungskräfte.",
+  keywords: [
+    "Osteopathie",
+    "Dentosophie",
+    "Yoga",
+    "Qigong",
+    "Radebeul",
+    "Maitri Katrin Eulitz",
+    "Osteopathie Praxis",
+    "Yoga Kurse",
+    "Qigong Unterricht",
+    "Dentosophie Methoden",
+    "Ganzheitliche Zahn- und Kiefergesundheit",
+    "Osteopathische Behandlung für Babys",
+    "Osteopathie für Erwachsene",
+    "Krankenkassen Kostenübernahme Osteopathie",
+    "Gesundheitsfördernde Yoga-Praxis",
+    "Qigong für Anfänger und Fortgeschrittene",
+    "Präventive Gesundheitspflege Osteopathie",
+    "Heilende Qigong-Praktiken",
+    "Yoga zur Stressreduktion",
+    "Individuelle Osteopathie-Sitzungen",
+    "Yoga- und Qigong-Workshops",
+    "Osteopathie für alle Altersgruppen",
+  ],
+  // Open Graph: Für die Vorschau in z.B. LinkedIn, Slack, WhatsApp
+  openGraph: {
+    type: "website",
+    url: process.env.NEXT_PUBLIC_URL,
+    title:
+      "Praxis für Osteopathie, Dentosophie, Yoga & Qigong – Maitri Katrin Eulitz",
+    description:
+      "Ganzheitliche Gesundheitsförderung in Radebeul: Osteopathie, Dentosophie, Yoga & Qigong bei Maitri Katrin Eulitz.",
+    siteName: "Praxis Maitri Katrin Eulitz – Osteopathie & Dentosophie",
+    images: [
+      {
+        url: `https://www.${process.env.NEXT_PUBLIC_URL}/logo.svg`,
+        width: 630,
+        height: 630,
+        alt: "Praxis für Osteopathie, Dentosophie, Yoga & Qigong",
+      },
+    ],
+    locale: "de_DE",
+  },
+  // Anweisungen an Suchmaschinen (Robots-Tag)
+  robots: {
+    index: true, // Die Seite darf indexiert werden
+    follow: true, // Links dürfen verfolgt werden
+  },
+  // Optional: Favicon- bzw. Icon-Angaben
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
