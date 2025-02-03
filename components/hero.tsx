@@ -100,7 +100,7 @@ export const Hero = () => {
                 variant: "outline",
               })}
             >
-              Mehr <span aria-hidden="true">&rarr;</span>
+              Mehr<span aria-hidden="true">&nbsp;&rarr;</span>
               <span className="sr-only">Mehr Informationen</span>
             </Link>
           </Magnetic>
