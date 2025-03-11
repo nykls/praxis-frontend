@@ -35,7 +35,7 @@ export async function addEntry(data: contactData) {
   try {
     // Mail senden
     await resend.emails.send({
-      from: "Kontaktformular <niklas@nykls.de>",
+      from: "Kontaktformular>",
       to: [recipient],
       subject,
       text: validatedData.message,
