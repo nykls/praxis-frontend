@@ -35,7 +35,7 @@ export async function addEntry(data: contactData) {
   try {
     // Mail senden
     await resend.emails.send({
-      from: "Kontaktformular>",
+      from: "Kontaktformular <info@osteopathie-radebeul.de>",
       to: [recipient],
       subject,
       text: validatedData.message,
