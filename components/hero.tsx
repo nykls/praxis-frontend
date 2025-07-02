@@ -39,7 +39,7 @@ export const Hero = () => {
       >
         <div className="z-20 space-y-3 md:space-y-6">
           <motion.h1
-            className="font-semibold text-lg sm:text-4xl md:text-5xl dark:text-neutral-200"
+            className="font-semibold text-4xl sm:text-5xl md:text-6xl dark:text-neutral-200"
             variants={itemVariants}
           >
             Praxis für{' '}
@@ -61,7 +61,7 @@ export const Hero = () => {
             Maitri Katrin Eulitz
           </motion.h1>
           <motion.h2
-            className="relative bg-linear-to-b from-neutral-900 to-neutral-600 bg-clip-text font-bold text-2xl text-transparent tracking-tight md:text-6xl dark:from-neutral-300 dark:to-white"
+            className="relative bg-linear-to-b from-neutral-900 to-neutral-600 bg-clip-text font-bold text-2xl text-transparent tracking-tight md:text-4xl dark:from-neutral-300 dark:to-white"
             variants={itemVariants}
           >
             Herzlich Willkommen!

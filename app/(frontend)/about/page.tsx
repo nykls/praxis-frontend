@@ -11,9 +11,11 @@ import VitaAccordion from '@/components/vita-accordion';
 import { client } from '@/sanity/lib/client';
 
 export const metadata: Metadata = {
-  title: 'Über',
-  description: 'Lebenslauf',
-  keywords: 'Lebenslauf, Über uns, Vita',
+  title: 'Über mich – Maitri Katrin Eulitz',
+  description:
+    'Erfahren Sie mehr über Maitri Katrin Eulitz, Ihren Werdegang, Ihre Ausbildungen und die Philosophie hinter der Praxis für Osteopathie, Dentosophie, Yoga & Qigong.',
+  keywords:
+    'Maitri Katrin Eulitz, Vita, Lebenslauf, Osteopathie, Dentosophie, Yoga, Qigong, Werdegang, Ausbildung',
 };
 
 export default async function ResumePage() {
@@ -46,7 +48,7 @@ export default async function ResumePage() {
     <section className="space-y-7 xl:pt-25">
       <FullWidthWrapper>
         <Typography className="m-5 mx-auto" variant="h1">
-          Über
+          Über mich
         </Typography>
       </FullWidthWrapper>
       <section>
@@ -57,7 +59,7 @@ export default async function ResumePage() {
         </FullWidthWrapper>
       </section>
       <section className="grid gap-3">
-        <Typography className="m-5 mx-auto border-b pb-2" variant="h1">
+        <Typography className="m-5 mx-auto border-b pb-2" variant="h2">
           Vita
         </Typography>
         <FullWidthWrapper>

@@ -7,9 +7,11 @@ import Typography from '@/components/typography';
 import { client } from '@/sanity/lib/client';
 
 export const metadata: Metadata = {
-  title: 'Aktuelles',
-  description: 'Aktuelle Neuigkeiten',
-  keywords: 'Aktuelles, Neuigkeiten, News',
+  title: 'Blog – Aktuelles aus der Praxis',
+  description:
+    'Lesen Sie die neuesten Artikel und Nachrichten aus der Praxis für Osteopathie, Dentosophie, Yoga & Qigong. Erfahren Sie mehr über unsere Methoden, Behandlungen und Kurse.',
+  keywords:
+    'Blog, Aktuelles, Neuigkeiten, Osteopathie, Dentosophie, Yoga, Qigong, Gesundheit, Praxis-News',
 };
 
 const POSTS_PER_PAGE = 10;

@@ -1,7 +1,17 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import React from 'react';
 import FullWidthWrapper from '@/components/full-width-wrapper';
 import Typography from '@/components/typography';
+
+export const metadata: Metadata = {
+  title: 'Datenschutzerklärung',
+  description:
+    'Datenschutzerklärung der Praxis für Osteopathie, Dentosophie, Yoga & Qigong – Maitri Katrin Eulitz.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 function Page() {
   return (
@@ -96,7 +106,7 @@ function Page() {
             Inhalte, die Sie an uns als Seitenbetreiber senden, nutzt unsere
             Website eine SSL-bzw. TLS-Verschlüsselung. Damit sind Daten, die Sie
             über diese Website übermitteln, für Dritte nicht mitlesbar. Sie
-            erkennen eine verschlüsselte Verbindung an der „https://“
+            erkennen eine verschlüsselte Verbindung an der "https://"
             Adresszeile Ihres Browsers und am Schloss-Symbol in der
             Browserzeile.
           </Typography>
@@ -174,7 +184,7 @@ function Page() {
             machen.
           </Typography>
           <Typography variant="p">
-            Einige Cookies sind “Session-Cookies.” Solche Cookies werden nach
+            Einige Cookies sind "Session-Cookies." Solche Cookies werden nach
             Ende Ihrer Browser-Sitzung von selbst gelöscht. Hingegen bleiben
             andere Cookies auf Ihrem Endgerät bestehen, bis Sie diese selbst
             löschen. Solche Cookies helfen uns, Sie bei Rückkehr auf unserer

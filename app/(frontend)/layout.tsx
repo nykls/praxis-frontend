@@ -10,7 +10,12 @@ import Navbar from '@/components/navigation-bar';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
 
+const BASE_URL = process.env.NEXT_PUBLIC_URL
+  ? new URL(process.env.NEXT_PUBLIC_URL)
+  : new URL('http://localhost:3000');
+
 export const metadata: Metadata = {
+  metadataBase: BASE_URL,
   title: {
     default:
       'Praxis für Osteopathie, Dentosophie, Yoga & Qigong – Maitri Katrin Eulitz',
@@ -45,7 +50,7 @@ export const metadata: Metadata = {
   // Open Graph: Für die Vorschau in z.B. LinkedIn, Slack, WhatsApp
   openGraph: {
     type: 'website',
-    url: process.env.NEXT_PUBLIC_URL,
+    url: '/',
     title:
       'Praxis für Osteopathie, Dentosophie, Yoga & Qigong – Maitri Katrin Eulitz',
     description:
@@ -53,8 +58,8 @@ export const metadata: Metadata = {
     siteName: 'Praxis Maitri Katrin Eulitz – Osteopathie & Dentosophie',
     images: [
       {
-        url: `https://www.${process.env.NEXT_PUBLIC_URL}/logo.svg`,
-        width: 630,
+        url: '/logo.png',
+        width: 1200,
         height: 630,
         alt: 'Praxis für Osteopathie, Dentosophie, Yoga & Qigong',
       },

@@ -1,9 +1,19 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import React from 'react';
 import ContactForm from '@/components/contact';
 import FullWidthWrapper from '@/components/full-width-wrapper';
 import Typography from '@/components/typography';
 import { Button, buttonVariants } from '@/components/ui/button';
+
+export const metadata: Metadata = {
+  title: 'Impressum',
+  description:
+    'Rechtliche Hinweise und Impressum der Praxis für Osteopathie, Dentosophie, Yoga & Qigong – Maitri Katrin Eulitz.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 function Page() {
   return (
@@ -27,7 +37,7 @@ function Page() {
             Telefon:{' '}
             <Link
               className={buttonVariants({ variant: 'link' })}
-              href={'tel:' + process.env.NEXT_PUBLIC_PHONE}
+              href={`tel:${process.env.NEXT_PUBLIC_PHONE}`}
             >
               (+49)-172-79-79-178
             </Link>
