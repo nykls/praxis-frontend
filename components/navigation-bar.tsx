@@ -113,7 +113,7 @@ function NavbarBrand() {
         width={40}
       />
       <div className="hidden min-w-0 xl:block">
-        <p className="inline-flex items-center whitespace-pre-wrap text-primary text-sm">
+        <div className="inline-flex items-center whitespace-pre-wrap text-primary text-sm">
           Praxis für{' '}
           <span className="relative w-[100px] font-bold">
             <TextLoop
@@ -158,7 +158,7 @@ function NavbarBrand() {
               </span>
             </TextLoop>
           </span>
-        </p>
+        </div>
         <p className="text-muted-foreground text-xs">Maitri Katrin Eulitz</p>
       </div>
     </Link>
