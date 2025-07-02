@@ -8,6 +8,13 @@ import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
   Dialog,
@@ -27,7 +34,6 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  DrawerPortal,
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer';
@@ -40,6 +46,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Progress } from '@/components/ui/progress';
 import {
   Select,
   SelectContent,
@@ -83,6 +90,9 @@ export default function ContactForm({ children }: ContactFormProps) {
     reset,
     getValues,
   } = form;
+
+  // Fortschrittsanzeige für das mobile Formular
+  const progress = (step / 3) * 100;
 
   // -----------------------------------------
   // Absenden
@@ -263,9 +273,9 @@ export default function ContactForm({ children }: ContactFormProps) {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
-                    <div className="space-y-1 pt-0.5 leading-none">
-                      <FormLabel className="font-normal">
-                        Ich habe die{' '}
+                    <div className="leading-none">
+                      <FormLabel className="flex cursor-pointer select-none flex-wrap items-center gap-1 font-normal text-sm">
+                        <span>Ich akzeptiere die</span>
                         <Link
                           className="underline"
                           href="/privacy"
@@ -273,8 +283,7 @@ export default function ContactForm({ children }: ContactFormProps) {
                           target="_blank"
                         >
                           Datenschutzbestimmungen
-                        </Link>{' '}
-                        gelesen und bin einverstanden.
+                        </Link>
                       </FormLabel>
                       <FormMessage />
                     </div>
@@ -397,58 +406,22 @@ export default function ContactForm({ children }: ContactFormProps) {
   );
 
   const StepThree = (
-    <div className="relative space-y-2">
-      {/* Eingaben ändern */}
-      <button
-        className="absolute top-0 right-0 mt-1 mr-1 flex items-center gap-1 text-primary text-sm"
-        onClick={() => setStep(1)}
-        type="button"
-      >
-        <Edit3 className="h-4 w-4" />
-        <span>Eingaben ändern</span>
-      </button>
-
-      <div className="space-y-2 rounded-md border p-4 text-sm">
-        <h3 className="mb-2 font-semibold text-base">Zusammenfassung</h3>
-        <div>
-          <strong>Name:</strong> {getValues('name')}
-        </div>
-        <div>
-          <strong>E-Mail:</strong> {getValues('email')}
-        </div>
-        <div>
-          <strong>Telefon:</strong> {getValues('phone')}
-        </div>
-        <div>
-          <strong>Betreff:</strong> {getValues('subject')}
-        </div>
-
-        {/* Einfacher Scroll-Container */}
-        <div>
-          <strong>Nachricht:</strong>
-          <div className="mt-1 h-32 overflow-y-auto rounded-md border p-2">
-            <p className="whitespace-pre-wrap break-words">
-              {getValues('message')}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* AGB / Datenschutz */}
+    <div className="relative space-y-4">
       <FormField
         control={control}
         name="agb"
         render={({ field }) => (
-          <FormItem className="flex flex-row items-start gap-3">
+          <FormItem className="flex items-start space-x-3 rounded-md border p-3">
             <FormControl>
               <Checkbox
+                aria-label="AGB akzeptieren"
                 checked={field.value}
                 onCheckedChange={field.onChange}
               />
             </FormControl>
-            <div className="space-y-1 pt-0.5 leading-none">
-              <FormLabel className="font-normal">
-                Ich habe die{' '}
+            <div className="leading-none">
+              <FormLabel className="flex cursor-pointer select-none flex-wrap items-center gap-1 font-normal text-sm">
+                <span>Ich akzeptiere die</span>
                 <Link
                   className="underline"
                   href="/privacy"
@@ -456,14 +429,55 @@ export default function ContactForm({ children }: ContactFormProps) {
                   target="_blank"
                 >
                   Datenschutzbestimmungen
-                </Link>{' '}
-                gelesen und bin einverstanden.
+                </Link>
               </FormLabel>
               <FormMessage />
             </div>
           </FormItem>
         )}
       />
+      {/* Eingaben ändern */}
+
+      {/* Zusammenfassung */}
+      <Card className="border-muted">
+        <CardHeader className="">
+          <div className="flex w-full items-center justify-between">
+            <CardTitle className="text-base">Angaben überprüfen</CardTitle>
+            <Button
+              className="flex items-center gap-1 text-primary text-sm"
+              onClick={() => setStep(1)}
+              size="sm"
+              type="button"
+              variant="ghost"
+            >
+              <Edit3 className="size-3" />
+              <span>Eingaben ändern</span>
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent className="pt-0">
+          <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 text-sm">
+            <dt className="text-muted-foreground">Name</dt>
+            <dd className="font-medium">{getValues('name') || '—'}</dd>
+
+            <dt className="text-muted-foreground">E-Mail</dt>
+            <dd className="break-all font-medium">
+              {getValues('email') || '—'}
+            </dd>
+
+            <dt className="text-muted-foreground">Telefon</dt>
+            <dd className="font-medium">{getValues('phone') || '—'}</dd>
+
+            <dt className="text-muted-foreground">Betreff</dt>
+            <dd className="font-medium">{getValues('subject') || '—'}</dd>
+
+            <dt className="col-span-full text-muted-foreground">Nachricht</dt>
+            <dd className="col-span-full max-h-40 overflow-y-auto whitespace-pre-wrap break-words rounded-md border p-3 text-sm leading-snug">
+              {getValues('message') || '—'}
+            </dd>
+          </dl>
+        </CardContent>
+      </Card>
     </div>
   );
 
@@ -471,17 +485,24 @@ export default function ContactForm({ children }: ContactFormProps) {
     <Drawer onOpenChange={setOpen} open={open}>
       <DrawerTrigger asChild>{triggerElement}</DrawerTrigger>
       <DrawerOverlay />
-      <DrawerContent className="flex min-h-[80vh] flex-col">
-        <DrawerHeader className="mx-auto w-full max-w-md px-4 pt-4">
+      <DrawerContent className="flex min-h-[85dvh] flex-col">
+        <DrawerHeader className="mx-auto w-full max-w-md">
           <DrawerTitle>Kontaktieren Sie uns!</DrawerTitle>
           <DrawerDescription>
             Gern stehen wir Ihnen für Fragen zur Verfügung.
           </DrawerDescription>
-        </DrawerHeader>
 
+          {/* Fortschrittsanzeige */}
+          <div className="mt-1 flex flex-col items-center gap-1">
+            <Progress className="w-full" value={progress} />
+            <p className="text-muted-foreground text-xs">
+              Schritt {step} von 3
+            </p>
+          </div>
+        </DrawerHeader>
         <Form {...form}>
           {/* Keine automatische onSubmit */}
-          <form className="flex flex-1 flex-col py-2">
+          <form className="flex flex-1 flex-col overflow-y-auto py-2">
             <div className="flex-1 overflow-auto px-3 py-2">
               {step === 1 && StepOne}
               {step === 2 && StepTwo}
@@ -489,7 +510,7 @@ export default function ContactForm({ children }: ContactFormProps) {
             </div>
 
             {/* Footer ohne Linie, Buttons nebeneinander */}
-            <DrawerFooter className="flex flex-row items-center justify-end gap-2">
+            <DrawerFooter className="sticky bottom-0 flex flex-row items-center justify-end gap-2 bg-background/95 py-3 backdrop-blur-sm">
               <DrawerClose asChild>
                 <Button type="button" variant="destructive">
                   Abbrechen

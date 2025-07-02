@@ -111,8 +111,8 @@ function NavbarBrand() {
         unoptimized
         width={40}
       />
-      <div className="hidden text-sm xl:block">
-        <p className="text-primary text-xs">
+      <div className="hidden min-w-0 xl:block">
+        <p className="truncate text-[11px] text-primary">
           Praxis für Osteopathie, Dentosophie, Yoga & Qigong
         </p>
         <p className="text-muted-foreground text-xs">Maitri Katrin Eulitz</p>
