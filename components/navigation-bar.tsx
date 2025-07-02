@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import { TextLoop } from '@/components/animate/text-loop';
 import { NAV_ITEMS } from '@/lib/nav-config';
 import { cn } from '@/lib/utils';
 import ContactForm from './contact';
@@ -112,8 +113,51 @@ function NavbarBrand() {
         width={40}
       />
       <div className="hidden min-w-0 xl:block">
-        <p className="truncate text-[11px] text-primary">
-          Praxis für Osteopathie, Dentosophie, Yoga & Qigong
+        <p className="inline-flex items-center whitespace-pre-wrap text-primary text-sm">
+          Praxis für{' '}
+          <span className="relative w-[100px] font-bold">
+            <TextLoop
+              transition={{
+                type: 'spring',
+                stiffness: 900,
+                damping: 80,
+                mass: 10,
+              }}
+              variants={{
+                initial: {
+                  y: 20,
+                  rotateX: 90,
+                  opacity: 0,
+                  filter: 'blur(4px)',
+                },
+                animate: {
+                  y: 0,
+                  rotateX: 0,
+                  opacity: 1,
+                  filter: 'blur(0px)',
+                },
+                exit: {
+                  y: -20,
+                  rotateX: -90,
+                  opacity: 0,
+                  filter: 'blur(4px)',
+                },
+              }}
+            >
+              <span className="bg-linear-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
+                Osteopathie
+              </span>
+              <span className="bg-linear-to-r from-cyan-600 to-cyan-700 bg-clip-text font-bold text-transparent">
+                Dentosophie
+              </span>
+              <span className="bg-linear-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
+                Yoga
+              </span>
+              <span className="bg-linear-to-r from-green-600 to-green-700 bg-clip-text text-transparent">
+                Qigong
+              </span>
+            </TextLoop>
+          </span>
         </p>
         <p className="text-muted-foreground text-xs">Maitri Katrin Eulitz</p>
       </div>
