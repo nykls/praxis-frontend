@@ -113,7 +113,7 @@ function NavbarBrand() {
         width={40}
       />
       <div className="hidden min-w-0 md:block">
-        <div className="inline-flex w-[185px] items-center text-primary text-sm">
+        <div className="inline-flex w-[190px] items-center font-bold text-primary text-sm">
           Praxis für{' '}
           <span className="relative ml-1 w-[100px] font-bold">
             <TextLoop
