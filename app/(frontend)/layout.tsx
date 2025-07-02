@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/logo.png',
-        width: 1200,
+        width: 630,
         height: 630,
         alt: 'Praxis für Osteopathie, Dentosophie, Yoga & Qigong',
       },
