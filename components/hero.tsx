@@ -39,14 +39,29 @@ export const Hero = () => {
       >
         <div className="z-20 space-y-3 md:space-y-6">
           <motion.h1
-            className="font-semibold text-lg text-neutral-800 sm:text-4xl md:text-5xl dark:text-neutral-200"
+            className="font-semibold text-lg sm:text-4xl md:text-5xl dark:text-neutral-200"
             variants={itemVariants}
           >
-            Praxis für Osteopathie, Dentosophie, Yoga & Qigong Maitri Katrin
-            Eulitz
+            Praxis für{' '}
+            <span className="bg-linear-to-b from-red-500 to-red-700 bg-clip-text text-transparent">
+              Osteopathie
+            </span>
+            ,{' '}
+            <span className="bg-linear-to-b from-cyan-300 to-cyan-500 bg-clip-text text-transparent">
+              Dentosophie
+            </span>
+            ,{' '}
+            <span className="bg-linear-to-b from-amber-300 to-orange-500 bg-clip-text text-transparent">
+              Yoga
+            </span>{' '}
+            &{' '}
+            <span className="bg-linear-to-b from-green-500 to-green-700 bg-clip-text text-transparent">
+              Qigong
+            </span>{' '}
+            Maitri Katrin Eulitz
           </motion.h1>
           <motion.h2
-            className="relative bg-linear-to-b from-neutral-900 to-neutral-700 bg-clip-text font-bold text-2xl text-transparent tracking-tight md:text-6xl dark:from-neutral-300 dark:to-white"
+            className="relative bg-linear-to-b from-neutral-900 to-neutral-600 bg-clip-text font-bold text-2xl text-transparent tracking-tight md:text-6xl dark:from-neutral-300 dark:to-white"
             variants={itemVariants}
           >
             Herzlich Willkommen!
