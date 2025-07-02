@@ -1,98 +1,79 @@
+'use client';
+
+import { Menu, MoonIcon, SunIcon, SunMoon } from 'lucide-react';
+import Image from 'next/image';
+import Link, { type LinkProps } from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import { useTheme } from 'next-themes';
+import React from 'react';
 import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer";
-import { cn } from "@/lib/utils";
-import { Home, Menu, MessageCircleMore, Rss, Store } from "lucide-react";
-import Image from "next/image";
-import Link, { LinkProps } from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import React from "react";
-import ContactForm from "./contact";
-import { Button, buttonVariants } from "./ui/button";
-import { GoogleMapsEmbed } from "./third-parties/google";
-import { Card } from "./ui/card";
+} from '@/components/ui/drawer';
+import { NAV_ITEMS } from '@/lib/nav-config';
+import { cn } from '@/lib/utils';
+import { Button, buttonVariants } from './ui/button';
 
 function MobileNav() {
   const [open, setOpen] = React.useState(false);
-  const navLinks = [
-    { title: "Startseite", href: "/", key: "home", icon: Home },
-    { title: "Aktuelles", href: "/blog", key: "news", icon: Rss },
-    { title: "Über", href: "/about", key: "about", icon: Store },
-  ];
   const pathname = usePathname();
+  const [mounted, setMounted] = React.useState(false);
+  const { theme, setTheme, systemTheme } = useTheme();
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+
+  function cycleTheme() {
+    if (theme === 'system') {
+      setTheme(systemTheme === 'dark' ? 'light' : 'dark');
+    } else {
+      setTheme('system');
+    }
+  }
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Drawer onOpenChange={setOpen} open={open}>
       <DrawerTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="size 9 md:hidden hover:text-primary transition-colors duration-300"
-        >
-          <svg
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="size-5"
-          >
-            <g transform="scale(-1, 1) translate(-24, 0)">
-              <path
-                d="M3 5H11"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></path>
-              <path
-                d="M3 12H16"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></path>
-              <path
-                d="M3 19H21"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></path>
-            </g>
-          </svg>
+        <Button className="md:hidden" size="icon" variant="ghost">
+          <Menu className="size-6" />
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </DrawerTrigger>
       <DrawerContent
-        className="mx-auto w-full fixed space-y-3 bottom-0 left-0 right-0 max-h-[96%] max-w-full"
+        className="fixed right-0 bottom-0 left-0 mx-auto max-h-[96%] w-full max-w-full space-y-3"
         onOpenAutoFocus={(event) => {
           event.preventDefault();
         }}
       >
-        <div className="max-w-lg w-full mx-auto">
-          <DrawerHeader className="">
+        <div className="mx-auto w-full max-w-lg">
+          <DrawerHeader>
             <DrawerTitle>
               <MobileLink
-                href="/"
                 className="flex items-center justify-center gap-2 text-left"
+                href="/"
                 onOpenChange={setOpen}
               >
                 <div className="relative size-12">
-                  <Image src="/logo.svg" alt="Logo" fill />
+                  <Image alt="Logo" fill src="/logo.svg" />
                 </div>
                 <div className="flex-col">
                   <span className="font-bold text-sm">
                     Praxis für Osteopathie, Dentosophie, Yoga & Qigong
                   </span>
                   <br />
-                  <span className="text-xs font-normal">
+                  <span className="font-normal text-xs">
                     Maitri Katrin Eulitz
                   </span>
                 </div>
@@ -100,23 +81,23 @@ function MobileNav() {
             </DrawerTitle>
           </DrawerHeader>
           <DrawerFooter>
-            {navLinks.map((link) => {
+            {NAV_ITEMS.map((link) => {
               const isActive =
-                link.href === "/"
+                link.href === '/'
                   ? pathname === link.href
                   : pathname.startsWith(link.href);
               return (
                 <MobileLink
                   className={cn(
                     isActive
-                      ? buttonVariants({ variant: "secondary" })
-                      : buttonVariants({ variant: "outline" })
+                      ? buttonVariants({ variant: 'secondary' })
+                      : buttonVariants({ variant: 'outline' })
                   )}
                   href={link.href}
-                  onOpenChange={setOpen}
                   key={link.key}
+                  onOpenChange={setOpen}
                 >
-                  <div className="w-1/3 flex gap-3 justify-stretch items-center">
+                  <div className="flex w-1/3 items-center justify-stretch gap-3">
                     <div>
                       <link.icon className="size-auto" />
                     </div>
@@ -128,21 +109,19 @@ function MobileNav() {
                 </MobileLink>
               );
             })}
-            <ContactForm>
-              <Button variant="outline">
-                <div className="w-1/3 flex gap-3 justify-stretch items-center">
-                  <div>
-                    <MessageCircleMore className="size-auto" />
-                  </div>
-                  <div className="mx-auto">
-                    <span className="sr-only">Kontaktformular öffnen</span>{" "}
-                    Kontakt
-                  </div>
-                </div>
+            <div className="pt-4">
+              <Button
+                aria-label="Toggle theme"
+                className="w-full"
+                onClick={cycleTheme}
+                variant="outline"
+              >
+                {renderThemeIcon(theme, currentTheme)}
+                <span>Theme wechseln</span>
               </Button>
-            </ContactForm>
+            </div>
             <DrawerClose asChild>
-              <Button variant="destructive" className="w-full">
+              <Button className="w-full" variant="destructive">
                 Abbrechen
               </Button>
             </DrawerClose>
@@ -151,6 +130,16 @@ function MobileNav() {
       </DrawerContent>
     </Drawer>
   );
+}
+
+function renderThemeIcon(theme: string | undefined, currentTheme?: string) {
+  if (theme === 'system') {
+    return <SunMoon className="mr-2 h-4 w-4" />;
+  }
+  if (currentTheme === 'dark') {
+    return <MoonIcon className="mr-2 h-4 w-4" />;
+  }
+  return <SunIcon className="mr-2 h-4 w-4" />;
 }
 
 interface MobileLinkProps extends LinkProps {
@@ -169,12 +158,12 @@ function MobileLink({
   const router = useRouter();
   return (
     <Link
+      className={cn('w-full', className)}
       href={href}
       onClick={() => {
         router.push(href.toString());
         onOpenChange?.(false);
       }}
-      className={cn("w-full", className)}
       {...props}
     >
       {children}

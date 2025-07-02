@@ -28,7 +28,7 @@ const perks = [
     name: "Osteopathie",
     Icon: PersonStanding,
     color: "bg-red-100",
-    gradient: "bg-gradient-to-r from-red-600 to-red-700", // Rot aus dem Logo
+    gradient: "bg-linear-to-r from-red-600 to-red-700", // Rot aus dem Logo
     subtitle: "Ganzheitliche Gesundheit",
     description: "Erkennt und löst Blockaden für ganzheitliche Gesundheit.",
     fullDescription:
@@ -38,7 +38,7 @@ const perks = [
     name: "Dentosophie",
     Icon: Smile,
     color: "bg-cyan-100",
-    gradient: "bg-gradient-to-r from-cyan-600 to-cyan-700", // Türkis/Cyan als harmonische Farbe
+    gradient: "bg-linear-to-r from-cyan-600 to-cyan-700", // Türkis/Cyan als harmonische Farbe
     subtitle: "Die Weisheit der Zähne",
     description: "Harmonische Verbindung von Zähnen, Kiefer und Körper.",
     fullDescription:
@@ -48,7 +48,7 @@ const perks = [
     name: "Yoga",
     Icon: BrainCog,
     color: "bg-amber-100",
-    gradient: "bg-gradient-to-r from-amber-500 to-orange-500", // Gelb/Orange aus dem Logo
+    gradient: "bg-linear-to-r from-amber-500 to-orange-500", // Gelb/Orange aus dem Logo
     subtitle: "Körper und Geist",
     description: "Verbindet Körper, Geist und Seele für innere Balance.",
     fullDescription:
@@ -58,7 +58,7 @@ const perks = [
     name: "Qigong",
     Icon: Zap,
     color: "bg-green-100",
-    gradient: "bg-gradient-to-r from-green-600 to-green-700", // Grün aus dem Logo
+    gradient: "bg-linear-to-r from-green-600 to-green-700", // Grün aus dem Logo
     subtitle: "Energiefluss",
     description: "Harmonisiert Lebensenergie für Gesundheit und Vitalität.",
     fullDescription:
@@ -83,7 +83,7 @@ function PerkCard({ perk }: { perk: Perk }) {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.15),transparent)] group-hover:opacity-80 transition-opacity duration-500 delay-200" />
           <perk.Icon className="size-7/12 drop-shadow-2xl text-accent sm:w-12 sm:h-12 relative z-10 group-hover:scale-110 group-hover:drop-shadow-lg transition-transform duration-500 delay-200" />
         </div>
-        <div className="flex flex-grow flex-row items-center justify-between px-4 sm:px-8 py-4 sm:py-6 bg-card">
+        <div className="flex grow flex-row items-center justify-between px-4 sm:px-8 py-4 sm:py-6 bg-card">
           <div>
             <MorphingDialogTitle className="text-lg sm:text-xl font-semibold mb-1">
               {perk.name}
@@ -145,7 +145,7 @@ export default function Perks() {
   return (
     <section
       id="service"
-      className="border-y w-full dark:bg-dot-white/[0.2] bg-dot-black/[0.2] relative py-8 sm:py-16 overflow-hidden"
+      className="border-y w-full dark:bg-dot-white/20 bg-dot-black/20 relative py-8 sm:py-16 overflow-hidden"
     >
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-8 sm:mb-14 space-y-2">

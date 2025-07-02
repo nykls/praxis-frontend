@@ -29,7 +29,7 @@ const springOptions = { bounce: 0.1 };
 export const Hero = () => {
   return (
     <BackgroundLines
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden -mt-16"
+      className="relative flex min-h-screen max-h-dvh w-full items-center justify-center overflow-hidden"
       svgOptions={{ duration: 5 }}
     >
       {" "}
@@ -50,7 +50,7 @@ export const Hero = () => {
           </motion.h1>
           <motion.h2
             variants={itemVariants}
-            className="relative bg-gradient-to-b from-neutral-900 to-neutral-700 
+            className="relative bg-linear-to-b from-neutral-900 to-neutral-700 
                    bg-clip-text text-2xl font-bold tracking-tight text-transparent 
                    dark:from-neutral-300 dark:to-white md:text-6xl"
           >

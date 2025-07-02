@@ -1,15 +1,14 @@
+import "@/app/globals.css";
 import CookieConsent from "@/components/cookie-consent";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navigation-bar";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/toaster";
-import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import type { Metadata } from "next";
-import "@/app/globals.css";
-import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
@@ -94,7 +93,7 @@ export default function RootLayout({
         >
           <Navbar />
           <main className="relative flex flex-col">
-            <div className="flex-grow flex-1 min-h-screen z-auto pt-[var(--navbar-height)]">
+            <div className="grow flex-1 min-h-screen z-auto">
               {children}
             </div>
             <CookieConsent />

@@ -1,10 +1,10 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-import * as React from "react";
-import imageUrlBuilder from "@sanity/image-url";
+
 import { client } from "@/sanity/lib/client";
+import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { RefObject, useEffect } from "react";
+import { clsx, type ClassValue } from "clsx";
+import * as React from "react";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

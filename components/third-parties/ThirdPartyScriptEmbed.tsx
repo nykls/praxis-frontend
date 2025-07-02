@@ -6,7 +6,7 @@ export type ScriptEmbed = {
   html?: string | null
   height?: string | number | null
   width?: string | number | null
-  children?: React.ReactElement | React.ReactElement[]
+  children?: React.ReactElement<any> | React.ReactElement<any>[]
   dataNtpc?: string
 }
 

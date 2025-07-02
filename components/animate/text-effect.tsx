@@ -8,7 +8,7 @@ import {
 } from "motion/react";
 import React from "react";
 
-type PresetType = "blur" | "fade-in-blur" | "scale" | "fade" | "slide";
+type PresetType = "blur-sm" | "fade-in-blur" | "scale" | "fade" | "slide";
 
 type TextEffectProps = {
   children: string;

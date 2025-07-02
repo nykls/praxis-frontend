@@ -16,7 +16,7 @@ const PostMaps = dynamic(() => import("./maps"), {
 
 const Footer = () => {
   return (
-    <footer className="bg-accent py-7 z-40">
+    <footer className="bg-accent pb-20 xl:pb-3 pt-7 z-40">
       <FullWidthWrapper>
         <div className="pb-5">
           <Maps />

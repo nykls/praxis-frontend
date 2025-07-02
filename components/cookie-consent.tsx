@@ -1,68 +1,71 @@
-"use client";
+'use client';
 
-import { CookieIcon } from "lucide-react";
-import { Button } from "./ui/button";
-import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
-import { Card } from "./ui/card";
-import Typography from "./typography";
+import Cookies from 'js-cookie';
+import { CookieIcon } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { cn } from '@/lib/utils';
+import Typography from './typography';
+import { Button } from './ui/button';
+import { Card } from './ui/card';
 
 export default function CookieConsent({
   demo = false,
-  onAcceptCallback = () => {},
-  onDeclineCallback = () => {},
+  onAcceptCallback,
+  onDeclineCallback,
+}: {
+  demo?: boolean;
+  onAcceptCallback?: () => void;
+  onDeclineCallback?: () => void;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [hide, setHide] = useState(false);
 
   const accept = () => {
     setIsOpen(false);
-    document.cookie =
-      "cookieConsent=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+    Cookies.set('cookieConsent', 'true', { expires: 365 });
     setTimeout(() => {
       setHide(true);
     }, 700);
-    onAcceptCallback();
+    onAcceptCallback?.();
   };
 
   const decline = () => {
     setIsOpen(false);
+    Cookies.remove('cookieConsent');
     setTimeout(() => {
       setHide(true);
     }, 700);
-    onDeclineCallback();
+    onDeclineCallback?.();
   };
 
   useEffect(() => {
     try {
       setIsOpen(true);
-      if (document.cookie.includes("cookieConsent=true")) {
-        if (!demo) {
-          setIsOpen(false);
-          setTimeout(() => {
-            setHide(true);
-          }, 700);
-        }
+      if (Cookies.get('cookieConsent') === 'true' && !demo) {
+        setIsOpen(false);
+        setTimeout(() => {
+          setHide(true);
+        }, 700);
       }
-    } catch (e) {
+    } catch {
       // console.log("Error: ", e);
     }
-  }, []);
+  }, [demo]);
 
   return (
     <div
       className={cn(
-        "fixed z-[200] bottom-0 left-0 right-0 sm:left-4 sm:bottom-4 w-full sm:max-w-md transition-transform duration-700",
-        !isOpen
-          ? "transition-[opacity,transform] translate-y-8 opacity-0"
-          : "transition-[opacity,transform] translate-y-0 opacity-100",
-        hide && "hidden"
+        'fixed right-0 bottom-0 left-0 z-200 w-full transition-transform duration-700 sm:bottom-4 sm:left-4 sm:max-w-md',
+        isOpen
+          ? 'translate-y-0 opacity-100 transition-[opacity,transform]'
+          : 'translate-y-8 opacity-0 transition-[opacity,transform]',
+        hide && 'hidden'
       )}
     >
       <Card className=" m-2">
         <div className="grid gap-2">
-          <div className="border-b border-border h-14 flex items-center justify-between p-4">
-            <h1 className="text-lg font-medium">Wir nutzen Cookies</h1>
+          <div className="flex h-14 items-center justify-between border-border border-b p-4">
+            <h1 className="font-medium text-lg">Wir nutzen Cookies</h1>
             <CookieIcon className="h-[1.2rem] w-[1.2rem]" />
           </div>
           <div className="p-4">
@@ -70,19 +73,19 @@ export default function CookieConsent({
               Diese Website verwendet Cookies, um sicherzustellen, dass Sie die
               bestmögliche Erfahrung auf unserer Website machen.
               <br />
-              <Typography variant="small" className="text-xs">
-                {" "}
+              <Typography className="text-xs" variant="small">
+                {' '}
                 Durch das Klicken auf "
                 <span className="font-medium opacity-80">Akzeptieren</span>",
                 stimmen Sie der Verwendung von Cookies zu.
               </Typography>
             </Typography>
           </div>
-          <div className="flex gap-2 p-4 py-5 border-t border-border bg-background/20">
-            <Button onClick={accept} className="w-full">
+          <div className="flex gap-2 border-border border-t bg-background/20 p-4 py-5">
+            <Button className="flex-1" onClick={accept}>
               Akzeptieren
             </Button>
-            <Button onClick={decline} className="w-full" variant="secondary">
+            <Button className="flex-1" onClick={decline} variant="secondary">
               Ablehnen
             </Button>
           </div>

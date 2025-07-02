@@ -98,7 +98,7 @@ export const WavyBackground: React.FC<WavyBackgroundProps> = ({
   return (
     <div
       className={cn(
-        "flex -mt-[var(--navbar-height)] bg-background h-screen flex-col items-center justify-center",
+        "flex -mt-(--navbar-height) bg-background h-screen flex-col items-center justify-center",
         containerClassName
       )}
     >

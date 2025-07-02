@@ -1,5 +1,20 @@
-import * as React from "react";
-import FullWidthWrapper from "@/components/full-width-wrapper";
+import Autoplay from 'embla-carousel-autoplay';
+import * as React from 'react';
+import FullWidthWrapper from '@/components/full-width-wrapper';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import { AspectRatio } from './ui/aspect-ratio';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from './ui/breadcrumb';
 import {
   Card,
   CardContent,
@@ -7,48 +22,33 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card";
-import { Skeleton } from "./ui/skeleton";
-import { AspectRatio } from "./ui/aspect-ratio";
-import { Separator } from "./ui/separator";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-} from "./ui/breadcrumb";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+} from './ui/card';
+import { Separator } from './ui/separator';
+import { Skeleton } from './ui/skeleton';
 
 function LoadingCard() {
   return (
-    <Card className="transition shadow-md">
+    <Card className="shadow-md transition">
       <CardHeader>
         <CardTitle>
-          <Skeleton className="w-full h-6 mb-2" /> {/* Simulierter Titel */}
+          <Skeleton className="mb-2 h-6 w-full" /> {/* Simulierter Titel */}
         </CardTitle>
         <CardDescription>
-          <Skeleton className="w-full h-4" /> {/* Simuliertes Datum */}
+          <Skeleton className="h-4 w-full" /> {/* Simuliertes Datum */}
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Skeleton className="w-full h-4 mb-2" />{" "}
+        <Skeleton className="mb-2 h-4 w-full" />{' '}
         {/* Simulierter Exzerpt Zeile 1 */}
-        <Skeleton className="w-full h-4 mb-2" />{" "}
+        <Skeleton className="mb-2 h-4 w-full" />{' '}
         {/* Simulierter Exzerpt Zeile 2 */}
-        <Skeleton className="w-full h-4" /> {/* Simulierter Exzerpt Zeile 3 */}
+        <Skeleton className="h-4 w-full" /> {/* Simulierter Exzerpt Zeile 3 */}
       </CardContent>
       <CardFooter>
         <div className="flex items-center space-x-3">
-          <Skeleton className="size-10 rounded-full" />{" "}
+          <Skeleton className="size-10 rounded-full" />{' '}
           {/* Simulierter Avatar */}
-          <Skeleton className="w-24 h-4" /> {/* Simulierter Autorenname */}
+          <Skeleton className="h-4 w-24" /> {/* Simulierter Autorenname */}
         </div>
       </CardFooter>
     </Card>
@@ -59,7 +59,7 @@ function CardSkeleton() {
   return (
     <section>
       <FullWidthWrapper>
-        <div className="grid lg:grid-cols-2 gap-3">
+        <div className="grid gap-3 lg:grid-cols-2">
           {/* Generiere mehrere LoadingCards für den Ladezustand */}
           {[...Array(6)].map((_, index) => (
             <LoadingCard key={index} />
@@ -71,77 +71,79 @@ function CardSkeleton() {
 }
 function MapsSkeleton() {
   return (
-    <Card className="w-full h-[400px]">
-      <Skeleton className="w-full h-[400px]" />
+    <Card className="h-[400px] w-full">
+      <Skeleton className="h-[400px] w-full" />
     </Card>
   );
 }
 
 function PostSkeleton() {
   return (
-    <FullWidthWrapper>
-      <section className="space-y-5">
-        <div>
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <Skeleton className="w-12 h-4" />
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <Skeleton className="w-24 h-4" />
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <Skeleton className="w-36 h-4" />
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
-        <article className="space-y-5">
-          <div className="grid mx-auto">
-            <div className="flex flex-col space-y-5 md:px-20 lg:px-36">
-              {/* Skeleton für den Titel */}
-              <Skeleton className="h-12 w-3/4" />
+    <section className="xl:pt-25">
+      <FullWidthWrapper>
+        <section className="space-y-5">
+          <div>
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <Skeleton className="h-4 w-12" />
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <Skeleton className="h-4 w-24" />
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <Skeleton className="h-4 w-36" />
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+          <article className="space-y-5">
+            <div className="mx-auto grid">
+              <div className="flex flex-col space-y-5 md:px-20 lg:px-36">
+                {/* Skeleton für den Titel */}
+                <Skeleton className="h-12 w-3/4" />
 
-              <div className="flex items-center gap-3">
-                {/* Skeleton für das Avatar-Bild */}
-                <Skeleton className="w-10 h-10 rounded-full" />
+                <div className="flex items-center gap-3">
+                  {/* Skeleton für das Avatar-Bild */}
+                  <Skeleton className="h-10 w-10 rounded-full" />
 
-                {/* Skeletons für den Namen und das Veröffentlichungsdatum */}
-                <div className="flex gap-1 flex-col">
-                  <Skeleton className="h-4 w-48" />
-                  <Skeleton className="h-4 w-32" />
+                  {/* Skeletons für den Namen und das Veröffentlichungsdatum */}
+                  <div className="flex flex-col gap-1">
+                    <Skeleton className="h-4 w-48" />
+                    <Skeleton className="h-4 w-32" />
+                  </div>
+                </div>
+
+                {/* Skeleton für den Separator */}
+                <Separator className="mt-3 w-full" />
+
+                {/* Skeletons für den Artikeltext */}
+                <div className="space-y-5">
+                  <Skeleton className="h-6 w-full" />
+                  <Skeleton className="h-6 w-full" />
+                  <Skeleton className="h-6 w-5/6" />
                 </div>
               </div>
-
-              {/* Skeleton für den Separator */}
-              <Separator className="w-full mt-3" />
-
-              {/* Skeletons für den Artikeltext */}
-              <div className="space-y-5">
-                <Skeleton className="h-6 w-full" />
-                <Skeleton className="h-6 w-full" />
-                <Skeleton className="h-6 w-5/6" />
-              </div>
             </div>
-          </div>
-        </article>
-      </section>
-    </FullWidthWrapper>
+          </article>
+        </section>
+      </FullWidthWrapper>
+    </section>
   );
 }
 
 function SliderSkeleton() {
   return (
-    <Carousel className="w-auto h-full">
+    <Carousel className="h-full w-auto">
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 overflow-hidden">
+          <CarouselItem className="overflow-hidden md:basis-1/2" key={index}>
             <Card className="overflow-hidden">
-              <CardContent className="flex aspect-[4/3] overflow-hidden p-0 m-0 items-center justify-center">
+              <CardContent className="m-0 flex aspect-4/3 items-center justify-center overflow-hidden p-0">
                 <AspectRatio ratio={4 / 3}>
-                  <Skeleton className="aspect-[4/3]" />
+                  <Skeleton className="aspect-4/3" />
                 </AspectRatio>
               </CardContent>
             </Card>

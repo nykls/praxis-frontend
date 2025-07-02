@@ -1,59 +1,56 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { contactData, contactSchema } from "@/lib/form-schema";
-import { addEntry } from "@/lib/send-mail";
-import { useToast } from "@/components/ui/use-toast";
-import { useMediaQuery } from "@/lib/utils";
-
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Edit3, Loader, MessageCircleMore } from 'lucide-react';
+import Link from 'next/link';
+import type React from 'react';
+import { useState } from 'react';
+import { type SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Dialog,
+  DialogClose,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogDescription,
   DialogFooter,
+  DialogHeader,
+  DialogTitle,
   DialogTrigger,
-  DialogClose,
-} from "@/components/ui/dialog";
-
+} from '@/components/ui/dialog';
 import {
   Drawer,
-  DrawerPortal,
-  DrawerOverlay,
-  DrawerTrigger,
   DrawerClose,
   DrawerContent,
-  DrawerHeader,
-  DrawerFooter,
-  DrawerTitle,
   DrawerDescription,
-} from "@/components/ui/drawer";
-
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerPortal,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer';
 import {
   Form,
+  FormControl,
   FormField,
   FormItem,
-  FormControl,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
   Select,
-  SelectTrigger,
-  SelectItem,
   SelectContent,
+  SelectItem,
+  SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-
-import { Loader, MessageCircleMore, Edit3 } from "lucide-react";
+} from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
+import { type contactData, contactSchema } from '@/lib/form-schema';
+import { addEntry } from '@/lib/send-mail';
+import { useMediaQuery } from '@/lib/utils';
 
 interface ContactFormProps {
   children?: React.ReactNode;
@@ -63,20 +60,19 @@ export default function ContactForm({ children }: ContactFormProps) {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(1);
 
-  const { toast } = useToast();
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const isDesktop = useMediaQuery('(min-width: 768px)');
 
   const form = useForm<contactData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
-      subject: "",
-      name: "",
-      email: "",
-      phone: "",
-      message: "",
+      subject: '',
+      name: '',
+      email: '',
+      phone: '',
+      message: '',
       agb: false,
     },
-    mode: "onBlur",
+    mode: 'onBlur',
   });
 
   const {
@@ -95,7 +91,7 @@ export default function ContactForm({ children }: ContactFormProps) {
     try {
       const result = await addEntry(data);
       if (!result || result.error) {
-        console.error("Fehler beim Absenden:", result?.error);
+        console.error('Fehler beim Absenden:', result?.error);
         return;
       }
 
@@ -103,13 +99,12 @@ export default function ContactForm({ children }: ContactFormProps) {
       setOpen(false);
       setStep(1);
 
-      toast({
-        title: "Ihre Nachricht wurde erfolgreich versendet.",
+      toast('Ihre Nachricht wurde erfolgreich versendet.', {
         description:
-          "Vielen Dank für Ihre Nachricht. Wir melden uns so schnell wie möglich bei Ihnen.",
+          'Vielen Dank für Ihre Nachricht. Wir melden uns so schnell wie möglich bei Ihnen.',
       });
     } catch (error) {
-      console.error("Etwas ist schiefgelaufen:", error);
+      console.error('Etwas ist schiefgelaufen:', error);
     }
   };
 
@@ -118,8 +113,8 @@ export default function ContactForm({ children }: ContactFormProps) {
   // -----------------------------------------
   const nextStep = async () => {
     let fieldsToValidate: (keyof contactData)[] = [];
-    if (step === 1) fieldsToValidate = ["name", "email", "phone"];
-    if (step === 2) fieldsToValidate = ["subject", "message"];
+    if (step === 1) fieldsToValidate = ['name', 'email', 'phone'];
+    if (step === 2) fieldsToValidate = ['subject', 'message'];
 
     const isValid = await trigger(fieldsToValidate);
     if (isValid) setStep((s) => s + 1);
@@ -133,7 +128,7 @@ export default function ContactForm({ children }: ContactFormProps) {
   // Trigger-Element
   // -----------------------------------------
   const defaultTrigger = (
-    <Button variant="ghost" size="icon" onClick={() => setOpen(true)}>
+    <Button onClick={() => setOpen(true)} size="icon" variant="ghost">
       <MessageCircleMore className="size-5" />
     </Button>
   );
@@ -145,7 +140,7 @@ export default function ContactForm({ children }: ContactFormProps) {
   // -----------------------------------------
   if (isDesktop) {
     return (
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog onOpenChange={setOpen} open={open}>
         <DialogTrigger asChild>{triggerElement}</DialogTrigger>
         <DialogContent className="max-w-md">
           <DialogHeader>
@@ -156,7 +151,7 @@ export default function ContactForm({ children }: ContactFormProps) {
           </DialogHeader>
 
           <Form {...form}>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 py-2">
+            <form className="space-y-5 py-2" onSubmit={handleSubmit(onSubmit)}>
               {/* Betreff */}
               <FormField
                 control={control}
@@ -169,7 +164,7 @@ export default function ContactForm({ children }: ContactFormProps) {
                         onValueChange={field.onChange}
                         value={field.value}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger className="w-full">
                           <SelectValue placeholder="Betreff auswählen" />
                         </SelectTrigger>
                         <SelectContent>
@@ -246,8 +241,8 @@ export default function ContactForm({ children }: ContactFormProps) {
                     <FormLabel>Nachricht</FormLabel>
                     <FormControl>
                       <Textarea
+                        className="min-h-[120px] resize-none"
                         placeholder="Ihre Nachricht an uns..."
-                        className="resize-none min-h-[120px]"
                         {...field}
                       />
                     </FormControl>
@@ -261,40 +256,40 @@ export default function ContactForm({ children }: ContactFormProps) {
                 control={control}
                 name="agb"
                 render={({ field }) => (
-                  <FormItem>
-                    <div className="flex items-center space-x-2">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                      </FormControl>
-                      <FormLabel className="!mb-0">
-                        Ich habe die{" "}
-                        <a
-                          href="/privacy"
-                          target="_blank"
-                          rel="noreferrer"
+                  <FormItem className="flex flex-row items-start gap-3">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                    <div className="space-y-1 pt-0.5 leading-none">
+                      <FormLabel className="font-normal">
+                        Ich habe die{' '}
+                        <Link
                           className="underline"
+                          href="/privacy"
+                          rel="noreferrer"
+                          target="_blank"
                         >
                           Datenschutzbestimmungen
-                        </a>{" "}
+                        </Link>{' '}
                         gelesen und bin einverstanden.
                       </FormLabel>
+                      <FormMessage />
                     </div>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
 
               {/* Footer: Buttons ohne Linie, nebeneinander */}
-              <DialogFooter className="flex items-center justify-end gap-2 mt-4 pt-2">
+              <DialogFooter className="mt-4 flex items-center justify-end gap-2 pt-2">
                 <DialogClose asChild>
-                  <Button variant="destructive" type="button">
+                  <Button type="button" variant="destructive">
                     Abbrechen
                   </Button>
                 </DialogClose>
-                <Button type="submit" disabled={isSubmitting}>
+                <Button disabled={isSubmitting} type="submit">
                   {isSubmitting && (
                     <Loader className="mr-2 h-4 w-4 animate-spin" />
                   )}
@@ -365,7 +360,7 @@ export default function ContactForm({ children }: ContactFormProps) {
             <FormLabel>Betreff</FormLabel>
             <FormControl>
               <Select onValueChange={field.onChange} value={field.value}>
-                <SelectTrigger>
+                <SelectTrigger className="w-full">
                   <SelectValue placeholder="Betreff auswählen" />
                 </SelectTrigger>
                 <SelectContent>
@@ -389,8 +384,8 @@ export default function ContactForm({ children }: ContactFormProps) {
             <FormLabel>Nachricht</FormLabel>
             <FormControl>
               <Textarea
+                className="min-h-[220px] resize-none"
                 placeholder="Ihre Nachricht an uns..."
-                className="resize-none min-h-[220px]"
                 {...field}
               />
             </FormControl>
@@ -402,38 +397,38 @@ export default function ContactForm({ children }: ContactFormProps) {
   );
 
   const StepThree = (
-    <div className="space-y-2 relative">
+    <div className="relative space-y-2">
       {/* Eingaben ändern */}
       <button
-        type="button"
+        className="absolute top-0 right-0 mt-1 mr-1 flex items-center gap-1 text-primary text-sm"
         onClick={() => setStep(1)}
-        className="absolute top-0 right-0 text-sm text-primary flex items-center gap-1 mt-1 mr-1"
+        type="button"
       >
         <Edit3 className="h-4 w-4" />
         <span>Eingaben ändern</span>
       </button>
 
-      <div className="border rounded-md p-4 space-y-2 text-sm">
-        <h3 className="font-semibold mb-2 text-base">Zusammenfassung</h3>
+      <div className="space-y-2 rounded-md border p-4 text-sm">
+        <h3 className="mb-2 font-semibold text-base">Zusammenfassung</h3>
         <div>
-          <strong>Name:</strong> {getValues("name")}
+          <strong>Name:</strong> {getValues('name')}
         </div>
         <div>
-          <strong>E-Mail:</strong> {getValues("email")}
+          <strong>E-Mail:</strong> {getValues('email')}
         </div>
         <div>
-          <strong>Telefon:</strong> {getValues("phone")}
+          <strong>Telefon:</strong> {getValues('phone')}
         </div>
         <div>
-          <strong>Betreff:</strong> {getValues("subject")}
+          <strong>Betreff:</strong> {getValues('subject')}
         </div>
 
         {/* Einfacher Scroll-Container */}
         <div>
           <strong>Nachricht:</strong>
-          <div className="mt-1 p-2 border rounded-md h-32 overflow-y-auto">
+          <div className="mt-1 h-32 overflow-y-auto rounded-md border p-2">
             <p className="whitespace-pre-wrap break-words">
-              {getValues("message")}
+              {getValues('message')}
             </p>
           </div>
         </div>
@@ -444,28 +439,28 @@ export default function ContactForm({ children }: ContactFormProps) {
         control={control}
         name="agb"
         render={({ field }) => (
-          <FormItem>
-            <div className="flex items-center space-x-2">
-              <FormControl>
-                <Checkbox
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-              <FormLabel className="!mb-0">
-                Ich habe die{" "}
-                <a
-                  href="/privacy"
-                  target="_blank"
-                  rel="noreferrer"
+          <FormItem className="flex flex-row items-start gap-3">
+            <FormControl>
+              <Checkbox
+                checked={field.value}
+                onCheckedChange={field.onChange}
+              />
+            </FormControl>
+            <div className="space-y-1 pt-0.5 leading-none">
+              <FormLabel className="font-normal">
+                Ich habe die{' '}
+                <Link
                   className="underline"
+                  href="/privacy"
+                  rel="noreferrer"
+                  target="_blank"
                 >
                   Datenschutzbestimmungen
-                </a>{" "}
+                </Link>{' '}
                 gelesen und bin einverstanden.
               </FormLabel>
+              <FormMessage />
             </div>
-            <FormMessage />
           </FormItem>
         )}
       />
@@ -473,11 +468,11 @@ export default function ContactForm({ children }: ContactFormProps) {
   );
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Drawer onOpenChange={setOpen} open={open}>
       <DrawerTrigger asChild>{triggerElement}</DrawerTrigger>
       <DrawerOverlay />
       <DrawerContent className="flex min-h-[80vh] flex-col">
-        <DrawerHeader className="max-w-md w-full mx-auto px-4 pt-4">
+        <DrawerHeader className="mx-auto w-full max-w-md px-4 pt-4">
           <DrawerTitle>Kontaktieren Sie uns!</DrawerTitle>
           <DrawerDescription>
             Gern stehen wir Ihnen für Fragen zur Verfügung.
@@ -486,8 +481,8 @@ export default function ContactForm({ children }: ContactFormProps) {
 
         <Form {...form}>
           {/* Keine automatische onSubmit */}
-          <form className="flex flex-col flex-1 py-2">
-            <div className="flex-1 overflow-auto py-2 px-3">
+          <form className="flex flex-1 flex-col py-2">
+            <div className="flex-1 overflow-auto px-3 py-2">
               {step === 1 && StepOne}
               {step === 2 && StepTwo}
               {step === 3 && StepThree}
@@ -496,26 +491,26 @@ export default function ContactForm({ children }: ContactFormProps) {
             {/* Footer ohne Linie, Buttons nebeneinander */}
             <DrawerFooter className="flex flex-row items-center justify-end gap-2">
               <DrawerClose asChild>
-                <Button variant="destructive" type="button">
+                <Button type="button" variant="destructive">
                   Abbrechen
                 </Button>
               </DrawerClose>
 
               {step > 1 && (
-                <Button variant="outline" type="button" onClick={prevStep}>
+                <Button onClick={prevStep} type="button" variant="outline">
                   Zurück
                 </Button>
               )}
 
               {step < 3 ? (
-                <Button type="button" onClick={nextStep}>
+                <Button onClick={nextStep} type="button">
                   Weiter
                 </Button>
               ) : (
                 <Button
-                  type="button"
                   disabled={isSubmitting}
                   onClick={() => handleSubmit(onSubmit)()}
+                  type="button"
                 >
                   {isSubmitting && (
                     <Loader className="mr-2 h-4 w-4 animate-spin" />

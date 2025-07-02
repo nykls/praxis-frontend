@@ -1,28 +1,23 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useTheme } from "next-themes";
-import { usePathname } from "next/navigation";
-import { MoonIcon, PhoneOutgoing, SunIcon, SunMoon } from "lucide-react";
-import { cn } from "@/lib/utils";
-import AnimatedBackground from "@/components/ui/animated-background";
-import ContactForm from "./contact";
-import MobileNav from "./mobile-nav";
-import { Button, buttonVariants } from "./ui/button";
-
-const navItems = [
-  { title: "Home", href: "/", key: "home" },
-  { title: "Aktuelles", href: "/blog", key: "news" },
-  { title: "Über", href: "/about", key: "about" },
-];
-
-type ActionItem = {
-  key: string;
-  component: React.ReactNode;
-  ariaLabel: string;
-};
+import {
+  MessageCircleMore,
+  MoonIcon,
+  PhoneOutgoing,
+  SunIcon,
+  SunMoon,
+} from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import { NAV_ITEMS } from '@/lib/nav-config';
+import { cn } from '@/lib/utils';
+import ContactForm from './contact';
+import MobileNav from './mobile-nav';
+import AnimatedBackground from './ui/animated-background';
+import { Button } from './ui/button';
 
 function Navbar() {
   const [mounted, setMounted] = useState(false);
@@ -32,75 +27,73 @@ function Navbar() {
     setMounted(true);
   }, []);
 
+  const pathname = usePathname();
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+
+  const renderThemeIcon = () => {
+    if (theme === 'system') {
+      return <SunMoon className="h-6 w-6" />;
+    }
+    if (currentTheme === 'dark') {
+      return <MoonIcon className="h-6 w-6" />;
+    }
+    return <SunIcon className="h-6 w-6" />;
+  };
+
   if (!mounted) {
     return null;
   }
 
   function cycleTheme() {
-    if (theme === "system") {
-      setTheme(systemTheme === "dark" ? "light" : "dark");
+    if (theme === 'system') {
+      setTheme(systemTheme === 'dark' ? 'light' : 'dark');
     } else {
-      setTheme("system");
+      setTheme('system');
     }
   }
 
-  const currentTheme = theme === "system" ? systemTheme : theme;
-
-  const pathname = usePathname();
-
-  const actionItems = [
-    {
-      key: "contact",
-      component: <ContactForm />,
-      ariaLabel: "Kontaktformular öffnen",
-    },
-    {
-      key: "call",
-      component: (
-        <Button
-          size="icon"
-          variant="ghost"
-          className="hover:text-primary transition-colors duration-300"
-          asChild
-        >
-          <Link href={`tel:${process.env.NEXT_PUBLIC_PHONE}`}>
-            <PhoneOutgoing className="size-5" />
-          </Link>
-        </Button>
-      ),
-      ariaLabel: "Anrufen",
-    },
-    {
-      key: "theme",
-      component: (
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={cycleTheme}
-          aria-label="Toggle theme"
-          className="hover:text-primary transition-colors duration-300"
-        >
-          {theme === "system" ? (
-            <SunMoon className="w-5 h-5" />
-          ) : currentTheme === "dark" ? (
-            <MoonIcon className="w-5 h-5" />
-          ) : (
-            <SunIcon className="w-5 h-5" />
-          )}
-        </Button>
-      ),
-      ariaLabel: "Theme ändern",
-    },
-  ];
-
   return (
-    <header className="fixed top-0 p-2 z-40 w-full border-b border-border/50 bg-background/60 backdrop-blur supports-[backdrop-filter]:bg-background/40">
-      <div className="flex items-center justify-between">
+    <header className="-translate-x-1/2 fixed bottom-4 left-1/2 z-50 w-fit rounded-full border border-border/50 bg-background/60 p-3 shadow-md backdrop-blur-sm supports-backdrop-filter:bg-background/40 xl:top-3 xl:bottom-auto">
+      <div className="flex items-center gap-3">
         <NavbarBrand />
-        <div className="flex items-center space-x-2">
-          <DesktopNav pathname={pathname} />
-          <ActionItems items={actionItems} />
-          <MobileNav />
+        <DesktopNav pathname={pathname} />
+        <div className="flex items-center gap-2">
+          <ContactForm>
+            <Button
+              aria-label="Kontaktformular öffnen"
+              className="transition-colors duration-300 hover:text-primary"
+              size="icon"
+              variant="ghost"
+            >
+              <MessageCircleMore className="size-6" />
+            </Button>
+          </ContactForm>
+          <Button
+            asChild
+            className="transition-colors duration-300 hover:text-primary"
+            size="icon"
+            variant="ghost"
+          >
+            <Link href={`tel:${process.env.NEXT_PUBLIC_PHONE}`}>
+              <PhoneOutgoing className="size-6" />
+            </Link>
+          </Button>
+
+          <div className="hidden md:flex">
+            <Button
+              aria-label="Toggle theme"
+              className="transition-colors duration-300 hover:text-primary"
+              onClick={cycleTheme}
+              size="icon"
+              variant="ghost"
+            >
+              {renderThemeIcon()}
+            </Button>
+          </div>
+
+          <div className="md:hidden">
+            <MobileNav />
+          </div>
         </div>
       </div>
     </header>
@@ -109,19 +102,20 @@ function Navbar() {
 
 function NavbarBrand() {
   return (
-    <Link href="/" className="flex items-center space-x-3">
+    <Link className="flex flex-1 items-center gap-2" href="/">
       <Image
-        src="/logo.svg"
         alt="Praxis Logo"
-        width={40}
         height={40}
-        className="object-contain"
+        priority
+        src="/logo.svg"
+        unoptimized
+        width={40}
       />
-      <div className="hidden md:block text-sm">
-        <p className="font-semibold text-primary">
+      <div className="hidden text-sm xl:block">
+        <p className="text-primary text-xs">
           Praxis für Osteopathie, Dentosophie, Yoga & Qigong
         </p>
-        <p className="text-muted-foreground">Maitri Katrin Eulitz</p>
+        <p className="text-muted-foreground text-xs">Maitri Katrin Eulitz</p>
       </div>
     </Link>
   );
@@ -129,60 +123,34 @@ function NavbarBrand() {
 
 function DesktopNav({ pathname }: { pathname: string }) {
   return (
-    <nav className="hidden md:block">
+    <nav className="hidden items-center md:flex">
       <AnimatedBackground
-        defaultValue={navItems[0].title}
         className="rounded-lg bg-accent"
+        defaultValue={NAV_ITEMS[0].title}
+        enableHover
         transition={{
-          type: "spring",
+          type: 'spring',
           bounce: 0.2,
           duration: 0.3,
         }}
-        enableHover
       >
-        {navItems.map((item) => (
+        {NAV_ITEMS.map((item) => (
           <Link
-            key={item.key}
-            href={item.href}
-            data-id={item.title}
             className={cn(
-              "px-3 py-2 text-sm font-medium transition-colors duration-300",
+              'px-3 py-2 font-medium text-sm transition-colors duration-300',
               pathname === item.href
-                ? "text-primary"
-                : "text-foreground hover:text-primary"
+                ? 'text-primary'
+                : 'text-foreground hover:text-primary'
             )}
+            data-id={item.title}
+            href={item.href}
+            key={item.key}
           >
             {item.title}
           </Link>
         ))}
       </AnimatedBackground>
     </nav>
-  );
-}
-
-function ActionItems({ items }: { items: ActionItem[] }) {
-  return (
-    <AnimatedBackground
-      className="rounded-lg bg-accent"
-      transition={{
-        type: "spring",
-        bounce: 0.2,
-        duration: 0.3,
-      }}
-      enableHover
-    >
-      {items.map((item) => (
-        <div
-          key={item.key}
-          data-id={item.key}
-          className="rounded-full text-foreground hover:text-primary transition-colors duration-300"
-        >
-          {React.cloneElement(item.component as React.ReactElement, {
-            "aria-label": item.ariaLabel,
-          })}
-        </div>
-      ))}
-    </AnimatedBackground>
   );
 }
 

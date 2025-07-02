@@ -25,7 +25,7 @@ interface DialogContextType {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   uniqueId: string;
-  triggerRef: React.RefObject<HTMLDivElement>;
+  triggerRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const DialogContext = React.createContext<DialogContextType | null>(null);
@@ -39,7 +39,7 @@ function useDialog() {
 }
 
 function useClickOutside<T extends HTMLElement>(
-  ref: RefObject<T>,
+  ref: RefObject<T | null>,
   handler: (event: MouseEvent | TouchEvent) => void
 ): void {
   useEffect(() => {
@@ -100,7 +100,7 @@ type DialogTriggerProps = {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  triggerRef?: React.RefObject<HTMLDivElement>;
+  triggerRef?: React.RefObject<HTMLDivElement | null>;
 };
 
 function DialogTrigger({
@@ -250,7 +250,7 @@ function DialogContainer({ children }: DialogContainerProps) {
         <>
           <motion.div
             key={`backdrop-${uniqueId}`}
-            className="fixed inset-0 z-50 h-full w-full bg-background/40 backdrop-blur-sm"
+            className="fixed inset-0 z-50 h-full w-full bg-background/40 backdrop-blur-xs"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
