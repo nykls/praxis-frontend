@@ -33,12 +33,12 @@ function Navbar() {
 
   const renderThemeIcon = () => {
     if (theme === 'system') {
-      return <SunMoon className="size-6" />;
+      return <SunMoon className="size-5" />;
     }
     if (currentTheme === 'dark') {
-      return <MoonIcon className="size-6" />;
+      return <MoonIcon className="size-5" />;
     }
-    return <SunIcon className="size-6" />;
+    return <SunIcon className="size-5" />;
   };
 
   if (!mounted) {
