@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/drawer';
 import { NAV_ITEMS } from '@/lib/nav-config';
 import { cn } from '@/lib/utils';
+import { TextLoop } from './animate/text-loop';
 import { Button, buttonVariants } from './ui/button';
 
 function MobileNav() {
@@ -68,14 +69,55 @@ function MobileNav() {
                 <div className="relative size-12">
                   <Image alt="Logo" fill src="/logo.svg" />
                 </div>
-                <div className="flex-col">
-                  <span className="font-bold text-sm">
-                    Praxis für Osteopathie, Dentosophie, Yoga & Qigong
-                  </span>
-                  <br />
-                  <span className="font-normal text-xs">
-                    Maitri Katrin Eulitz
-                  </span>
+                <div>
+                  <p className="inline-flex items-center whitespace-pre-wrap text-primary text-sm">
+                    Praxis für{' '}
+                    <span className="relative w-[100px]">
+                      <TextLoop
+                        className="font-bold"
+                        transition={{
+                          type: 'spring',
+                          stiffness: 900,
+                          damping: 80,
+                          mass: 10,
+                        }}
+                        variants={{
+                          initial: {
+                            y: 20,
+                            rotateX: 90,
+                            opacity: 0,
+                            filter: 'blur(4px)',
+                          },
+                          animate: {
+                            y: 0,
+                            rotateX: 0,
+                            opacity: 1,
+                            filter: 'blur(0px)',
+                          },
+                          exit: {
+                            y: -20,
+                            rotateX: -90,
+                            opacity: 0,
+                            filter: 'blur(4px)',
+                          },
+                        }}
+                      >
+                        <span className="bg-linear-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
+                          Osteopathie
+                        </span>
+                        <span className="bg-linear-to-r from-cyan-600 to-cyan-700 bg-clip-text font-bold text-transparent">
+                          Dentosophie
+                        </span>
+                        <span className="bg-linear-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
+                          Yoga
+                        </span>
+                        <span className="bg-linear-to-r from-green-600 to-green-700 bg-clip-text text-transparent">
+                          Qigong
+                        </span>
+                      </TextLoop>
+                    </span>
+                  </p>
+                  <p className="font-normal text-xs">Maitri Katrin Eulitz</p>
                 </div>
               </MobileLink>
             </DrawerTitle>
