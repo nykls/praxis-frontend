@@ -112,10 +112,10 @@ function NavbarBrand() {
         unoptimized
         width={40}
       />
-      <div className="hidden min-w-0 xl:block">
-        <div className="inline-flex items-center whitespace-pre-wrap text-primary text-sm">
+      <div className="hidden min-w-0 md:block">
+        <div className="inline-flex w-[200px] items-center text-primary text-sm">
           Praxis für{' '}
-          <span className="relative w-[100px] font-bold">
+          <span className="relative ml-1 w-[100px] font-bold">
             <TextLoop
               transition={{
                 type: 'spring',

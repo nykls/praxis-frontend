@@ -52,9 +52,8 @@ function CardSkeleton() {
     <section>
       <FullWidthWrapper>
         <div className="grid gap-3 lg:grid-cols-2">
-          {/* biome-ignore lint/suspicious/noArrayIndexKey: <explanation> */}
-          {Array.from({ length: 6 }).map((_, index) => (
-            <LoadingCard key={index} />
+          {Array.from({ length: 6 }).map(() => (
+            <LoadingCard key={crypto.randomUUID()} />
           ))}
         </div>
       </FullWidthWrapper>
@@ -73,33 +72,35 @@ function PostSkeleton() {
   return (
     <section className="xl:pt-25">
       <FullWidthWrapper>
-        <article className="flex flex-col">
-          <div className="mx-auto grid">
-            <div className="flex flex-col gap-5 xl:gap-20">
-              <div>
-                <Skeleton className="mx-auto mt-5 h-10 w-3/4 lg:h-12" />
-              </div>
-
-              <div className="space-y-5 md:px-20 lg:px-36">
-                <div className="flex items-center gap-3">
-                  <Skeleton className="h-10 w-10 rounded-full" />
-                  <div className="flex flex-col gap-1">
-                    <Skeleton className="h-4 w-48" />
-                    <Skeleton className="h-4 w-32" />
-                  </div>
+        <div className="space-y-5">
+          <article className="flex flex-col">
+            <div className="mx-auto grid">
+              <div className="flex flex-col gap-5 xl:gap-20">
+                <div>
+                  <Skeleton className="mx-auto mt-5 h-10 w-3/4 lg:h-12" />
                 </div>
-                <Separator />
-                <div className="space-y-5">
-                  <Skeleton className="h-6 w-full" />
-                  <Skeleton className="h-6 w-full" />
-                  <Skeleton className="h-6 w-5/6" />
-                  <Skeleton className="h-6 w-full" />
-                  <Skeleton className="h-6 w-3/4" />
+
+                <div className="space-y-5 md:px-20 lg:px-36">
+                  <div className="flex items-center gap-3">
+                    <Skeleton className="h-10 w-10 rounded-full" />
+                    <div className="flex flex-col gap-1">
+                      <Skeleton className="h-4 w-48" />
+                      <Skeleton className="h-4 w-32" />
+                    </div>
+                  </div>
+                  <Separator />
+                  <div className="space-y-5">
+                    <Skeleton className="h-6 w-full" />
+                    <Skeleton className="h-6 w-full" />
+                    <Skeleton className="h-6 w-5/6" />
+                    <Skeleton className="h-6 w-full" />
+                    <Skeleton className="h-6 w-3/4" />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
       </FullWidthWrapper>
     </section>
   );
@@ -109,8 +110,11 @@ function SliderSkeleton() {
   return (
     <Carousel className="h-full w-auto">
       <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem className="overflow-hidden md:basis-1/2" key={index}>
+        {Array.from({ length: 5 }).map(() => (
+          <CarouselItem
+            className="overflow-hidden md:basis-1/2"
+            key={crypto.randomUUID()}
+          >
             <Card className="overflow-hidden">
               <CardContent className="m-0 flex aspect-4/3 items-center justify-center overflow-hidden p-0">
                 <AspectRatio ratio={4 / 3}>
