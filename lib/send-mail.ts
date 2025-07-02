@@ -1,8 +1,8 @@
-"use server";
+'use server';
 
-import { contactData, contactSchema } from "@/lib/form-schema";
-import { Resend } from "resend";
-import { EmailTemplate } from "@/components/mail-template";
+import { Resend } from 'resend';
+import { EmailTemplate } from '@/components/mail-template';
+import { type contactData, contactSchema } from '@/lib/form-schema';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -20,7 +20,7 @@ export async function addEntry(data: contactData) {
   if (!recipient) {
     return {
       success: false,
-      error: "Mail-Empfänger (NEXT_PUBLIC_MAIL) ist nicht konfiguriert.",
+      error: 'Mail-Empfänger (NEXT_PUBLIC_MAIL) ist nicht konfiguriert.',
     };
   }
 
@@ -28,14 +28,14 @@ export async function addEntry(data: contactData) {
 
   // Subjekt zusammensetzen
   const subject =
-    validatedData.subject === "Terminabsage"
+    validatedData.subject === 'Terminabsage'
       ? validatedData.subject
       : `${validatedData.subject}-Anfrage`;
 
   try {
     // Mail senden
     await resend.emails.send({
-      from: "Kontaktformular <info@osteopathie-radebeul.de>",
+      from: 'Kontaktformular <anfrage@osteopathie-radebeul.de>',
       to: [recipient],
       subject,
       text: validatedData.message,
