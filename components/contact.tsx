@@ -101,7 +101,9 @@ export default function ContactForm({ children }: ContactFormProps) {
     try {
       const result = await addEntry(data);
       if (!result || result.error) {
-        console.error('Fehler beim Absenden:', result?.error);
+        toast.error('Fehler beim Absenden.', {
+          description: 'Bitte versuchen Sie es erneut.',
+        });
         return;
       }
 
@@ -113,7 +115,7 @@ export default function ContactForm({ children }: ContactFormProps) {
         description:
           'Vielen Dank für Ihre Nachricht. Wir melden uns so schnell wie möglich bei Ihnen.',
       });
-    } catch (error) {
+    } catch {
       toast.error('Etwas ist schiefgelaufen.', {
         description: 'Bitte versuchen Sie es erneut.',
       });
