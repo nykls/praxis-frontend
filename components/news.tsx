@@ -1,18 +1,10 @@
 import { PortableText } from '@portabletext/react';
-import Link from 'next/link';
 import { RichTextComponent } from '@/components/rich-text-components';
 import Typography from '@/components/typography';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import type { Post } from '@/lib/interfaces';
 import { urlFor } from '@/lib/utils';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-} from './ui/breadcrumb';
 
 function NewsContent(_post: Post) {
   return (
