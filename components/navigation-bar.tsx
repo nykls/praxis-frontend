@@ -54,7 +54,7 @@ function Navbar() {
   }
 
   return (
-    <header className="-translate-x-1/2 fixed bottom-4 left-1/2 z-50 w-fit rounded-full border border-border/50 bg-background/60 p-3 shadow-md backdrop-blur-sm supports-backdrop-filter:bg-background/40 xl:top-3 xl:bottom-auto">
+    <header className="-translate-x-1/2 fixed bottom-4 left-1/2 z-50 w-fit rounded-full border border-border/50 bg-background/60 p-3 shadow-md backdrop-blur-sm supports-backdrop-filter:bg-background/40 md:top-3 md:bottom-auto">
       <div className="flex items-center gap-3">
         <NavbarBrand />
         <DesktopNav pathname={pathname} />

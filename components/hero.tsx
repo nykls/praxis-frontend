@@ -28,7 +28,7 @@ const springOptions = { bounce: 0.1 };
 export const Hero = () => {
   return (
     <BackgroundLines
-      className="relative flex max-h-dvh min-h-screen w-full items-start justify-center overflow-hidden pt-20 lg:items-center lg:pt-0"
+      className="relative flex max-h-dvh min-h-screen w-full items-start justify-center overflow-hidden pt-20 md:items-center md:pt-0"
       svgOptions={{ duration: 5 }}
     >
       <motion.div
@@ -37,7 +37,7 @@ export const Hero = () => {
         initial="hidden"
         variants={containerVariants}
       >
-        <div className="z-20 space-y-3 lg:space-y-6">
+        <div className="z-20 space-y-3 md:space-y-6">
           <motion.h1
             className="font-semibold text-lg text-neutral-800 sm:text-4xl md:text-5xl dark:text-neutral-200"
             variants={itemVariants}
