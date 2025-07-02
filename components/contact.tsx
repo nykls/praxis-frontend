@@ -109,12 +109,14 @@ export default function ContactForm({ children }: ContactFormProps) {
       setOpen(false);
       setStep(1);
 
-      toast('Ihre Nachricht wurde erfolgreich versendet.', {
+      toast.success('Ihre Nachricht wurde erfolgreich versendet.', {
         description:
           'Vielen Dank für Ihre Nachricht. Wir melden uns so schnell wie möglich bei Ihnen.',
       });
     } catch (error) {
-      console.error('Etwas ist schiefgelaufen:', error);
+      toast.error('Etwas ist schiefgelaufen.', {
+        description: 'Bitte versuchen Sie es erneut.',
+      });
     }
   };
 
