@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Caveat } from 'next/font/google';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 import { Magnetic } from './animate/magnetic';
@@ -6,6 +7,11 @@ import { TextEffect } from './animate/text-effect';
 import ContactForm from './contact';
 import { BackgroundLines } from './ui/background-lines';
 import { Button, buttonVariants } from './ui/button';
+
+const font = Caveat({
+  subsets: ['latin'],
+  weight: ['700'],
+});
 
 const containerVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -61,7 +67,7 @@ export const Hero = () => {
             Maitri Katrin Eulitz
           </motion.h1>
           <motion.h2
-            className="relative bg-linear-to-b from-neutral-900 to-neutral-600 bg-clip-text font-bold text-transparent text-xl tracking-tight md:text-4xl dark:from-neutral-300 dark:to-white"
+            className={`relative bg-linear-to-b from-neutral-900 to-neutral-600 bg-clip-text font-bold text-transparent text-xl tracking-tight md:text-4xl dark:from-neutral-300 dark:to-white ${font.className}`}
             variants={itemVariants}
           >
             Herzlich Willkommen!
