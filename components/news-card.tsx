@@ -23,7 +23,7 @@ export default function NewsCard({
             </Typography>
           </div>
         )}
-        <PaginationControls totalPages={totalPages} />
+        {totalPages > 1 && <PaginationControls totalPages={totalPages} />}
       </section>
     </FullWidthWrapper>
   );

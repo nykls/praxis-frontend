@@ -40,13 +40,17 @@ async function getPosts(page: number) {
   return data;
 }
 
+async function Posts({ currentPage }: { currentPage: number }) {
+  const { posts, totalPosts } = await getPosts(currentPage);
+  const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
+  return <NewsCard posts={posts} totalPages={totalPages} />;
+}
+
 export default async function BlogPage(props: {
   searchParams: Promise<{ page?: string }>;
 }) {
   const searchParams = await props.searchParams;
   const currentPage = Number(searchParams.page) || 1;
-  const { posts, totalPosts } = await getPosts(currentPage);
-  const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
   return (
     <section className="xl:pt-25">
       <FullWidthWrapper>
@@ -55,7 +59,7 @@ export default async function BlogPage(props: {
         </Typography>
       </FullWidthWrapper>
       <Suspense fallback={<CardSkeleton />}>
-        <NewsCard posts={posts} totalPages={totalPages} />
+        <Posts currentPage={currentPage} />
       </Suspense>
     </section>
   );

@@ -1,14 +1,6 @@
 import { unstable_cache } from 'next/cache';
-import Link from 'next/link';
 import FullWidthWrapper from '@/components/full-width-wrapper';
 import NewsContent from '@/components/news';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
 import type { Post } from '@/lib/interfaces';
 import { client } from '@/sanity/lib/client';
 
