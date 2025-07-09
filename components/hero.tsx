@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Caveat } from 'next/font/google';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
+import { cn } from '@/lib/utils';
 import { Magnetic } from './animate/magnetic';
 import { TextEffect } from './animate/text-effect';
 import ContactForm from './contact';
@@ -110,9 +111,12 @@ export const Hero = () => {
             springOptions={springOptions}
           >
             <Link
-              className={buttonVariants({
-                variant: 'outline',
-              })}
+              className={cn(
+                buttonVariants({
+                  variant: 'outline',
+                }),
+                'cursor-default'
+              )}
               href="#service"
             >
               Mehr<span aria-hidden="true">&nbsp;&rarr;</span>
