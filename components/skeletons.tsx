@@ -74,27 +74,29 @@ function PostSkeleton() {
       <FullWidthWrapper>
         <div className="space-y-5">
           <article className="flex flex-col">
-            <div className="mx-auto grid">
+            <div className="grid">
               <div className="flex flex-col gap-5 xl:gap-20">
                 <div>
-                  <Skeleton className="mx-auto mt-5 h-10 w-3/4 lg:h-12" />
+                  <Skeleton className="mx-auto mt-5 h-10 w-11/12 lg:h-12" />
                 </div>
 
                 <div className="space-y-5 md:px-20 lg:px-36">
                   <div className="flex items-center gap-3">
-                    <Skeleton className="h-10 w-10 rounded-full" />
-                    <div className="flex flex-col gap-1">
-                      <Skeleton className="h-4 w-48" />
-                      <Skeleton className="h-4 w-32" />
+                    <Skeleton className="size-10 rounded-full" />
+                    <div className="flex flex-col gap-2">
+                      <Skeleton className="h-5 w-48" />
+                      <Skeleton className="h-5 w-32" />
                     </div>
                   </div>
                   <Separator />
-                  <div className="space-y-5">
-                    <Skeleton className="h-6 w-full" />
-                    <Skeleton className="h-6 w-full" />
-                    <Skeleton className="h-6 w-5/6" />
-                    <Skeleton className="h-6 w-full" />
-                    <Skeleton className="h-6 w-3/4" />
+                  {/* Textkörper-Skeleton, der die Struktur von PortableText nachahmt */}
+                  <div className="space-y-4">
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-5/6" />
+                    <br />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-11/12" />
                   </div>
                 </div>
               </div>
