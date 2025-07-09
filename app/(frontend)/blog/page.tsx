@@ -17,7 +17,6 @@ export const metadata: Metadata = {
 const POSTS_PER_PAGE = 6;
 
 async function getPosts(page: number) {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
   const query = `
     {
       "posts": *[_type == 'post'] | order(publishedAt desc) [${
@@ -42,7 +41,8 @@ async function getPosts(page: number) {
 }
 
 async function Posts({ searchParams }: { searchParams: { page?: string } }) {
-  const currentPage = Number(searchParams.page) || 1;
+  const awaitedSearchParams = await searchParams;
+  const currentPage = Number(awaitedSearchParams.page) || 1;
   const { posts, totalPosts } = await getPosts(currentPage);
   const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
   return <NewsCard posts={posts} totalPages={totalPages} />;
