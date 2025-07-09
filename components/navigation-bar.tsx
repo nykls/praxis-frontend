@@ -54,36 +54,39 @@ function Navbar() {
   }
 
   return (
-    <header className="-translate-x-1/2 fixed bottom-4 left-1/2 z-50 w-fit rounded-full border border-border/50 bg-background/60 p-3 shadow-md backdrop-blur-sm supports-backdrop-filter:bg-background/40 md:top-3 md:bottom-auto">
-      <div className="flex items-center gap-3">
+    <header className="-translate-x-1/2 md:p3 fixed bottom-4 left-1/2 z-50 w-fit rounded-full border border-border bg-background/50 p-5 shadow-xl backdrop-blur-xl backdrop-saturate-150 supports-backdrop-filter:bg-background/30 md:top-3 md:bottom-auto md:p-2">
+      <div className="flex items-center gap-5">
         <NavbarBrand />
         <DesktopNav pathname={pathname} />
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4 md:gap-3">
           <ContactForm>
             <Button
               aria-label="Kontaktformular öffnen"
-              className="transition-colors duration-300 hover:text-primary"
+              className="size-[40px] transition-colors duration-300 hover:text-primary"
               size="icon"
               variant="ghost"
             >
-              <MessageCircleMore className="size-6" />
+              <MessageCircleMore className="size-7 md:size-6" />
             </Button>
           </ContactForm>
           <Button
             asChild
-            className="transition-colors duration-300 hover:text-primary"
+            className="size-[40px] transition-colors duration-300 hover:text-primary"
             size="icon"
             variant="ghost"
           >
-            <Link href={`tel:${process.env.NEXT_PUBLIC_PHONE}`}>
-              <PhoneOutgoing className="size-6" />
+            <Link
+              className="cursor-default"
+              href={`tel:${process.env.NEXT_PUBLIC_PHONE}`}
+            >
+              <PhoneOutgoing className="size-7 md:size-6" />
             </Link>
           </Button>
 
           <div className="hidden md:flex">
             <Button
               aria-label="Toggle theme"
-              className="transition-colors duration-300 hover:text-primary"
+              className="size-[40px] transition-colors duration-300 hover:text-primary"
               onClick={cycleTheme}
               size="icon"
               variant="ghost"
@@ -104,14 +107,16 @@ function Navbar() {
 function NavbarBrand() {
   return (
     <Link className="flex flex-1 items-center gap-2" href="/">
-      <Image
-        alt="Praxis Logo"
-        height={40}
-        priority
-        src="/logo.svg"
-        unoptimized
-        width={40}
-      />
+      <div className="relative size-[40px]">
+        <Image
+          alt="Logo"
+          className="shrink-0 rounded-full"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+          src="/logo.svg"
+        />
+      </div>
       <div className="hidden min-w-0 md:block">
         <div className="inline-flex w-[190px] items-center font-bold text-primary text-sm">
           Praxis für{' '}

@@ -48,7 +48,7 @@ function MobileNav() {
     <Drawer onOpenChange={setOpen} open={open}>
       <DrawerTrigger asChild>
         <Button className="md:hidden" size="icon" variant="ghost">
-          <Menu className="size-6" />
+          <Menu className="size-7 md:size-6" />
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </DrawerTrigger>
