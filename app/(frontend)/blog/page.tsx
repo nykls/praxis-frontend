@@ -14,9 +14,10 @@ export const metadata: Metadata = {
     'Blog, Aktuelles, Neuigkeiten, Osteopathie, Dentosophie, Yoga, Qigong, Gesundheit, Praxis-News',
 };
 
-const POSTS_PER_PAGE = 10;
+const POSTS_PER_PAGE = 6;
 
 async function getPosts(page: number) {
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   const query = `
     {
       "posts": *[_type == 'post'] | order(publishedAt desc) [${
@@ -40,17 +41,18 @@ async function getPosts(page: number) {
   return data;
 }
 
-async function Posts({ currentPage }: { currentPage: number }) {
+async function Posts({ searchParams }: { searchParams: { page?: string } }) {
+  const currentPage = Number(searchParams.page) || 1;
   const { posts, totalPosts } = await getPosts(currentPage);
   const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
   return <NewsCard posts={posts} totalPages={totalPages} />;
 }
 
-export default async function BlogPage(props: {
-  searchParams: Promise<{ page?: string }>;
+export default function BlogPage({
+  searchParams,
+}: {
+  searchParams: { page?: string };
 }) {
-  const searchParams = await props.searchParams;
-  const currentPage = Number(searchParams.page) || 1;
   return (
     <section className="xl:pt-25">
       <FullWidthWrapper>
@@ -59,7 +61,7 @@ export default async function BlogPage(props: {
         </Typography>
       </FullWidthWrapper>
       <Suspense fallback={<CardSkeleton />}>
-        <Posts currentPage={currentPage} />
+        <Posts searchParams={searchParams} />
       </Suspense>
     </section>
   );
