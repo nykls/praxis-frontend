@@ -40,7 +40,7 @@ export const Hero = () => {
     >
       <motion.div
         animate="visible"
-        className="flex w-full max-w-4xl flex-col items-center justify-center space-y-12 px-4 text-center"
+        className="flex w-full max-w-4xl flex-col items-center justify-center gap-8 px-4 text-center md:gap-12"
         initial="hidden"
         variants={containerVariants}
       >
@@ -88,10 +88,7 @@ export const Hero = () => {
             </TextEffect>
           </Balancer>
         </div>
-        <motion.div
-          className="z-20 flex flex-col gap-4 sm:flex-row sm:gap-6"
-          variants={itemVariants}
-        >
+        <div className="z-20 flex flex-col gap-4 sm:flex-row sm:gap-6">
           <Magnetic
             actionArea="global"
             intensity={0.1}
@@ -123,7 +120,7 @@ export const Hero = () => {
               <span className="sr-only">Mehr Informationen</span>
             </Link>
           </Magnetic>
-        </motion.div>
+        </div>
       </motion.div>
     </BackgroundLines>
   );
