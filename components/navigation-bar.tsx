@@ -54,7 +54,7 @@ function Navbar() {
   }
 
   return (
-    <header className="-translate-x-1/2 fixed bottom-4 left-1/2 z-50 w-fit rounded-full border border-border bg-background/50 p-5 shadow-xl backdrop-blur-xl backdrop-saturate-150 supports-backdrop-filter:bg-background/30 md:top-3 md:bottom-auto md:p-3">
+    <header className="-translate-x-1/2 fixed bottom-4 left-1/2 z-50 w-fit rounded-full border border-border bg-background/50 p-4 shadow-xl backdrop-blur-xl backdrop-saturate-150 supports-backdrop-filter:bg-background/30 md:top-3 md:bottom-auto md:p-3">
       <div className="flex items-center gap-5">
         <NavbarBrand />
         <DesktopNav pathname={pathname} />
@@ -171,11 +171,12 @@ function NavbarBrand() {
 }
 
 function DesktopNav({ pathname }: { pathname: string }) {
+  const activeItem = NAV_ITEMS.find((item) => item.href === pathname);
   return (
     <nav className="hidden items-center md:flex">
       <AnimatedBackground
         className="rounded-lg bg-accent"
-        defaultValue={NAV_ITEMS[0].title}
+        defaultValue={activeItem?.title}
         enableHover
         transition={{
           type: 'spring',
@@ -188,7 +189,7 @@ function DesktopNav({ pathname }: { pathname: string }) {
             className={cn(
               'px-3 py-2 font-medium text-sm transition-colors duration-300',
               pathname === item.href
-                ? 'text-primary'
+                ? 'text-destructive'
                 : 'text-foreground hover:text-primary'
             )}
             data-id={item.title}
