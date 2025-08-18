@@ -1,19 +1,19 @@
-import { GoogleMapsEmbed as TPCGoogleMapEmbed } from 'third-party-capital'
+import { GoogleMapsEmbed as TPCGoogleMapEmbed } from 'third-party-capital';
 
-import ThirdPartyScriptEmbed from '../ThirdPartyScriptEmbed'
-import type { GoogleMapsEmbed as GoogleMapsEmbedTypes } from '../types/google'
+import ThirdPartyScriptEmbed from '../ThirdPartyScriptEmbed';
+import type { GoogleMapsEmbed as GoogleMapsEmbedTypes } from '../types/google';
 
 export default function GoogleMapsEmbed(props: GoogleMapsEmbedTypes) {
-  const { apiKey, ...restProps } = props
-  const formattedProps = { ...restProps, key: apiKey }
-  const { html } = TPCGoogleMapEmbed(formattedProps)
+  const { apiKey, ...restProps } = props;
+  const formattedProps = { ...restProps, key: apiKey };
+  const { html } = TPCGoogleMapEmbed(formattedProps);
 
   return (
     <ThirdPartyScriptEmbed
-      height={formattedProps.height || null}
-      width={formattedProps.width || null}
-      html={html}
       dataNtpc="GoogleMapsEmbed"
-    ></ThirdPartyScriptEmbed>
-  )
+      height={formattedProps.height || null}
+      html={html}
+      width={formattedProps.width || null}
+    />
+  );
 }

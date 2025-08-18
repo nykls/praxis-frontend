@@ -1,23 +1,22 @@
-"use client";
+'use client';
 
-import { GoogleMapsEmbed } from "./third-parties/google";
-import { Card } from "./ui/card";
+import { GoogleMapsEmbed } from './third-parties/google';
+import { Card } from './ui/card';
 
 export default function Maps() {
-  const position = { lat: 51.097900607863075, lng: 13.677138946517001 };
-  const center = { lat: 51.097900607863075, lng: 13.665841482178923 };
+  const position = { lat: 51.097_900_607_863_075, lng: 13.677_138_946_517_001 };
+  const center = { lat: 51.097_900_607_863_075, lng: 13.665_841_482_178_923 };
   return (
-    <Card className="w-full h-[400px] overflow-hidden">
-      {" "}
+    <Card className="h-[400px] w-full overflow-hidden">
       <GoogleMapsEmbed
+        allowfullscreen={false}
         apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}
         height="400"
-        width="100%"
         mode="place"
         q="Praxis+für+Osteopathie;+Yoga;+Qi+Gong+Maitri+Katrin+Eulitz+(D.O.)"
-        allowfullscreen={false}
         style="border-radius: 0.5rem"
         title="Praxis für Osteopathie, Yoga, Qigong Maitri Katrin Eulitz"
+        width="100%"
       />
     </Card>
   );
