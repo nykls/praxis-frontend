@@ -10,9 +10,9 @@ import { MapsSkeleton } from './skeletons';
 import Typography from './typography';
 import { Button } from './ui/button';
 
-const PostMaps = dynamic(() => import('./maps'), {
-  loading: () => <MapsSkeleton />,
-});
+// const PostMaps = dynamic(() => import('./maps'), {
+//   loading: () => <MapsSkeleton />,
+// });
 
 const Footer = () => {
   return (
