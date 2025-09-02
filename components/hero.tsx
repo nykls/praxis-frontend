@@ -38,7 +38,6 @@ export const Hero = () => {
       className="relative flex max-h-dvh min-h-screen w-full items-start justify-center overflow-hidden pt-20 md:items-center md:pt-0"
       svgOptions={{ duration: 5 }}
     >
-      {/* Dreamy Sky Pink Glow */}
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -47,7 +46,6 @@ export const Hero = () => {
         radial-gradient(circle at 70% 30%, rgba(255, 182, 193, 0.4), transparent 60%)`,
         }}
       />
-      {/* Your Content/Components */}
       <motion.div
         animate="visible"
         className="flex w-full max-w-4xl flex-col items-center justify-center gap-8 px-4 text-center md:gap-12"
