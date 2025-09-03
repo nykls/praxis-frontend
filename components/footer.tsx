@@ -1,18 +1,12 @@
 'use client';
 
 import { Cookie, Github, ShieldQuestion } from 'lucide-react';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import FullWidthWrapper from './full-width-wrapper';
 import Maps from './maps';
-import { MapsSkeleton } from './skeletons';
 import Typography from './typography';
 import { Button } from './ui/button';
-
-// const PostMaps = dynamic(() => import('./maps'), {
-//   loading: () => <MapsSkeleton />,
-// });
 
 const Footer = () => {
   return (
