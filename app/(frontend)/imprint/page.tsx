@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 function Page() {
   return (
     <FullWidthWrapper>
-      <div className="flex-col space-y-3 pt-25">
+      <div className="flex-col space-y-3 md:pt-25">
         <Typography className="m-5" variant="h1">
           Impressum
         </Typography>

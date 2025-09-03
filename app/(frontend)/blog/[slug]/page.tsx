@@ -52,7 +52,7 @@ export default async function BlogPage({ params }: Props) {
 
   const post: Post = await getPost(slug);
   return (
-    <section className="xl:pt-25">
+    <section className="md:pt-25">
       <FullWidthWrapper>
         <div className="space-y-5">
           <NewsContent {...post} />
