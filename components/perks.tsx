@@ -149,12 +149,12 @@ function PerkCard({ perk }: { perk: Perk }) {
 export default function Perks() {
   return (
     <section
-      className="relative min-h-screen w-full overflow-hidden border-y py-8 sm:py-16"
+      className="relative w-full overflow-hidden border-y py-8 sm:min-h-screen sm:pt-22"
       id="service"
     >
       <div className="-z-10 absolute inset-0 h-full w-full bg-[radial-gradient(circle,#73737350_1px,transparent_1px)] bg-[size:10px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_80%,transparent_100%)]" />
       <div className="relative mx-auto max-w-4xl px-4 sm:px-6">
-        <div className="mb-8 space-y-2 text-center sm:mb-14">
+        <div className="mb-8 space-y-1 text-center sm:mb-14">
           <Typography className="text-lg sm:text-xl" variant="h3">
             Ganzheitliche Begleitung
           </Typography>
@@ -168,7 +168,7 @@ export default function Perks() {
             Individuelle Ansätze für Körper und Geist
           </Typography>
         </div>
-        <div className="flex flex-col space-y-4 sm:space-y-8">
+        <div className="flex flex-col space-y-6 sm:space-y-5">
           {perks.map((perk) => (
             <PerkCard key={perk.name} perk={perk} />
           ))}
