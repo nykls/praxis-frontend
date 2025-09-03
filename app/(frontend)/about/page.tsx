@@ -45,7 +45,7 @@ export default async function ResumePage() {
   const vitas = data.vitas;
 
   return (
-    <section className="space-y-7 xl:pt-25">
+    <section className="space-y-7 md:pt-25">
       <FullWidthWrapper>
         <Typography className="m-5 mx-auto" variant="h1">
           Über mich

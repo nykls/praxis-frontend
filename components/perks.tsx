@@ -149,7 +149,7 @@ function PerkCard({ perk }: { perk: Perk }) {
 export default function Perks() {
   return (
     <section
-      className="relative w-full overflow-hidden border-y py-8 sm:py-16"
+      className="relative min-h-screen w-full overflow-hidden border-y py-8 sm:py-16"
       id="service"
     >
       <div className="-z-10 absolute inset-0 h-full w-full bg-[radial-gradient(circle,#73737350_1px,transparent_1px)] bg-[size:10px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_80%,transparent_100%)]" />

@@ -16,7 +16,7 @@ import { Button } from './ui/button';
 
 const Footer = () => {
   return (
-    <footer className="z-40 bg-accent pt-7 pb-20 xl:pb-3">
+    <footer className="z-40 bg-accent pt-7 pb-25 xl:pb-3">
       <FullWidthWrapper>
         <div className="pb-5">
           <Maps />

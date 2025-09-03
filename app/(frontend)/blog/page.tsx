@@ -54,7 +54,7 @@ export default function BlogPage({
   searchParams: { page?: string };
 }) {
   return (
-    <section className="xl:pt-25">
+    <section className="md:pt-25">
       <FullWidthWrapper>
         <Typography className="m-5 mx-auto" variant="h1">
           Aktuelles

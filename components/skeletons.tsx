@@ -70,7 +70,7 @@ function MapsSkeleton() {
 
 function PostSkeleton() {
   return (
-    <section className="xl:pt-25">
+    <section className="md:pt-25">
       <FullWidthWrapper>
         <div className="space-y-5">
           <article className="flex flex-col">
