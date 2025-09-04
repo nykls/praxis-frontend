@@ -59,21 +59,21 @@ function Navbar() {
         <NavbarBrand />
         <DesktopNav pathname={pathname} />
         <div className="flex items-center gap-4 md:gap-3">
-          <ContactForm>
+          <ContactForm asChild>
             <Button
               aria-label="Kontaktformular öffnen"
-              className="size-[40px] transition-colors duration-300 hover:text-primary"
+              className="size-[40px] cursor-pointer transition-colors duration-300 hover:text-destructive"
               size="icon"
-              variant="ghost"
+              variant="link"
             >
               <MessageCircleMore className="size-7 md:size-6" />
             </Button>
           </ContactForm>
           <Button
             asChild
-            className="size-[40px] transition-colors duration-300 hover:text-primary"
+            className="size-[40px] cursor-pointer transition-colors duration-300 hover:text-destructive"
             size="icon"
-            variant="ghost"
+            variant="link"
           >
             <Link
               className="cursor-default"
@@ -86,10 +86,10 @@ function Navbar() {
           <div className="hidden md:flex">
             <Button
               aria-label="Toggle theme"
-              className="size-[40px] transition-colors duration-300 hover:text-primary"
+              className="size-[40px] cursor-pointer transition-colors duration-300 hover:text-destructive"
               onClick={cycleTheme}
               size="icon"
-              variant="ghost"
+              variant="link"
             >
               {renderThemeIcon()}
             </Button>
@@ -175,13 +175,12 @@ function DesktopNav({ pathname }: { pathname: string }) {
   return (
     <nav className="hidden items-center md:flex">
       <AnimatedBackground
-        className="rounded-lg bg-accent"
+        className="pointer-events-none inset-x-0 top-0 bottom-auto rounded-full border border-destructive"
         defaultValue={activeItem?.title}
-        enableHover
         transition={{
           type: 'spring',
-          bounce: 0.2,
-          duration: 0.3,
+          bounce: 0.3,
+          duration: 0.5,
         }}
       >
         {NAV_ITEMS.map((item) => (
@@ -190,7 +189,7 @@ function DesktopNav({ pathname }: { pathname: string }) {
               'px-3 py-2 font-medium text-sm transition-colors duration-300',
               pathname === item.href
                 ? 'text-destructive'
-                : 'text-foreground hover:text-primary'
+                : 'text-primary hover:text-primary'
             )}
             data-id={item.title}
             href={item.href}
